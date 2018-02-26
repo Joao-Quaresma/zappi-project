@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.jumbotron {
+  background-size: 100% 100%;
+  background-image: asset-url('5Ninjas.jpg');
+  height: 230px;
+  border: 4px solid black;
+}
+
+

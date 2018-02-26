@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+$navbar-default-bg: black; 
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
@@ -26,3 +28,6 @@
 }
 
 
+body {
+  padding-bottom: 200px;
+}

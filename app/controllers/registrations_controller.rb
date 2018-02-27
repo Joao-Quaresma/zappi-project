@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
  
+ 
   def destroy
     resource.soft_delete
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)

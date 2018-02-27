@@ -14,6 +14,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+gem "paranoia", "~> 2.2"
 
 
 group :development, :test do

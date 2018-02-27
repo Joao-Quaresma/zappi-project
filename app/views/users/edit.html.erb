@@ -1,0 +1,30 @@
+<h2 align="center">Edit Profile</h2>
+
+<!--this form is different than the devise registrations to let admins to configure other users profile-->
+
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :username, required: false, autofocus: true %>
+    <%= f.input :first_name, required: false %>
+    <%= f.input :last_name, required: false %>
+    <strong>Role: </strong><%= f.select :role, User.roles.keys.to_a %>
+    <%= f.input :email, required: true %>
+    <%= f.input :password, autocomplete: "off", required: false, hint: "leave it blank if you don't want to change it" %>
+    <%= f.input :password_confirmation, required: false %>
+    <% if user_signed_in? and current_user.admin?%>
+      <div class="form-check">
+        <div class="control-label col-sm-2">
+              <%= f.label "Admin" %> 
+              <%= f.check_box :admin %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>
+
+<%= link_to "Back", :back %>

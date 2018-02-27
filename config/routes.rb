@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   
 
   devise_for :users, :controllers => { registrations: 'registrations' }
+  get 'users', to: "users#index", as: "users"
+  get 'users/:id', to: "users#show", as: "user"
+  
   root to: 'pages#index'
 
   get 'contact', to: 'pages#contact'

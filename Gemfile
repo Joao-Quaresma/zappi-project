@@ -15,8 +15,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
-gem "paranoia", "~> 2.2"
 
+#paranoia for users delete/suspend
+gem "paranoia", "~> 2.2"
+#paperclip for the zappisocial
+gem "paperclip", "~> 5.2.1"
 
 group :development, :test do
   gem 'byebug'

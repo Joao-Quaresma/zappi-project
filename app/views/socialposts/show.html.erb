@@ -1,0 +1,33 @@
+<div class="posts-wrapper row">
+  <div class="post">
+    <div class="post-head">
+      <div class="name">
+        <%= @socialpost.user.username %>
+      </div>
+    </div>
+    <div class="image center-block">
+        <% if  @socialpost.image.present? %>
+        <%= image_tag @socialpost.image.url(:medium) %>
+        <% else %>
+        <img src="<%= asset_path( 'noimage.png' ) %>" style="width:250px;height:250px;" />
+        <% end %>
+    </div>
+    <p class="caption">
+      <%= @socialpost.caption %>
+    </p>
+   
+    <div class="text-center">
+      <%= link_to "Back to posts", socialposts_path %>
+      <% if current_user.admin? || current_user == @socialpost.user %>
+        |
+        <%= link_to "Edit post", edit_socialpost_path(@socialpost) %> 
+        |
+        <%= link_to "Delete Post", socialpost_path(@socialpost), method: :delete, data: { confirm: "Are you sure you want to delete this post?" } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

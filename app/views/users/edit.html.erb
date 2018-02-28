@@ -12,7 +12,6 @@
     <strong>Role: </strong><%= f.select :role, User.roles.keys.to_a %>
     <%= f.input :email, required: true %>
     <%= f.input :password, autocomplete: "off", required: false, hint: "leave it blank if you don't want to change it" %>
-    <%= f.input :password_confirmation, required: false %>
     <% if user_signed_in? and current_user.admin?%>
       <div class="form-check">
         <div class="control-label col-sm-2">

@@ -1,10 +1,11 @@
-<%= simple_form_for(@socialpost) do |f| %>
-    <%= f.input :image, required: false %>
-    <%= f.input :caption, required: true %>
-    <%= f.button :submit, "submit" %>
-<% end %>
 
 
   
   
-  
+<%= render 'form' %>
+
+<div class="form-wrapper">
+    <div class="form-group text-center">
+        <%= link_to "Cancel", socialposts_path %>
+    </div>
+</div>

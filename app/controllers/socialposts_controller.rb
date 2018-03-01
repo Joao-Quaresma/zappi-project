@@ -2,6 +2,7 @@ class SocialpostsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_socialpost, only: [:show, :edit, :update, :destroy]
     before_action :owned_socialpost, only: [:edit, :update, :destroy]
+
     
     def index
         @socialpost = Socialpost.all
@@ -58,8 +59,8 @@ class SocialpostsController < ApplicationController
     def owned_socialpost
         unless current_user == @socialpost.user || current_user.admin?
         flash[:alert] = "Error! You can't edit posts from other users."
-        redirect_to (socialpost_path(@socialpost))
+        redirect_to socialpost_path(@socialpost)
         end
     end
-  
+
 end

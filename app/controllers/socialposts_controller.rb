@@ -5,7 +5,7 @@ class SocialpostsController < ApplicationController
 
     
     def index
-        @socialpost = Socialpost.all
+        @socialposts = Socialpost.all
     end
     
     def new

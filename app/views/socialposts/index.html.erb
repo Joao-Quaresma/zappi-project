@@ -4,33 +4,11 @@
 <li><%= link_to "test", new_socialpost_path %></li>
 
 
-<div class="posts-wrapper row">
-  <% @socialpost.each do |socialpost| %>
-    <div class="post">
-      <div class="post-head">
-        <div class="name">
-          <%= socialpost.user.username %>
-        </div>
-      </div>
-      <div class="image center-block">
-          
-        <% if  socialpost.image.present? %>
-        <%= link_to (image_tag socialpost.image.url(:medium), class:'img-responsive'), socialpost_path(socialpost) %>
-        <% else %>
-        <%= link_to (image_tag asset_path( 'noimage.png' ), class:'img-responsive'), socialpost_path(socialpost) %>
-        <% end %>
-        
-        
-        
-      </div>
-      <p class="caption">
-        <%= socialpost.caption %>
-      </p>
-    </div>
-  <% end %>
-</div>
 
-
-
+<% @socialposts.each do |socialpost| %>
+  <h4 align="center"><%= link_to "View Post", socialpost_path(socialpost) %></h2>
+  <%= render 'socialpost', socialpost: socialpost %>
+<hr>
+<% end %>
 
 

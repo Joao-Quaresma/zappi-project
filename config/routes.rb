@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resources :users
   
   #zappisocial routes
-  resources :socialposts
+  resources :socialposts do
+    resources :comments
+  end
+  
   get 'zappisocial', to: 'socialposts#index'
   
 

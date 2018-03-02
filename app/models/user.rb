@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_paranoid
-  has_many :socialposts, dependent: :destroy
+  has_many :socialposts # , dependent: :destroy /////this needs to be added if we want the posts deleted once a user is deleted
+  has_many :comments # , dependent: :destroy /////same as above
   
   before_save { self.email = email.downcase }
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }

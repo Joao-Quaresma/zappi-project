@@ -5,6 +5,8 @@
     <%= link_to "Cancel", socialposts_path %>
     |
     <%= link_to "Edit Post", edit_socialpost_path(@socialpost) %>
+    |
+    <%= link_to "Delete Post", socialpost_path(@socialpost), method: :delete, data: { confirm: "Are you sure you want to delete this post?" } %>
   </div>
 <% else %>
   <div class="text-center edit-links">

@@ -3,46 +3,48 @@
     <div class="post-head">
       <div class="thumb-img"></div>
       <div class="user-name">
-          <div align="left">
-            Created by: <%= socialpost.user.username %>
-          </div>
+        <div align="left">
+          Created by: <%= socialpost.user.username %> (<%= time_ago_in_words socialpost.created_at %> ago)
+        </div>
       </div>
     </div>
+    <!-- this will only show the image if it was uploaded and also redirects to the post if we click in the image -->
     <div class="image center-block">
       <% if socialpost.image.present? %>
-        <%= image_tag socialpost.image.url(:medium) %>
+        <%= link_to (image_tag socialpost.image.url(:medium), class:'img-responsive'), socialpost_path(socialpost) %>
       <% end %>
     </div>
     <div class="post-bottom">
       <div class="caption">
-        <%= socialpost.caption %><hr>
+        <div class="caption-content">
+          <div class="user-name">
+            <%= socialpost.user.username %>
+          </div>
+          <%= socialpost.caption %><hr>
+        </div>  
         <div align="center" class="comments">
           <strong>Comments:</strong>
         </div>
+        <!-- this will show the comments and will grab the _comment in the comments folder -->
+        <div class="comments" id="comments_<%= socialpost.id %>">
+          <% if socialpost.comments %>
+            <%= render socialpost.comments, socialpost: socialpost %>
+          <% end %>
+        </div>
       </div>
-      <% if socialpost.comments %>
-        <% socialpost.comments.each do |comment| %>
-          <div class="comment">
-            <div class="user-name">
-              <%= comment.user.username %>
-            </div>
-            <div class="comment-content">
-              <%= comment.content %>
-            
-            <% if current_user.admin? || current_user == @comment.user %>
-              <h6 align="left"><%= link_to 'Remove', socialpost_comment_path(socialpost, comment), method: :delete, data: { confirm: "Are you sure?" } %></h6>
-            <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
     </div>
+        <!-- this is the comments form -->
     <div class="comment-like-form row">
+      <div class="like-button col-sm-1">
+        <span class="glyphicon glyphicon-heart-empty"</span>
+      </div>
       <div class="comment-form col-sm-11">
-        <%= form_for [socialpost, socialpost.comments.new] do |f| %>
-          <%= f.text_field :content, placeholder: 'Add a comment...' %>
+        <%= form_for([socialpost, socialpost.comments.build], remote: true) do |f| %>
+          <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{socialpost.id}" %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+

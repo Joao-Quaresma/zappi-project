@@ -1,2 +1,7 @@
 $('#comments_<%= @socialpost.id %>').append("<%=j render 'comments/comment', socialpost: @socialpost, comment: @comment %>");
 $('#comment_content_<%= @socialpost.id %>').val('')
+$('#comment_content_<%= @socialpost.id %>').blur();
+console.log(Append.comment_count);
+Append.comment_count += 1
+console.log(Append.comment_count);
+$(Append.id).attr('data-value', Append.comment_count);

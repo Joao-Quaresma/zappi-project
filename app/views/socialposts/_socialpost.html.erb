@@ -4,7 +4,7 @@
       <div class="thumb-img"></div>
       <div class="user-name">
         <div align="left">
-          Created by: <%= socialpost.user.username %> (<%= time_ago_in_words socialpost.created_at %> ago)
+          Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)
         </div>
       </div>
     </div>
@@ -27,8 +27,13 @@
         </div>
         <!-- this will show the comments and will grab the _comment in the comments folder -->
         <div class="comments" id="comments_<%= socialpost.id %>">
-          <% if socialpost.comments %>
-            <%= render socialpost.comments, socialpost: socialpost %>
+          <% if socialpost.comments.any? %>
+            <%= render socialpost.comments.first(4), socialpost: socialpost %>
+            <% unless socialpost.comments.count <= 4 %>
+              <div class="paginator" id="#comments-paginator-<%= socialpost.id %>">
+                <%= link_to "view all #{socialpost.comments.count} comments", socialpost_comments_path(socialpost), remote: true, class: 'more-comments', id: "more_comments_#{socialpost.id}", data: {post_id: "#{socialpost.id}", type: "html", value: "#{socialpost.comments.count}"} %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>

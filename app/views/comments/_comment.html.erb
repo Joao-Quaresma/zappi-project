@@ -1,6 +1,6 @@
 <div id="comment">
     <div class="user-name">
-      <%= comment.user.username %> (<%= time_ago_in_words comment.created_at %> ago) 
+      <%= link_to comment.user.username, user_path(comment.user.id) %> (<%= time_ago_in_words comment.created_at %> ago) 
     </div>
     <div class="comment-content">
       <%= comment.content %>
@@ -11,5 +11,4 @@
       <% end %>
     </div>
 </div>
-
 

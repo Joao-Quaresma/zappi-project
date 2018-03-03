@@ -15,7 +15,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
-gem 'glyphicons-rails', '~> 0.1.2' #was to try something, can be removed 
+gem 'glyphicons-rails', '~> 0.1.2'  
+gem 'kaminari'
+gem 'jquery-turbolinks'
 
 
 #paranoia for users delete/suspend

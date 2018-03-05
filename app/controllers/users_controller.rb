@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show,:editlogin, :edit, :update, :destroy]
-  before_action :require_same_user, only: [:edit, :editlogin, :update, :destroy]
+  before_action :set_user, only: [:show,:editlogin, :edit, :update]
+  before_action :require_same_user, only: [:edit, :editlogin, :update]
 
   
   
@@ -32,12 +32,6 @@ class UsersController < ApplicationController
     @socialposts = @user.socialposts.order('created_at DESC')
   end
 
-#this destroy is used in the User views
-  def destroy
-    @user.destroy
-    flash[:danger] = "User and all articles created by the user have been deleted"
-    redirect_to users_path
-  end
   
   private
   def user_params

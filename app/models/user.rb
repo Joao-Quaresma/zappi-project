@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
-  acts_as_paranoid#needed for soft delete // its part of the Gem
+  #acts_as_paranoid#needed for soft delete // its part of the Gem
+  #to check deleted users in Rails c -> User.with_deleted.all
+  #example of restore: User.with_deleted.find(2).restore    
+  
+  
   has_many :socialposts # , dependent: :destroy /////this needs to be added if we want the posts deleted once a user is deleted
   has_many :comments # , dependent: :destroy /////same as above
   
@@ -16,21 +20,6 @@ class User < ActiveRecord::Base
   
   #roles available in the profile/sign up
   enum role: {'None': 0, 'Developer': 1, 'Support': 2, 'Product Owner': 3, 'Research': 4, 'Client Excelence': 5, 'Sales': 6, 'Office Manager': 7}
-  
-   # instead of deleting, indicate the user requested a delete & timestamp it  
-  def soft_delete  
-    update_attribute(:deleted_at, Time.current)  
-  end  
-  
-  # ensure user account is active  
-  def active_for_authentication?  
-    super && !deleted_at  
-  end  
-  
-  # provide a custom message for a deleted account   
-  def inactive_message   
-  	!deleted_at ? super : :deleted_account  
-  end  
   
   
   devise :database_authenticatable, :registerable,

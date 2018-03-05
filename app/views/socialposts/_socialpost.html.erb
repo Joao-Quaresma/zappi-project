@@ -18,17 +18,19 @@
       <div class="caption">
         <div class="caption-content">
           <div class="user-name">
-            <%= socialpost.user.username %>
+            <%= link_to socialpost.user.username, user_path(socialpost.user.id) %>
           </div>
-          <%= socialpost.caption %><hr>
+          <div style="word-wrap: break-word">
+            <%= socialpost.caption %><hr>
+          </div> 
         </div>  
-        <div align="center" class="comments">
+        <div align="left" class="comments">
           <strong>Comments:</strong>
         </div>
         <!-- this will show the comments and will grab the _comment in the comments folder -->
         <div class="comments" id="comments_<%= socialpost.id %>">
           <% if socialpost.comments.any? %>
-            <%= render socialpost.comments.first(4), socialpost: socialpost %>
+            <%= render socialpost.comments.order("created_at DESC").first(4), socialpost: socialpost %>
             <% unless socialpost.comments.count <= 4 %>
               <div class="paginator" id="#comments-paginator-<%= socialpost.id %>">
                 <%= link_to "view all #{socialpost.comments.count} comments", socialpost_comments_path(socialpost), remote: true, class: 'more-comments', id: "more_comments_#{socialpost.id}", data: {post_id: "#{socialpost.id}", type: "html", value: "#{socialpost.comments.count}"} %>

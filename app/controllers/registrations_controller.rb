@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
  
- 
+  
   def destroy
     resource.soft_delete
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
@@ -14,9 +14,9 @@ class RegistrationsController < Devise::RegistrationsController
   def sign_up_params
     params.require(:user).permit(
       :email,
+      :username,
       :password,
       :password_confirmation,
-      :username,
       :first_name,
       :last_name,
       :role
@@ -25,10 +25,10 @@ class RegistrationsController < Devise::RegistrationsController
   def account_update_params
     params.require(:user).permit(
       :email,
+      :username,
       :password,
       :password_confirmation,
       :current_password,
-      :username,
       :first_name,
       :last_name,
       :role

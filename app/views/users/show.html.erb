@@ -1,22 +1,62 @@
 
-<h1 align="center"><%= @user.username %>'s</h1>
-
-<% if @user.admin?  %>
-  <h5 align="center">Account type: Admin</h5>
-<% else %>
-  <h5 align="center">Account type: User</h5>
+<div class="posts-wrapper">
+  <div class="row profile-header">
+    <div class="col-md-6">
+      <div class="img-circle">
+        <%= profile_avatar_select(@user) %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="user-name-and-follow">
+        <h3 class="profile-user-name">
+          <%= @user.username %> 
+        </h3>
+        <h6 class="User-first-name">
+          Name: <% @user.last_name %>
+        </h6>
+        <h6 class="account-type">
+          <% if @user.admin?  %>
+            Account type: Admin
+          <% else %>
+              Account type: User
+          <% end %>
+        </h6>
+        <span>
+          <% if @user == current_user || current_user.admin? %>
+            <%= link_to 'Edit profile', edit_user_path(@user) %>
+          <% end %>
+        </span>
+         | 
+        <span>
+          <!-- check users/editlogin and devise/registrations/edit to check a comment about these 2 next if's -->
+          <% if @user == current_user %>
+            <%= link_to 'Edit details', edit_user_registration_path(current_user) %>
+          <% end %>
+          <% if @user != current_user and current_user.admin? %>
+            <%= link_to 'Edit details', editlogin_path(@user) %>
+          <% end %>
+        </span>
+      </div>
+      <p class="profile-resume">
+        <%= @user.resume %>
+      </p>
+      <div class="user-statistics">
+        <p>
+          <%= pluralize @user.socialposts.count, 'post' %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      
+      
+      
+      
+      
+    <!--create later a url to anothe rpage with the user posts-->  
+<% @socialposts.each do |socialpost| %>
+  <%= render 'socialposts/socialpost', socialpost: socialpost %>
 <% end %>
 
-
-<% if current_user.admin? and current_user != @user %>
-  <h5 align="center"><%= link_to "Edit user Profile", edit_user_path(@user.id) %></h5>
-  
-
-  <li><%= link_to "Delete this user", user_path(@user), method: :delete, 
-                  data: { confirm: "Are you sure you want to delete the user?"} %></li>
-                  
-<% end %>
-<% if current_user == @user %>
-  <h5 align="center"><%= link_to "Edit your Profile", edit_user_registration_path(current_user) %></h5>
-<% end %>
 

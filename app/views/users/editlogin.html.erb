@@ -1,0 +1,80 @@
+<!-- this is used to change the login details if the current user is an admin and is trying to edit other user, if the user is trying to edit its own login then it is used the devise/registration/edit -->
+
+
+<div class="posts-wrapper">
+    <div class="post">
+        <div class="post-body">
+            <div class="image-wrap">
+                <%= simple_form_for @user, url: {action: "update"}, html: { multipart: true } do |f| %>
+                <%= f.error_notification %>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group text-center">
+                            <h4>Update Username:</h4>
+                            <%= f.input :username, class: "form-control", placeholder: "Enter username", required: true, autofocus: true %>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group text-center">
+                            <h4>Update Email:</h4>
+                            <%= f.input :email, class: "form-control", placeholder: "Enter email", required: true %>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group text-center">
+                            <h4>Update First name:</h4>
+                            <%= f.input :first_name, class: "form-control", placeholder: "Enter first name", required: false %>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group text-center">
+                            <h4>Update Last name:</h4>
+                            <%= f.input :last_name, class: "form-control", placeholder: "Enter last name", required: false %>
+                          </div>
+                        </div>
+                    </div>
+                    <% if :authenticate_user? and current_user.admin?%>
+                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group text-left">
+                                <%= f.label "Admin" %> 
+                                <%= f.check_box :admin %>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>  
+                    <strong>Role: </strong><%= f.select :role, User.roles.keys.to_a %>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group text-center">
+                            <h4>Update Password:</h4>
+                            <%= f.input :password, class: "form-control", autocomplete: "off", placeholder: "Leave it blank if you don't want to change it", required: false %>
+                          </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group text-center">
+                        <%= f.submit "Update", class: 'btn btn-success' %>
+                    </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group text-left">
+                                [<%= link_to "Go back to profile", user_path(@user) %>]
+                                <p>Unhappy? <%= link_to "Cancel account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+                            </div>
+                        </div>    
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

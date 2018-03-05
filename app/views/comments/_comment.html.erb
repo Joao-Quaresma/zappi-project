@@ -1,14 +1,17 @@
 <div id="comment">
-    <div class="user-name">
-      <%= link_to comment.user.username, user_path(comment.user.id) %> (<%= time_ago_in_words comment.created_at %> ago) 
+    <hr>
+    <div clas="user-name">
+      <%= link_to comment.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words comment.created_at %> ago) 
     </div>
     <div class="comment-content">
-      <%= comment.content %>
-      <% if current_user.admin? || current_user.id == comment.user_id %>
-          <%= link_to socialpost_comment_path(socialpost, comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do %>
-           <span class="glyphicon glyphicon-remove delete-comment"></span>
-          <% end %>
-      <% end %>
+      <div style="word-wrap: break-word">
+        <%= comment.content %>
+        <% if current_user.admin? || current_user.id == comment.user_id %>
+            <%= link_to socialpost_comment_path(socialpost, comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do %>
+             <span class="glyphicon glyphicon-remove delete-comment"></span>
+            <% end %>
+        <% end %>
+      </div>
     </div>
 </div>
 

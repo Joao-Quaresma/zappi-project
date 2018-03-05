@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
-  
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
+ devise_for :users, :controllers => { registrations: 'registrations' }
+ 
   get 'users', to: "users#index", as: "users"
   get 'users/:id', to: "users#show", as: "user"
+  patch 'users/edit', to: 'users#update', as: :update_user
+  get 'users/:id/editlogin', to: "users#editlogin", as: "editlogin"
+  resources :users
+  
   root to: 'pages#index'
   get 'contact', to: 'pages#contact'
   get 'about', to: 'pages#about'
-  
-  resources :users
   
   #zappisocial routes
   resources :socialposts do
     resources :comments
   end
   
-  get 'zappisocial', to: 'socialposts#index'
   
+  get 'zappisocial', to: 'socialposts#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     end
     
       def index
-        @comments = @socialpost.comments.order("created_at ASC")
+        @comments = @socialpost.comments.order("created_at DESC")
         respond_to do |format|
           format.html { render layout: !request.xhr? }
         end

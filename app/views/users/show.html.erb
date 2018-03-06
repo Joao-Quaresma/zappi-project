@@ -11,9 +11,11 @@
         <h3 class="profile-user-name">
           <%= @user.username %> 
         </h3>
+        <% if @user.first_name.present? and @user.last_name.present? %>
         <h6 class="User-first-name">
-          Name: <% @user.last_name %>
+          Name: <%= @user.first_name %> <%= @user.last_name %>
         </h6>
+        <% end %>
         <h6 class="account-type">
           <% if @user.admin?  %>
             Account type: Admin

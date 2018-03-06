@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show,:editlogin, :edit, :update]
+  before_action :set_user, only: [:show, :editlogin, :edit, :update]
   before_action :require_same_user, only: [:edit, :editlogin, :update]
 
   
@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   end
   
   def update
+    if params[:user][:password].blank? #will allow the admin to update the user without entering a password
+      params[:user].delete(:password)
+    end
     if @user.update(user_params)
       flash[:success] = "Account updated successfully"
       redirect_to user_path(@user.id)
@@ -27,7 +30,6 @@ class UsersController < ApplicationController
   end
   
   
-  
   def show
     @socialposts = @user.socialposts.order('created_at DESC')
   end
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:password, :username, :first_name, :last_name, :email, :admin, :avatar, :resume, :role)
+    params.require(:user).permit(:username,:password, :first_name, :last_name, :email, :admin, :avatar, :resume, :role)
   end
   def set_user
     @user = User.find(params[:id])

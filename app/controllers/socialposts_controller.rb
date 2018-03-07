@@ -1,6 +1,6 @@
 class SocialpostsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_socialpost, only: [:show, :edit, :update, :destroy]
+    before_action :set_socialpost, only: [:show, :edit, :update, :destroy, :like]
     before_action :owned_socialpost, only: [:edit, :update, :destroy]
 
     
@@ -46,6 +46,15 @@ class SocialpostsController < ApplicationController
         @socialpost.destroy
         flash[:success] = "Post deleted"
         redirect_to socialposts_path
+    end
+    
+    def like
+        if @socialpost.liked_by current_user
+          respond_to do |format|
+            format.html { redirect_to :back }
+            format.js
+          end
+        end
     end
     
     

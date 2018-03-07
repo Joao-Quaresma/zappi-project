@@ -18,6 +18,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'glyphicons-rails', '~> 0.1.2'  
 gem 'kaminari'
 gem 'jquery-turbolinks'
+gem 'acts_as_votable', '~> 0.10.0'
 
 
 #paranoia for users delete/suspend

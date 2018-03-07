@@ -15,6 +15,7 @@
       <% end %>
     </div>
     <div class="post-bottom">
+      <%= render 'socialposts/likes', socialpost: socialpost %>
       <div class="caption">
         <div class="caption-content">
           <div class="user-name">
@@ -43,7 +44,7 @@
         <!-- this is the comments form -->
     <div class="comment-like-form row">
       <div class="like-button col-sm-1">
-        <span class="glyphicon glyphicon-heart-empty"</span>
+        <%= link_to '', like_socialpost_path(socialpost.id), remote: true, id: "like_#{socialpost.id}", class: "like glyphicon #{liked_socialpost socialpost}" %>
       </div>
       <div class="comment-form col-sm-11">
         <%= form_for([socialpost, socialpost.comments.build], remote: true) do |f| %>
@@ -53,5 +54,3 @@
     </div>
   </div>
 </div>
-
-

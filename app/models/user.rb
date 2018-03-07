@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   #acts_as_paranoid#needed for soft delete // its part of the Gem
   #to check deleted users in Rails c -> User.with_deleted.all
   #example of restore: User.with_deleted.find(2).restore    
-  
+  acts_as_voter
   
   has_many :socialposts # , dependent: :destroy /////this needs to be added if we want the posts deleted once a user is deleted
   has_many :comments # , dependent: :destroy /////same as above

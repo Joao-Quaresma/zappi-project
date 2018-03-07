@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   #zappisocial routes
   resources :socialposts do
     resources :comments
+    member do
+      get 'like'
+    end
   end
   
   

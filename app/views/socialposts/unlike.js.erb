@@ -1,0 +1,3 @@
+$("#like_<%= @socialpost.id %>").removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
+$("#like_<%= @socialpost.id %>").removeAttr('href').attr('href', '/socialposts/<%= @socialpost.id %>/like');
+$("#likes_<%= @socialpost.id %>").html("<%= j (render partial: 'socialposts/likes', locals: { socialpost: @socialpost} ) %>");

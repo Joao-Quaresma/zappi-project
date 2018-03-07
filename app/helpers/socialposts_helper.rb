@@ -1,15 +1,21 @@
-
 module SocialpostsHelper
   def display_likes(socialpost)
     votes = socialpost.votes_for.up.by_type(User)
     return list_likers(votes) if votes.size <= 20
     count_likers(votes)
   end
-
+  
   def liked_socialpost(socialpost)
-    return 'glyphicon-heart' if current_user.voted_for? socialpost
-    'glyphicon-heart-empty'
+    if current_user.voted_for? socialpost
+      return link_to '', unlike_socialpost_path(socialpost), remote: true, id: "like_#{socialpost.id}", 
+          class: "glyphicon glyphicon-heart"
+    else
+      link_to '', like_socialpost_path(socialpost), remote: true, id: "like_#{socialpost.id}", 
+          class: "glyphicon glyphicon-heart-empty" 
+    end
   end
+  
+  
 
   private
 

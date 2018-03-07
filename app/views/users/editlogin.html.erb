@@ -10,13 +10,13 @@
                     <div class="row">
                         <div class="col-md-6">
                           <div class="form-group text-center">
-                            <h4>Update Username:</h4>
+                            <h4>Username:</h4>
                             <%= f.input :username, class: "form-control", placeholder: "Enter username", required: true, autofocus: true %>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group text-center">
-                            <h4>Update Email:</h4>
+                            <h4>Email:</h4>
                             <%= f.input :email, class: "form-control", placeholder: "Enter email", required: true %>
                           </div>
                         </div>
@@ -24,28 +24,39 @@
                     <div class="row">
                         <div class="col-md-6">
                           <div class="form-group text-center">
-                            <h4>Update First name:</h4>
+                            <h4>First name:</h4>
                             <%= f.input :first_name, class: "form-control", placeholder: "Enter first name", required: false %>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group text-center">
-                            <h4>Update Last name:</h4>
+                            <h4>Last name:</h4>
                             <%= f.input :last_name, class: "form-control", placeholder: "Enter last name", required: false %>
                           </div>
                         </div>
                     </div>
-                    <% if :authenticate_user? and current_user.admin?%>
-                     <div class="row">
-                        <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group text-center">
+                            <h4>Job title:</h4>
+                            <%= f.input :job_role, class: "form-control", placeholder: "Enter job role", required: false %>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <br>
+                            <% if :authenticate_user? and current_user.admin? %>
                             <div class="form-group text-left">
                                 <%= f.label "Admin" %> 
                                 <%= f.check_box :admin %>
                             </div>
+                            <% end %>
+                            <div class="form-group text-left">
+                                <%= f.label "Role" %>
+                                <%= f.select :role, User.roles.keys.to_a %>
+                            </div>
                         </div>
                     </div>
-                    <% end %>  
-                    <strong>Role: </strong><%= f.select :role, User.roles.keys.to_a %>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">

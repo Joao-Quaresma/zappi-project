@@ -1,6 +1,6 @@
 class SocialpostsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_socialpost, only: [:show, :edit, :update, :destroy, :like]
+    before_action :set_socialpost, only: [:show, :edit, :update, :destroy, :like, :unlike]
     before_action :owned_socialpost, only: [:edit, :update, :destroy]
 
     
@@ -56,6 +56,16 @@ class SocialpostsController < ApplicationController
           end
         end
     end
+        
+    def unlike
+        if @socialpost.unliked_by current_user
+          respond_to do |format|
+            format.js
+            format.html { redirect_to :back }
+          end
+        end
+    end
+  
     
     
     private

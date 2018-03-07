@@ -12,7 +12,8 @@ class RegistrationsController < Devise::RegistrationsController
       :password_confirmation,
       :first_name,
       :last_name,
-      :role
+      :role,
+      :job_role
       )
   end
   def account_update_params
@@ -24,7 +25,8 @@ class RegistrationsController < Devise::RegistrationsController
       :current_password,
       :first_name,
       :last_name,
-      :role
+      :role,
+      :job_role
       )
   end
 end

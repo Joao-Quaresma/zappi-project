@@ -2,7 +2,7 @@
 <div class="posts-wrapper">
   <div class="row profile-header">
     <div class="col-md-6">
-      <div class="img-circle">
+      <div class="img-circle avatar-image">
         <%= profile_avatar_select(@user) %>
       </div>
     </div>
@@ -11,17 +11,23 @@
         <h3 class="profile-user-name">
           <%= @user.username %> 
         </h3>
-        <% if @user.first_name.present? and @user.last_name.present? %>
-        <h6 class="User-first-name">
-          Name: <%= @user.first_name %> <%= @user.last_name %>
-        </h6>
-        <% end %>
         <h6 class="account-type">
           <% if @user.admin?  %>
             Account type: Admin
           <% else %>
               Account type: User
           <% end %>
+        </h6>
+        <% if @user.first_name.present? and @user.last_name.present? %>
+        <h6 class="User-first-name">
+          Name: <%= @user.first_name %> <%= @user.last_name %>
+        </h6>
+        <% end %>
+        <h6 class="role">
+          Role: <%= @user.role %>
+        </h6>
+        <h6 class="job-title">
+          Title: <%= @user.job_role %>
         </h6>
         <span>
           <% if @user == current_user || current_user.admin? %>

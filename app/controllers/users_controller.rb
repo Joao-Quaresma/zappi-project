@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:username,:password, :first_name, :last_name, :email, :admin, :avatar, :resume, :role)
+    params.require(:user).permit(:username,:password, :first_name, :last_name, :email, :admin, :avatar, :resume, :role, :job_role)
   end
   def set_user
     @user = User.find(params[:id])

@@ -3,9 +3,10 @@
     <div class="post-head">
       <div class="thumb-img"></div>
       <div class="user-name">
-        <div align="left">
-          Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)
-        </div>
+        Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %>
+      </div>
+      <div class="time-ago">
+        (<%= time_ago_in_words socialpost.created_at %> ago)
       </div>
     </div>
     <!-- this will only show the image if it was uploaded and also redirects to the post if we click in the image -->
@@ -44,7 +45,7 @@
         <!-- this is the comments form -->
     <div class="comment-like-form row">
       <div class="like-button col-sm-1">
-        <%= link_to '', like_socialpost_path(socialpost.id), remote: true, id: "like_#{socialpost.id}", class: "like glyphicon #{liked_socialpost socialpost}" %>
+        <%= liked_socialpost socialpost %>
       </div>
       <div class="comment-form col-sm-11">
         <%= form_for([socialpost, socialpost.comments.build], remote: true) do |f| %>

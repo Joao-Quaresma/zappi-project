@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   
   has_many :socialposts # , dependent: :destroy /////this needs to be added if we want the posts deleted once a user is deleted
   has_many :comments # , dependent: :destroy /////same as above
-  
+  has_many :notifications, dependent: :destroy
   
   has_attached_file :avatar, styles: { medium: '152x152#' }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

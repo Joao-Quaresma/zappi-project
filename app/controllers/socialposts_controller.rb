@@ -5,7 +5,7 @@ class SocialpostsController < ApplicationController
 
     
     def index
-        @socialposts = Socialpost.order('created_at DESC').paginate(page: params[:page],per_page: 3)
+        @socialposts = Socialpost.order('created_at DESC').paginate(page: params[:page],per_page: 12)
     end
     
     def new
@@ -50,10 +50,11 @@ class SocialpostsController < ApplicationController
     
     def like
         if @socialpost.liked_by current_user
-          respond_to do |format|
-            format.html { redirect_to :back }
-            format.js
-          end
+            create_notification @socialpost, @comment
+            respond_to do |format|
+                format.html { redirect_to :back }
+                format.js
+            end
         end
     end
         
@@ -80,6 +81,15 @@ class SocialpostsController < ApplicationController
         flash[:alert] = "Error! You can't edit posts from other users."
         redirect_to socialpost_path(@socialpost)
         end
+    end
+    
+    def create_notification(socialpost, comment)
+    	return if socialpost.user.id == current_user.id 
+      Notification.create(user_id: socialpost.user.id,
+                        notified_by_id: current_user.id,
+                        socialpost_id: socialpost.id,
+			            identifier: socialpost.id,
+                        notice_type: 'like')
     end
 
 end

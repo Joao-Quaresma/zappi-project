@@ -335,3 +335,43 @@ body {
   text-decoration: none;
   color: red;
 }
+
+
+/* all notifications page  */
+
+.notification-index-list {
+  margin-top: 5em;
+  list-style: none;
+  li {
+    margin-top: 1em;
+    background-color: white;
+    padding: 1em;
+  }
+}
+
+/* used to center the dropbox in the navbar  */
+
+.notification-dropdown {
+  margin-top: 10px;
+  button {
+    border: none;
+  }
+}
+
+.notification-index-list {
+  margin-top: 5em;
+  list-style: none;
+  li {
+    margin-top: 1em;
+    background-color: white;
+    padding: 1em;
+  }
+}
+
+.glyphicon-asterisk {
+  color: #337AB7;
+}
+
+.notification {
+  line-height: 1em;
+}

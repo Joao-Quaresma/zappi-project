@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
 
- devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations' }
+ 
+  get 'notifications/link_through'
+ 
+  get 'notifications/:id/link_through', to: 'notifications#link_through',
+                                        as: :link_through
+  get 'notifications', to: 'notifications#index'
+  
+  get 'notifications_all_read', to: 'notifications#index_all_read'
+  
+  resources :notifications do
+    post :read_all, on: :collection
+  end
  
   get 'users', to: "users#index", as: "users"
   get 'users/:id', to: "users#show", as: "user"

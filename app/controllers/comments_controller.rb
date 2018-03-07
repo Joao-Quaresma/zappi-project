@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
       @comment = @socialpost.comments.build(comment_params)
       @comment.user_id = current_user.id
       if @comment.save
+        create_notification @socialpost, @comment
         respond_to do |format|
           format.html { redirect_to root_path }
           format.js
@@ -33,7 +34,7 @@ class CommentsController < ApplicationController
     end
     
       def index
-        @comments = @socialpost.comments.order("created_at DESC")
+        @comments = @socialpost.comments
         respond_to do |format|
           format.html { render layout: !request.xhr? }
         end
@@ -49,5 +50,17 @@ class CommentsController < ApplicationController
     def set_socialpost
       @socialpost = Socialpost.find(params[:socialpost_id])
     end
+    
+    def create_notification(socialpost, comment)
+    	return if socialpost.user.id == current_user.id 
+      Notification.create(user_id: socialpost.user.id,
+                        notified_by_id: current_user.id,
+                        socialpost_id: socialpost.id,
+			                  identifier: @comment.id,
+                        notice_type: 'comment')
+    end
+    
+    
+    
     
 end

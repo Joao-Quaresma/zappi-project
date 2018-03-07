@@ -3,6 +3,7 @@ class Socialpost < ActiveRecord::Base
     
     belongs_to :user
     has_many :comments, dependent: :destroy
+    has_many :notifications, dependent: :destroy
     
     validates :user_id, presence: true
     #enable this validates bellow if we want to obligate the user to upload an image in every post

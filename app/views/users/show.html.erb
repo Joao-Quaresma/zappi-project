@@ -59,12 +59,15 @@
       
       
       
-      
-      
-      
     <!--create later a url to anothe rpage with the user posts-->  
-<% @socialposts.each do |socialpost| %>
-  <%= render 'socialposts/socialpost', socialpost: socialpost %>
+<ul class="user-profile-posts">  
+  <% @socialposts.each do |socialpost| %>
+    <%= render 'socialposts/socialpost', socialpost: socialpost %>
+  <% end %>
+</ul>  
+
+<% if @socialposts.length > 11 %>
+  <div class="text-center" id="paginator">
+      <%= link_to_next_page @socialposts, 'LOAD MORE', remote: true, id: 'load_more' %>
+  </div>
 <% end %>
-
-

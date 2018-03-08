@@ -3,3 +3,16 @@
 <div class="jumbotron jumbotron-pages">
 </div>
  
+<% if user_signed_in? %>
+ <div class="col-md-4">
+  <div class="well">
+    <h4>Recent Posts</h4>
+    <hr>
+    <% @socialposts.last(5).each do |socialpost| %>
+      <strong><%= link_to socialpost.caption, socialpost %></strong>
+      <p><%= truncate(socialpost.caption) %></p>
+      <hr>
+    <% end %>
+  </div>
+</div>
+<% end %>

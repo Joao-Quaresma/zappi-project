@@ -15,6 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+gem 'bootstrap-will_paginate', '0.0.10'
 gem 'glyphicons-rails', '~> 0.1.2'  
 gem 'kaminari'
 gem 'jquery-turbolinks'

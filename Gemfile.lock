@@ -48,6 +48,8 @@ GEM
       sass (>= 3.3.4)
     bootstrap-sass-extras (0.0.7)
       rails (>= 3.1.0)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     builder (3.2.3)
     byebug (10.0.0)
     climate_control (0.2.0)
@@ -222,6 +224,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   bootstrap-sass (~> 3.3.7)
   bootstrap-sass-extras (~> 0.0.7)
+  bootstrap-will_paginate (= 0.0.10)
   byebug
   coffee-rails (~> 4.1.0)
   devise

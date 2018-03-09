@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   
   
   def show
+    @user_articles = @user.articles.paginate(page: params[:page], per_page: 10)
     @socialposts = @user.socialposts.order('created_at DESC').paginate(page: params[:page],per_page: 12)
        respond_to do |format|
           format.js

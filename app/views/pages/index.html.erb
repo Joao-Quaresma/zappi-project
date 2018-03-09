@@ -6,11 +6,26 @@
 <% if user_signed_in? %>
  <div class="col-md-4">
   <div class="well">
-    <h4>Recent Posts</h4>
+    <h4 align="center">Recent Social Posts</h4>
     <hr>
     <% @socialposts.last(5).each do |socialpost| %>
-      <strong><%= link_to socialpost.caption, socialpost %></strong>
-      <p><%= truncate(socialpost.caption) %></p>
+        <p>Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</p>
+        <strong><%= link_to truncate(socialpost.caption), socialpost %></strong>
+        <hr>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="col-md-4">
+  <div class="well">
+    <h4 align="center">Recent Wiki Posts</h4>
+    <hr>
+    <% @articles.last(5).each do |article| %>
+        <p>Created by: <%= link_to article.user.username, user_path(article.user.id) %> (<%= time_ago_in_words article.created_at %> ago)</p>
+        <strong><%= link_to article.title, article %></strong>
+        <p><%= render article.categories %></p>
+        <p><%= truncate(article.description) %></p>
       <hr>
     <% end %>
   </div>

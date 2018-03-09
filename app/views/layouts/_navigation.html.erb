@@ -25,9 +25,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wiki<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
+              <li><%= link_to "All posts", articles_path %></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Action</a></li>
+              <li><%= link_to "New post", new_article_path %></li>
             </ul>
           </li>
       </ul>
@@ -35,9 +35,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wiki categories<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Action</a></li>
+              <li><%= link_to "All Categories", categories_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "New Category", new_category_path %></li>
             </ul>
           </li>
       </ul>

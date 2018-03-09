@@ -7,4 +7,28 @@ class Article < ActiveRecord::Base
     
     has_many :article_categories
     has_many :categories, through: :article_categories
+    
+    def self.search(param)
+      param.strip!
+      param.downcase!
+      to_send_back = (title_matches(param) + description_matches(param) + body_matches(param)).uniq
+      return nil unless to_send_back
+      to_send_back
+    end
+    
+    def self.title_matches(param)
+      matches('title', param)
+    end
+    def self.description_matches(param)
+      matches('description', param)
+    end
+    def self.body_matches(param)
+      matches('body', param)
+    end
+    
+    def self.matches(field_name, param)
+      Article.where("#{field_name} like ?", "%#{param}%")
+    end
+    
+    
 end

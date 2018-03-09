@@ -46,6 +46,17 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
   
+  def search
+    if params[:search_param].blank?
+      flash.now[:danger] = "You have entered an empty search string"
+    else
+      @article = Article.search(params[:search_param])
+      flash.now[:danger] = "No article match this search criteria" if @article.blank?
+    end
+    render partial: 'articles/result'
+  end
+  
+  
   private
     def set_article
     @article = Article.find(params[:id])

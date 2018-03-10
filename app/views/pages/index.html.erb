@@ -4,30 +4,63 @@
 </div>
  
 <% if user_signed_in? %>
- <div class="col-md-4">
-  <div class="well">
-    <h4 align="center">Recent Social Posts</h4>
-    <hr>
-    <% @socialposts.last(5).each do |socialpost| %>
-        <p>Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</p>
-        <strong><%= link_to truncate(socialpost.caption), socialpost %></strong>
-        <hr>
-    <% end %>
-  </div>
-</div>
-
-
-<div class="col-md-4">
-  <div class="well">
-    <h4 align="center">Recent Wiki Posts</h4>
-    <hr>
-    <% @articles.last(5).each do |article| %>
-        <p>Created by: <%= link_to article.user.username, user_path(article.user.id) %> (<%= time_ago_in_words article.created_at %> ago)</p>
-        <strong><%= link_to article.title, article %></strong>
-        <p><%= render article.categories %></p>
-        <p><%= truncate(article.description) %></p>
+<div class="col-md-12 col-md-offset-0">
+  <div class="col-md-6">
+    <div class="well">
+      <h4 align="center">Recent Announcements</h4>
       <hr>
-    <% end %>
+      <% @announcements.last(5).each do |announcement| %>
+          <strong>Title: <%= link_to announcement.title, announcement %></strong>
+          <p><%= render announcement.categories %></p>
+          <p><%= truncate(announcement.description) %></p>
+          <p>Created by: <%= link_to announcement.user.username, user_path(announcement.user.id) %> (<%= time_ago_in_words announcement.created_at %> ago)</p>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+  
+  
+  <div class="col-md-6">
+    <div class="well">
+      <h4 align="center">Recent Wiki Posts</h4>
+      <hr>
+      <% @articles.last(5).each do |article| %>
+          <strong>Title: <%= link_to article.title, article %></strong>
+          <p><%= render article.categories %></p>
+          <p><%= truncate(article.description) %></p>
+          <p>Created by: <%= link_to article.user.username, user_path(article.user.id) %> (<%= time_ago_in_words article.created_at %> ago)</p>
+        <hr>
+      <% end %>
+    </div>
   </div>
 </div>
+
+
+<div class="col-md-12 col-md-offset-0">
+  <div class="col-md-6">
+    <div class="well">
+      <h4 align="center">Recent Social Posts</h4>
+      <hr>
+      <% @socialposts.last(5).each do |socialpost| %>
+          <strong><%= link_to truncate(socialpost.caption), socialpost %></strong>
+          <p>Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</p>
+          <hr>
+      <% end %>
+    </div>
+  </div>
+  
+  
+  <div class="col-md-4">
+    <div class="well">
+      <h4 align="center">Recent joiners:</h4>
+      <hr>
+      <% @users.last(5).each do |user| %>
+          <strong><p>Username: <%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</p></strong>
+          <p>Email: <%= user.email %></p>
+          <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <% end %>

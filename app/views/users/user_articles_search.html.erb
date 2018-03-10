@@ -1,0 +1,13 @@
+<h1 align="center"><%= @user.username + " articles"%></h1>
+
+<div align="center">
+  <%= will_paginate @user_articles %>
+</div>
+
+<ul class="user-profile-posts">  
+    <%= render 'articles/article', obj: @user_articles %>
+</ul>  
+
+<div align="center">
+  <%= will_paginate @user_articles %>
+</div>

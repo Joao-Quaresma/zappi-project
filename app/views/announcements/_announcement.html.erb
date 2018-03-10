@@ -1,0 +1,40 @@
+<% obj.each do |announcement| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="show-title">
+          Title: <%= link_to announcement.title, announcement_path(announcement) %>
+        </div>
+        <div class="announcement-body">
+          <div style="word-wrap: break-word; overflow-y: hidden;">
+            <strong>Description: </strong><%= simple_format(announcement.description) %>
+          </div>
+        </div>
+        <% if announcement.categories.any? %>
+          <div class="announcement-actions">
+            <p>Categories: <%= render announcement.categories %></p>
+          </div>
+        <% end %>
+        <!-- this next if logged_in is to make sure that if for some reason-->
+        <!-- a user that is not logged can see the post then at least that person cant delete or edit -->
+          <% if user_signed_in? %>
+            <div class="announcement-actions">
+                <%= link_to "Edit this announcement", edit_announcement_path(announcement), class: "btn btn-xs btn-primary" %>
+                <% if current_user == announcement.user || current_user.admin? %>
+                  <%= link_to "Delete this announcement", announcement_path(announcement), method: :delete, 
+                                                                         data: { confirm: "Are you sure you want to delete this post?"}, 
+                                                                        class: "btn btn-xs btn-danger" %>
+                <% end %> 
+                <div class="show-meta-details">
+                  <small>
+                    Created by: <%= link_to announcement.user.username, user_path(announcement.user) if announcement.user %>,
+                    <%= time_ago_in_words(announcement.created_at) %> ago,
+                    last updated: <%= time_ago_in_words(announcement.updated_at) %> ago
+                  </small>
+                </div>
+            </div>
+          <% end %>  
+      </div>
+    </div>
+  </div>
+<% end %>

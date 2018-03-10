@@ -1,3 +1,4 @@
+<h1 align="center"><%= @user.username + " profile"%></h1>
 
 <div class="posts-wrapper">
   <div class="row profile-header">
@@ -8,9 +9,6 @@
     </div>
     <div class="col-md-6">
       <div class="user-name-and-follow">
-        <h3 class="profile-user-name">
-          <%= @user.username %> 
-        </h3>
         <h6 class="account-type">
           <% if @user.admin?  %>
             Account type: Admin
@@ -29,45 +27,34 @@
         <h6 class="job-title">
           Title: <%= @user.job_role %>
         </h6>
+        <div class="details" align="left">
+          <small align="center">
+            <%= link_to pluralize(@user.articles.count, "Article"), user_articles_search_path(@user) if @user.articles %><br>
+            <%= link_to pluralize(@user.announcements.count, "Announcement"), user_announcements_search_path(@user) if @user.announcements %><br>
+            <%= link_to pluralize(@user.socialposts.count, "Social Post"), user_socialposts_search_path(@user) if @user.socialposts %>
+          </small>
+        </div>
+        <h6 class="resume">
+          Resume: <%= @user.resume %>
+        </h6>
         <span>
           <% if @user == current_user || current_user.admin? %>
-            <%= link_to 'Edit profile', edit_user_path(@user) %>
+            <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-xs btn-primary" %>
           <% end %>
         </span>
          | 
         <span>
           <!-- check users/editlogin and devise/registrations/edit to check a comment about these 2 next if's -->
           <% if @user == current_user %>
-            <%= link_to 'Edit details', edit_user_registration_path(current_user) %>
+            <%= link_to 'Edit details', edit_user_registration_path(current_user), class: "btn btn-xs btn-primary" %>
           <% end %>
           <% if @user != current_user and current_user.admin? %>
             <%= link_to 'Edit details', editlogin_path(@user) %>
           <% end %>
         </span>
       </div>
-      <p class="profile-resume">
-        <%= @user.resume %>
-      </p>
-      <div class="user-statistics">
-        <p>
-          <%= pluralize @user.socialposts.count, 'post' %>
-        </p>
-      </div>
     </div>
   </div>
 </div>
+    
       
-      
-      
-    <!--create later a url to anothe rpage with the user posts-->  
-<ul class="user-profile-posts">  
-  <% @socialposts.each do |socialpost| %>
-    <%= render 'socialposts/socialpost', socialpost: socialpost %>
-  <% end %>
-</ul>  
-
-<% if @socialposts.length > 11 %>
-  <div class="text-center" id="paginator">
-      <%= link_to_next_page @socialposts, 'LOAD MORE', remote: true, id: 'load_more' %>
-  </div>
-<% end %>

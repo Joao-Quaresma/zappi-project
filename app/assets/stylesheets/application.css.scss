@@ -278,7 +278,7 @@ body {
 
 
 .profile-header {
-  padding: 20px 0;
+  padding: 20px;
 }
 
 
@@ -297,9 +297,10 @@ body {
 }
 
 .avatar-image {
+  margin-top: 10px;
   margin: 20px auto;
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
 }
 
 
@@ -378,16 +379,11 @@ body {
 
 
 
-/* Articles config */
+/* Articles / Announcements config */
 
-.article-meta-details {
+.show-meta-details {
   border-top: 1px solid #eaeaea;
   margin-top: 15px;
-}
-
-.article-actions {
-  border-top: 1px solid #eaeaea;
-  padding-top: 5px;
 }
 
 .description {
@@ -398,16 +394,11 @@ body {
   margin-top: 0px;
 }
 
-.article-title{
+.show-title{
   font-weight: bold;
   font-size: 1.2em;
 }
 
-.article-body{
-  border-top: 1px solid #eaeaea;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
 
 .listing {
   list-style: none;
@@ -424,3 +415,4 @@ body {
 .input.checkbox input {
   width: auto !important;
 }
+

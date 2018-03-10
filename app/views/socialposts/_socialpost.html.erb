@@ -2,56 +2,58 @@
   <div class="post">
     <div class="post-head">
       <div class="thumb-img"></div>
-      <div class="user-name">
-        Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %>
-      </div>
-      <div class="time-ago">
-        (<%= time_ago_in_words socialpost.created_at %> ago)
-      </div>
-    </div>
-    <!-- this will only show the image if it was uploaded and also redirects to the post if we click in the image -->
-    <div class="image center-block">
-      <% if socialpost.image.present? %>
-        <%= link_to (image_tag socialpost.image.url(:medium), class:'img-responsive'), socialpost_path(socialpost) %>
-      <% end %>
-    </div>
-    <div class="post-bottom">
-      <%= render 'socialposts/likes', socialpost: socialpost %>
-      <div class="caption">
-        <div class="caption-content">
-          <div class="user-name">
-            <%= link_to socialpost.user.username, user_path(socialpost.user.id) %>
-          </div>
-          <div style="word-wrap: break-word">
-            <%= socialpost.caption %><hr>
-          </div> 
-        </div>  
-        <div align="left" class="comments">
-          <strong>Comments:</strong>
+        <div class="user-name">
+          Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %>
         </div>
-        <!-- this will show the comments and will grab the _comment in the comments folder -->
-        <div class="comments" id="comments_<%= socialpost.id %>">
-          <% if socialpost.comments.any? %>
-            <%= render socialpost.comments.order("created_at ASC").last(4), socialpost: socialpost %>
-            <% unless socialpost.comments.count <= 4 %>
-              <div class="paginator" id="#comments-paginator-<%= socialpost.id %>">
-                <%= link_to "view all #{socialpost.comments.count} comments", socialpost_comments_path(socialpost), remote: true, class: 'more-comments', id: "more_comments_#{socialpost.id}", data: {post_id: "#{socialpost.id}", type: "html", value: "#{socialpost.comments.count}"} %>
-              </div>
+        <div class="time-ago">
+          (<%= time_ago_in_words socialpost.created_at %> ago)
+        </div>
+        <br><%= link_to "Open post", socialpost_path(socialpost) %>
+      </div>
+      <!-- this will only show the image if it was uploaded and also redirects to the post if we click in the image -->
+      <div class="image center-block">
+        <% if socialpost.image.present? %>
+          <%= link_to (image_tag socialpost.image.url(:medium), class:'img-responsive'), socialpost_path(socialpost) %>
+        <% end %>
+      </div>
+      <div class="post-bottom">
+        <%= render 'socialposts/likes', socialpost: socialpost %>
+        <div class="caption">
+          <div class="caption-content">
+            <div class="user-name">
+              <%= link_to socialpost.user.username  + ":", user_path(socialpost.user.id) %>
+            </div>
+            <div style="word-wrap: break-word">
+              <%= socialpost.caption %><hr>
+            </div> 
+          </div>  
+          <div align="left" class="comments">
+            <strong>Comments:</strong>
+          </div>
+          <!-- this will show the comments and will grab the _comment in the comments folder -->
+          <div class="comments" id="comments_<%= socialpost.id %>">
+            <% if socialpost.comments.any? %>
+              <%= render socialpost.comments.order("created_at ASC").last(4), socialpost: socialpost %>
+              <% unless socialpost.comments.count <= 4 %>
+                <div class="paginator" id="#comments-paginator-<%= socialpost.id %>">
+                  <%= link_to "view all #{socialpost.comments.count} comments", socialpost_comments_path(socialpost), remote: true, class: 'more-comments', id: "more_comments_#{socialpost.id}", data: {post_id: "#{socialpost.id}", type: "html", value: "#{socialpost.comments.count}"} %>
+                </div>
+              <% end %>
             <% end %>
+          </div>
+        </div>
+      </div>
+          <!-- this is the comments form -->
+      <div class="comment-like-form row">
+        <div class="like-button col-sm-1">
+          <%= liked_socialpost socialpost %>
+        </div>
+        <div class="comment-form col-sm-11">
+          <%= form_for([socialpost, socialpost.comments.build], remote: true) do |f| %>
+            <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{socialpost.id}" %>
           <% end %>
         </div>
       </div>
-    </div>
-        <!-- this is the comments form -->
-    <div class="comment-like-form row">
-      <div class="like-button col-sm-1">
-        <%= liked_socialpost socialpost %>
-      </div>
-      <div class="comment-form col-sm-11">
-        <%= form_for([socialpost, socialpost.comments.build], remote: true) do |f| %>
-          <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{socialpost.id}" %>
-        <% end %>
-      </div>
-    </div>
+    </div>  
   </div>
 </div>

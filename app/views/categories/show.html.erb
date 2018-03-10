@@ -1,11 +1,29 @@
 <h1 align="center"><%= "Category: " + @category.name %></h1>
+
+<ul class="listing">
+  <div class="row">
+    <div class="well col-md-6 col-md-offset-3">
+        <li align="center"><%= link_to pluralize(@category.articles.count, "article"), category_articles_search_path(@category) %></li>
+        <li align="center"><%= link_to pluralize(@category.announcements.count, "announcement"), category_announcements_search_path(@category) %></li>
+        <div class="category-actions">
+          <div class="category-meta-details" align="center">
+            Created at: <%= time_ago_in_words(@category.created_at) %> ago,
+            last updated: <%= time_ago_in_words(@category.updated_at) %> ago
+          </div>
+        </div>
+    </div>
+  </div>
+</ul>
+
+
 <div align="center">
   <div class="row">
       <span class="badge"><%= link_to "Edit Category Name", edit_category_path(@category) %></span>
+      <% if current_user.admin? %>
+                <%= link_to "Delete this category", category_path(@category), method: :delete, 
+                                                                       data: { confirm: " Please edit instead of delete!! Are you sure you want to delete this category? The Category will be removed from created posts!!"}, 
+                                                                      class: "btn btn-xs btn-danger" %>
+      <% end %>
   </div>
-  <%= will_paginate @category_articles %>
 </div>
-<%= render 'articles/article', obj: @category_articles %>
-<div align="center">
-  <%= will_paginate @category_articles %>
-</div>
+

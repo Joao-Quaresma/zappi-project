@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   patch 'users/edit', to: 'users#update', as: :update_user
   get 'users/:id/editlogin', to: "users#editlogin", as: "editlogin"
   resources :users
+  get 'user_search_results', to: "users#search"
+  get 'user/:id/user_socialposts_search', to: "users#user_socialposts_search", as: "user_socialposts_search"
+  get 'user/:id/user_articles_search', to: "users#user_articles_search", as: "user_articles_search"
+  get 'user/:id/user_announcements_search', to: "users#user_announcements_search", as: "user_announcements_search"
   
   root to: 'pages#index'
   get 'contact', to: 'pages#contact'
@@ -34,14 +38,23 @@ Rails.application.routes.draw do
       get 'unlike'
     end
   end
+  get 'socialpost_search', to: "socialposts#socialpost_search"
+  get 'socialpost_search_results', to: "socialposts#search"
   
   resources :articles
+  get 'wiki_search', to: "articles#wiki_search"
+  get 'wiki_search_results', to: "articles#search"
+  
   
   resources :categories
+  get 'category_search_results', to: "categories#search"
+  get 'category/:id/category_articles_search', to: "categories#category_articles_search", as: "category_articles_search"
+  get 'category/:id/category_announcements_search', to: "categories#category_announcements_search", as: "category_announcements_search"
   
-  get 'wiki_search', to: "articles#wiki_search"
   
-  get 'wiki_search_results', to: "articles#search"
+  resources :announcements
+  get 'announcement_search', to: "announcements#announcement_search"
+  get 'announcement_search_results', to: "announcements#search"
   
 
   # The priority is based upon order of creation: first created -> highest priority.

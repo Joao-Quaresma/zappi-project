@@ -1,0 +1,20 @@
+<% if params[:action] == 'search' %>
+  <div class="results-blck">
+    <%= bootstrap_flash %>
+  </div>
+<% end %>  
+
+<% if @category %>
+    <div id="category-search-results" class="well results-blocks col-md-10">
+      <table class="search-results-table col-md-12">
+        <tbody>
+            <strong>Categories:</strong>
+          <% @category.each do |category| %>
+            <tr>
+              <%= render category %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+<% end %>

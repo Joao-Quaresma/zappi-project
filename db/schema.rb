@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308164711) do
+ActiveRecord::Schema.define(version: 20180309124144) do
+
+  create_table "announcement_categories", force: :cascade do |t|
+    t.integer "announcement_id"
+    t.integer "category_id"
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "announcements", ["user_id"], name: "index_announcements_on_user_id"
 
   create_table "article_categories", force: :cascade do |t|
     t.integer "article_id"

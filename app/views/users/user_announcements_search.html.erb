@@ -1,0 +1,14 @@
+<h1 align="center"><%= @user.username + " announcements"%></h1>
+
+
+<div align="center">
+  <%= will_paginate @user_announcements %>
+</div>
+
+<ul class="user-profile-posts">  
+    <%= render 'announcements/announcement', obj: @user_announcements %>
+</ul>  
+
+<div align="center">
+  <%= will_paginate @user_announcements %>
+</div>

@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :editlogin, :edit, :update]
+  before_action :set_user, only: [:show, :editlogin, :edit, :update, :user_socialposts_search, :user_announcements_search, :user_articles_search]
   before_action :require_same_user, only: [:edit, :editlogin, :update]
 
   
   
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    @users = User.paginate(page: params[:page], per_page: 40)
   end
   
   def edit
@@ -28,15 +28,33 @@ class UsersController < ApplicationController
       render 'editlogin'
     end
   end
-  
-  
+
   def show
     @user_articles = @user.articles.paginate(page: params[:page], per_page: 10)
-    @socialposts = @user.socialposts.order('created_at DESC').paginate(page: params[:page],per_page: 12)
-       respond_to do |format|
-          format.js
-          format.html
-        end
+
+  end
+  
+  
+  def search
+    if params[:search_param].blank?
+      flash.now[:danger] = "You have entered an empty search string"
+    else
+      @user = User.search(params[:search_param])
+      flash.now[:danger] = "No users match this search criteria" if @user.blank?
+    end
+    render partial: 'users/result'
+  end
+  
+  def user_socialposts_search
+    @user_socialposts = @user.socialposts.order('created_at DESC').paginate(page: params[:page],per_page: 12)
+  end
+  
+  def user_announcements_search
+    @user_announcements = @user.announcements.order('created_at DESC').paginate(page: params[:page],per_page: 20)
+  end
+  
+  def user_articles_search
+    @user_articles = @user.articles.order('created_at DESC').paginate(page: params[:page],per_page: 20)
   end
 
   

@@ -1,0 +1,22 @@
+<h3 align="center">Search Social posts</h3>
+<hr>
+<div id="Social-post-search">
+  <%= form_tag socialpost_search_results_path, remote: true, method: :get, id: 'social-post-search-form' do %>
+    <div class="form-group row no-padding text-center col-md-12">
+      <div class="col-md-10">
+        <%= text_field_tag :search_param, params[:search_param], 
+              placeholder: "Enter caption", autofocus: true, 
+              class: "form-control search-box input-lg" %>
+      </div>
+      <div class="col-md-2">
+        <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
+          <i class="fa fa-search"></i> Search
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="results">
+  <%= render 'socialposts/result' %>
+</div>

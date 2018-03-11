@@ -1,53 +1,78 @@
 <h2 align="center"><%= @article.title %></h2>
-  <div class="well col-xs-8 col-xs-offset-2">
-     <% if @article.user %>
+<div class="well col-xs-10 col-xs-offset-1">
+   <% if @article.user %>
+   <div align="center">Created by:</div>
      <ul class="listing">
-      <div class align="center">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <li>Created by:</li>
-            <li><%= profile_avatar_select(@article.user) %></li>
-            <li class="article-title">
-              <%= link_to @article.user.username, user_path(@article.user) %>
-            </li>
-            <li><small>
-              <%= pluralize(@article.user.articles.count, "Wiki post") if @article.user.articles %><br>
-              <%= pluralize(@article.user.announcements.count, "Announcement") if @article.user.announcements %><br>
-              <%= pluralize(@article.user.socialposts.count, "Social Post") if @article.user.socialposts %>
-            </small></li>
+       <div class="posts-wrapper">
+         <div class="row profile-header">
+          <div class="col-md-6">
+            <div class="img-circle avatar-image-posts">
+              <%= profile_avatar_select(@article.user) %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="user-name-and-follow">
+              <h6 class="role">
+                Username: <%= link_to @article.user.username, user_path(@article.user) %>
+              </h6>
+              <h6 class="role">
+                Role: <%= @article.user.role %>
+              </h6>
+              <h6 class="job-title">
+                Title: <%= @article.user.job_role %>
+              </h6>
+              <div class="details" align="left">
+                <small align="center">
+                    <%= link_to pluralize(@article.user.articles.count, "Wiki post"), user_articles_search_path(@article.user) if @article.user.articles %><br>
+                    <%= link_to pluralize(@article.user.announcements.count, "Announcement"), user_announcements_search_path(@article.user) if @article.user.announcements %><br>
+                    <%= link_to pluralize(@article.user.socialposts.count, "Social Post"), user_socialposts_search_path(@article.user) if @article.user.socialposts %>
+                </small>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </ul>
-    <% end %>
-    <% if @article.categories.any? %>
-    <hr>
-      <p><strong>Categories: </strong><%= render @article.categories %></p>
-    <hr>
-    <% end %>
-    <h4 align="center" class="description"><strong>Description:</strong></h4>
-    
-      <div style="word-wrap: break-word; overflow-y: hidden;">
-        <%= simple_format(@article.description) %>
-      </div>
-    <hr>
-    <h4 align="center" class="body"><strong>Post:</strong></h4>
-   
-      <div style="word-wrap: break-word; overflow-y: hidden;">
-        <%= simple_format(@article.body) %>
-      </div>
-    <hr>
-    <div class="article-actions">
-    <!-- just to make sure that no one can edit or delet if not signed in-->
-    <% if user_signed_in? %>
-      <%= link_to "Back to Wiki", articles_path, class: "btn btn-xs btn-success" %>
-      <%= link_to "Edit this post", edit_article_path(@article), class: "btn btn-xs btn-primary" %>
-      <% if current_user == @article.user || current_user.admin? %>
-        <%= link_to "Delete this post", article_path(@article), method: :delete, 
-                                                                  data: { confirm: "Are you sure you want to delete this post?"}, 
-                                                                  class: "btn btn-xs btn-danger" %>
-      <% end %>
-     <% end %>
+  <% end %>
+  <% if @article.categories.any? %>
+  <hr>
+    <p><strong>Categories: </strong><%= render @article.categories %></p>
+  <hr>
+  <% end %>
+  <h4 align="center" class="description"><strong>Description:</strong></h4>
+    <div style="word-wrap: break-word; overflow-y: hidden;">
+      <%= simple_format(@article.description) %>
     </div>
-  </div>  
-  
+  <hr>
+  <h4 align="center" class="body"><strong>Post:</strong></h4>
+ 
+    <div style="word-wrap: break-word; overflow-y: hidden;">
+      <%= simple_format(@article.body) %>
+    </div>
+  <hr>
+  <div align ="center" class="announcement-actions">
+  <!-- just to make sure that no one can edit or delet if not signed in-->
+  <% if user_signed_in? %>
+    <%= link_to "Back to Wiki", articles_path, class: "btn btn-xs btn-success" %>
+    <%= link_to "Edit this post", edit_article_path(@article), class: "btn btn-xs btn-primary" %>
+    <% if current_user == @article.user || current_user.admin? %>
+      <%= link_to "Delete this post", article_path(@article), method: :delete, 
+                                                                data: { confirm: "Are you sure you want to delete this post?"}, 
+                                                                class: "btn btn-xs btn-danger" %>
+    <% end %>
+   <% end %>
+  </div>
+</div>  
+
+
+
+
+
+<div class="well col-xs-10 col-xs-offset-1">
+  <strong>Comments:</strong>
+  <hr>
+  <%= render @article.article_comments %>
+  <div class="well">
+    <%= render 'article_comments/form' %>
+  </div>
+</div>

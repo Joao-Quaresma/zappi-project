@@ -1,0 +1,18 @@
+
+<div class="row">
+  <div class="col-lg-12">
+      <%= form_for ([@announcement, @announcement.announcement_comments.build]) do |f| %>
+      <div class="container-fluid">
+          <div class="form-group text-center">
+              <h4>Add a comment:</h4>
+              <div class ="form-group">
+                <div class="col-sm-14">
+                  <%= f.text_area :body, rows: 4, class: "form-control", placeholder: "Write the post here" %>
+                </div>
+              </div>
+              <%= f.submit "Post your comment", class: 'btn btn-primary' %>
+          </div>
+      </div>  
+      <% end %>
+  </div>  
+</div>  

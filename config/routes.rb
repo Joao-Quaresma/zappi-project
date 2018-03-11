@@ -41,7 +41,9 @@ Rails.application.routes.draw do
   get 'socialpost_search', to: "socialposts#socialpost_search"
   get 'socialpost_search_results', to: "socialposts#search"
   
-  resources :articles
+  resources :articles do
+    resources :article_comments
+  end
   get 'wiki_search', to: "articles#wiki_search"
   get 'wiki_search_results', to: "articles#search"
   
@@ -52,7 +54,9 @@ Rails.application.routes.draw do
   get 'category/:id/category_announcements_search', to: "categories#category_announcements_search", as: "category_announcements_search"
   
   
-  resources :announcements
+  resources :announcements do
+    resources :announcement_comments
+  end
   get 'announcement_search', to: "announcements#announcement_search"
   get 'announcement_search_results', to: "announcements#search"
   

@@ -1,20 +1,34 @@
 <h2 align="center"><%= @announcement.title %></h2>
-  <div class="well col-xs-8 col-xs-offset-2">
+  <div class="well col-xs-10 col-xs-offset-1">
      <% if @announcement.user %>
+     <div align="center">Created by:</div>
      <ul class="listing">
-      <div class align="center">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <li>Created by:</li>
-            <li><%= profile_avatar_select(@announcement.user) %></li>
-            <li class="announcement-title">
-              <%= link_to @announcement.user.username, user_path(@announcement.user) %>
-            </li>
-            <li><small>
-              <%= pluralize(@announcement.user.announcements.count, "Wiki post") if @announcement.user.announcements %><br>
-              <%= pluralize(@announcement.user.articles.count, "Announcement") if @announcement.user.articles %><br>
-              <%= pluralize(@announcement.user.socialposts.count, "Social Post") if @announcement.user.socialposts %>
-            </small></li>
+       <div class="posts-wrapper">
+         <div class="row profile-header">
+          <div class="col-md-6">
+            <div class="img-circle avatar-image-posts">
+              <%= profile_avatar_select(@announcement.user) %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="user-name-and-follow">
+              <h6 class="role">
+                Username: <%= link_to @announcement.user.username, user_path(@announcement.user) %>
+              </h6>
+              <h6 class="role">
+                Role: <%= @announcement.user.role %>
+              </h6>
+              <h6 class="job-title">
+                Title: <%= @announcement.user.job_role %>
+              </h6>
+              <div class="details" align="left">
+                <small align="center">
+                    <%= link_to pluralize(@announcement.user.articles.count, "Wiki post"), user_articles_search_path(@announcement.user) if @announcement.user.articles %><br>
+                    <%= link_to pluralize(@announcement.user.announcements.count, "Announcement"), user_announcements_search_path(@announcement.user) if @announcement.user.announcements %><br>
+                    <%= link_to pluralize(@announcement.user.socialposts.count, "Social Post"), user_socialposts_search_path(@announcement.user) if @announcement.user.socialposts %>
+                </small>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -26,7 +40,6 @@
     <hr>
     <% end %>
     <h4 align="center" class="description"><strong>Description:</strong></h4>
-    
       <div style="word-wrap: break-word; overflow-y: hidden;">
         <%= simple_format(@announcement.description) %>
       </div>
@@ -37,7 +50,7 @@
         <%= simple_format(@announcement.body) %>
       </div>
     <hr>
-    <div class="announcement-actions">
+    <div align ="center" class="announcement-actions">
     <!-- just to make sure that no one can edit or delet if not signed in-->
     <% if user_signed_in? %>
       <%= link_to "Back to Announcements", announcement_path, class: "btn btn-xs btn-success" %>
@@ -50,4 +63,16 @@
      <% end %>
     </div>
   </div>  
+  
+  
+  
+<div class="well col-xs-10 col-xs-offset-1">
+  <strong>Comments:</strong>
+  <hr>
+  <%= render @announcement.announcement_comments %>
+  <div class="well">
+    <%= render 'announcement_comments/form' %>
+  </div>
+</div>
+  
   

@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_articles = @user.articles.paginate(page: params[:page], per_page: 10)
 
   end
   
@@ -46,7 +45,7 @@ class UsersController < ApplicationController
   end
   
   def user_socialposts_search
-    @user_socialposts = @user.socialposts.order('created_at DESC').paginate(page: params[:page],per_page: 12)
+    @user_socialposts = @user.socialposts.order('created_at DESC').paginate(page: params[:page],per_page: 4)
   end
   
   def user_announcements_search

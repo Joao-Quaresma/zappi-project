@@ -11,12 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309124144) do
+ActiveRecord::Schema.define(version: 20180311015906) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
     t.integer "category_id"
   end
+
+  create_table "announcement_comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "announcement_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "announcement_comments", ["announcement_id"], name: "index_announcement_comments_on_announcement_id"
+  add_index "announcement_comments", ["user_id"], name: "index_announcement_comments_on_user_id"
 
   create_table "announcements", force: :cascade do |t|
     t.string   "title"
@@ -33,6 +44,17 @@ ActiveRecord::Schema.define(version: 20180309124144) do
     t.integer "article_id"
     t.integer "category_id"
   end
+
+  create_table "article_comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "article_comments", ["article_id"], name: "index_article_comments_on_article_id"
+  add_index "article_comments", ["user_id"], name: "index_article_comments_on_user_id"
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"

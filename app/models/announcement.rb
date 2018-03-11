@@ -7,6 +7,7 @@ class Announcement < ActiveRecord::Base
     
     has_many :announcement_categories
     has_many :categories, through: :announcement_categories
+    has_many :announcement_comments
     
     def self.search(param)
       param.strip!

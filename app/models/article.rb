@@ -7,6 +7,7 @@ class Article < ActiveRecord::Base
     
     has_many :article_categories
     has_many :categories, through: :article_categories
+    has_many :article_comments
     
     def self.search(param)
       param.strip!

@@ -29,7 +29,7 @@
         </h6>
         <div class="details" align="left">
           <small align="center">
-            <%= link_to pluralize(@user.articles.count, "Article"), user_articles_search_path(@user) if @user.articles %><br>
+            <%= link_to pluralize(@user.articles.count, "Wiki post"), user_articles_search_path(@user) if @user.articles %><br>
             <%= link_to pluralize(@user.announcements.count, "Announcement"), user_announcements_search_path(@user) if @user.announcements %><br>
             <%= link_to pluralize(@user.socialposts.count, "Social Post"), user_socialposts_search_path(@user) if @user.socialposts %>
           </small>

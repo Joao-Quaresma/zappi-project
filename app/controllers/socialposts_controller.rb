@@ -5,7 +5,7 @@ class SocialpostsController < ApplicationController
 
     
     def index
-        @socialposts = Socialpost.order('created_at DESC').paginate(page: params[:page],per_page: 12)
+        @socialposts = Socialpost.order('created_at DESC').paginate(page: params[:page],per_page: 4)
     end
     
     def new
@@ -72,7 +72,7 @@ class SocialpostsController < ApplicationController
         if params[:search_param].blank?
           flash.now[:danger] = "You have entered an empty search string"
         else
-          @socialpost = Socialpost.search(params[:search_param]).paginate(page: params[:page],per_page: 3)
+          @socialpost = Socialpost.search(params[:search_param]).paginate(page: params[:page],per_page: 2)
           flash.now[:danger] = "No Social Posts match this search criteria" if @socialpost.blank?
         end
         render partial: 'socialposts/result'

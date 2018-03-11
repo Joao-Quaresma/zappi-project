@@ -1,0 +1,20 @@
+
+<h1 align="center">Edit comment</h1>
+
+
+<div class="row">
+  <div class="well col-xs-10 col-xs-offset-1">
+      <%= form_for ([@announcement, @announcement_comment]) do |f| %>
+      <div class="container-fluid">
+          <div class="form-group text-center">
+              <div class ="form-group">
+                <div class="col-sm-14">
+                  <%= f.text_area :body, rows: 4, class: "form-control", placeholder: "Write the post here" %>
+                </div>
+              </div>
+              <%= f.submit "Update your comment", class: 'btn btn-primary' %>
+          </div>
+      </div>  
+      <% end %>
+  </div>  
+</div>  

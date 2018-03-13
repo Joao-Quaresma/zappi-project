@@ -5,8 +5,10 @@ class SocialpostsController < ApplicationController
 
     
     def index
-        @socialposts = Socialpost.order('created_at DESC').paginate(page: params[:page],per_page: 4)
+        @socialposts = Socialpost.all.order('created_at DESC')
+        @socialposts = Kaminari.paginate_array(@socialposts).page(params[:page]).per(4)
     end
+
     
     def new
         @socialpost = current_user.socialposts.build

@@ -17,7 +17,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'glyphicons-rails', '~> 0.1.2'  
-gem 'kaminari'
+gem 'kaminari', '~> 0.16.3'
 gem 'jquery-turbolinks'
 gem 'acts_as_votable', '~> 0.10.0'
 

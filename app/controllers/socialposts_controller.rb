@@ -1,5 +1,4 @@
 class SocialpostsController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_socialpost, only: [:show, :edit, :update, :destroy, :like, :unlike]
     before_action :owned_socialpost, only: [:edit, :update, :destroy]
 

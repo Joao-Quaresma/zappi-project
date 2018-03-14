@@ -1,5 +1,4 @@
 class AnnouncementCommentsController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_announcement
     before_action :set_announcement_comment, only: [:update, :edit, :destroy]
     before_action :same_user, only: [:destroy]

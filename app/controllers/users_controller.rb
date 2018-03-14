@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_user, only: [:show, :editlogin, :edit, :update, :user_socialposts_search, :user_announcements_search, :user_articles_search]
   before_action :require_same_user, only: [:edit, :editlogin, :update]
 
   
   
   def index
-    @users = User.all.paginate(page: params[:page], per_page: 40)
+    @users = User.all.paginate(page: params[:page], per_page: 40).order('id ASC')
   end
   
   def edit
@@ -45,7 +44,9 @@ class UsersController < ApplicationController
   end
   
   def user_socialposts_search
-    @user_socialposts = @user.socialposts.order('created_at DESC').paginate(page: params[:page],per_page: 4)
+    @user_socialposts = @user.socialposts.order('created_at DESC')
+    @user_socialposts = Kaminari.paginate_array(@user_socialposts).page(params[:page]).per(4)
+    
   end
   
   def user_announcements_search

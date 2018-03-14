@@ -1,10 +1,9 @@
 class CategoriesController < ApplicationController
- before_action :authenticate_user!
  before_action :require_admin, only: [:destroy]
  before_action :set_category, only: [:edit, :update,:show,:destroy,:category_articles_search, :category_announcements_search]
   
   def index
-    @categories = Category.paginate(page: params[:page], per_page: 100).order('name ASC')
+    @categories = Category.all.paginate(page: params[:page], per_page: 100).order('name ASC')
   end
   
   

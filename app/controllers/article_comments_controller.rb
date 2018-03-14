@@ -1,5 +1,4 @@
 class ArticleCommentsController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_article
     before_action :set_article_comment, only: [:update, :edit, :destroy]
     before_action :same_user, only: [:destroy]

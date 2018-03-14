@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
     before_action :set_socialpost
-    before_action :authenticate_user!
-
 
 
     def create

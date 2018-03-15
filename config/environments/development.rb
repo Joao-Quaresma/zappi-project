@@ -44,4 +44,14 @@ Rails.application.configure do
   
   config.action_mailer.default_url_options = { host: 'https://zappi-project-joaoquaresma.c9users.io' }
   
+   # Amazon Web Services - S3
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_region => 'us-west-2',
+  :bucket => 'zappiproject',
+  :path => '/:class/:attachment/:id_partition/:style/:filename',
+  :s3_credentials => "#{Rails.root}/config/aws.yml",
+}
+  
+  
 end

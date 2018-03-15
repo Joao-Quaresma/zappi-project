@@ -24,6 +24,8 @@ class SocialpostsController < ApplicationController
         end
     end
     
+    
+    
 
     def show
         

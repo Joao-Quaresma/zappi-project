@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     matches('email', param)
   end
 
+  def self.email_matches(param)
+    matches('nickname', param)
+  end
+
   
   def self.matches(field_name, param)
     User.where("#{field_name} like ?", "%#{param}%")

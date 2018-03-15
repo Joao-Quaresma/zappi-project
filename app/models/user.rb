@@ -25,15 +25,18 @@ class User < ActiveRecord::Base
   #roles available in the profile/sign up
   enum role: {'None': 0, 'Developer': 1, 'Support': 2, 'Product Owner': 3, 'Research': 4, 'Client Excelence': 5, 'Sales': 6, 'Office Manager': 7}
   
-  
+
   def self.search(param)
     param.strip!
     param.downcase!
-    to_send_back = (first_name_matches(param) + last_name_matches(param) + email_matches(param) + username_matches(param)).uniq
+    to_send_back = (username_matches(param) + first_name_matches(param) + last_name_matches(param) + email_matches(param)).uniq
     return nil unless to_send_back
     to_send_back
   end
   
+  def self.username_matches(param)
+    matches('username', param)
+  end
   def self.first_name_matches(param)
     matches('first_name', param)
   end
@@ -43,9 +46,7 @@ class User < ActiveRecord::Base
   def self.email_matches(param)
     matches('email', param)
   end
-  def self.username_matches(param)
-    matches('username', param)
-  end
+
   
   def self.matches(field_name, param)
     User.where("#{field_name} like ?", "%#{param}%")

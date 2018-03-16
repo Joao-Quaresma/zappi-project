@@ -11,7 +11,8 @@ class AnnouncementCommentsController < ApplicationController
         if @announcement_comment.save
             redirect_to announcement_path(@announcement), notice: "Your comment has been saved."
         else
-            redirect_to 'new'
+            flash[:alert] = "Check the comment form, something went wrong."
+            redirect_to :back
         end
     end
     
@@ -28,7 +29,7 @@ class AnnouncementCommentsController < ApplicationController
     
     def destroy
         @announcement_comment.destroy
-        redirect_to announcement_path(@announcement), notice: "Your comment has been deleted."
+        redirect_to announcement_path(@announcement), notice: "Comment has been deleted."
     end
     
     private
@@ -39,9 +40,9 @@ class AnnouncementCommentsController < ApplicationController
         @announcement_comment = @announcement.announcement_comments.find(params[:id])
     end
     def same_user
-       if current_user != @announcement_comment.user || !current_user.admin?
+       if !current_user.admin? || (!current_user.admin? and current_user.id != @announcement_comment.id)
         flash[:danger] = "You can only delete your comments"
-        redirect_to root_path
+        redirect_to announcement_path(@announcement)
        end 
     end
 end

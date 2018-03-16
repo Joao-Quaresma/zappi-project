@@ -4,14 +4,16 @@
       <ul class="notification-index-list list-group">
         <h1 class="text-center">Your old Notifications</h1>
         <a> <%= button_to "New notifications", notifications_path, method: :get %> </a>
+        <hr>
         <%= render @notifications.where(read: true), selector: "long" %>
       </ul>
     </div>
   </div>
 </div>
 
-<% if current_user.notifications.where(read: true).length > 19 %>
-  <div id="paginator", class="text-center">
-    <%= link_to_next_page @notifications, 'LOAD MORE', remote: true, id: 'load_more' %>
-  </div>
-<% end %>
+
+<div align="center">
+  <%= will_paginate %>
+</div>
+
+

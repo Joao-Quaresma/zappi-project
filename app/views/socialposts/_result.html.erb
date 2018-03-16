@@ -3,13 +3,18 @@
     <%= bootstrap_flash %>
   </div>
 <% end %>  
-
+<hr>
 <% if @socialpost %>
   <% @socialpost.each do |socialpost| %>
+    <div align="center">
+      <%= will_paginate @socialpost %>
+    </div>
     <tr>
       <%= render 'socialpost', socialpost: socialpost %>
     </tr>
+    <div align="center">
+      <%= will_paginate @socialpost %>
+    </div>
   <% end %>
 <% end %>
-
 

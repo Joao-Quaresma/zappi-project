@@ -51,11 +51,15 @@ class User < ActiveRecord::Base
     matches('nickname', param)
   end
 
-  
   def self.matches(field_name, param)
-    User.where("#{field_name} like ?", "%#{param}%")
+    if Rails.env.production?
+      User.where("#{field_name} ilike ?", "%#{param}%")
+    end
+    if Rails.env.development?
+      User.where("#{field_name} like ?", "%#{param}%")
+    end
   end
-  
+
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

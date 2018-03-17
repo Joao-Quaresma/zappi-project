@@ -26,10 +26,14 @@ class Article < ActiveRecord::Base
     def self.body_matches(param)
       matches('body', param)
     end
-    
+
     def self.matches(field_name, param)
-      Article.where("#{field_name} like ?", "%#{param}%")
+      if Rails.env.production?
+        Article.where("#{field_name} ilike ?", "%#{param}%")
+      end
+      if Rails.env.development?
+        Article.where("#{field_name} like ?", "%#{param}%")
+      end
     end
-    
     
 end

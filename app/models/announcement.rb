@@ -28,11 +28,10 @@ class Announcement < ActiveRecord::Base
     end
     
     def self.matches(field_name, param)
-      if Rails.env.production?
-        Announcement.where("#{field_name} ilike ?", "%#{param}%")
-      end
       if Rails.env.development?
         Announcement.where("#{field_name} like ?", "%#{param}%")
+      else
+        Announcement.where("#{field_name} ilike ?", "%#{param}%")
       end
     end
     

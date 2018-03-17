@@ -52,11 +52,10 @@ class User < ActiveRecord::Base
   end
 
   def self.matches(field_name, param)
-    if Rails.env.production?
-      User.where("#{field_name} ilike ?", "%#{param}%")
-    end
     if Rails.env.development?
       User.where("#{field_name} like ?", "%#{param}%")
+    else
+      User.where("#{field_name} ilike ?", "%#{param}%")
     end
   end
 

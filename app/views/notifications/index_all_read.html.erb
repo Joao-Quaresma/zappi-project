@@ -11,9 +11,9 @@
   </div>
 </div>
 
-
+<% if @notifications.where(read: true).length > 1 %>
 <div align="center">
   <%= will_paginate %>
 </div>
-
+<% end %>
 

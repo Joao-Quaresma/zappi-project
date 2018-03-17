@@ -18,7 +18,7 @@ class Category < ActiveRecord::Base
       matches('name', param)
     end
     def self.matches(field_name, param)
-      Category.where("#{field_name} like ?", "%#{param}%")
+      Category.where("#{field_name} ilike ?", "%#{param}%")
     end
     
   

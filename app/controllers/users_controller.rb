@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   
   def index
-    @users = User.all.paginate(page: params[:page], per_page: 40).order('id ASC')
+    @users = User.all.paginate(page: params[:page], per_page: 40).order('username ASC')
   end
   
   def edit
@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   def show
+
 
   end
   

@@ -6,7 +6,7 @@
       </div>
       <hr>
       <div align="left">
-      <small>Commented by: <%= link_to announcement_comment.user.username, user_path(announcement_comment) %> | <%= time_ago_in_words(announcement_comment.created_at) %></small>
+      <small>Commented by: <%= link_to announcement_comment.user.username, user_path(announcement_comment) %> | Created <%= time_ago_in_words(announcement_comment.created_at) %> | Updated <%= time_ago_in_words(announcement_comment.updated_at) %></small>
       </div>
       <div align="left">
         <%= link_to "Edit", edit_announcement_announcement_comment_path(announcement_comment.announcement, announcement_comment), class: "btn btn-xs btn-primary" %>

@@ -104,6 +104,16 @@ body {
       color: #A5A7AA;
       float: right;
     }
+    .open-post, .updated-time-ago {
+      display: inline;
+    }
+    .open-post {
+      font-weight: 500;
+    }
+    .updated-time-ago {
+      color: #A5A7AA;
+      float: right;
+    }
   }
   .img-responsive {
     border-bottom: 1px solid #eeefef;
@@ -301,6 +311,13 @@ body {
   margin: 20px auto;
   height: 250px;
   width: 250px;
+}
+
+.profile-image {
+  margin-top: 10px;
+  margin: 20px auto;
+  height: 200px;
+  width: 200px;
 }
 
 .avatar-image-posts {

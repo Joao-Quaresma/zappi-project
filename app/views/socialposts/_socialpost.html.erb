@@ -6,9 +6,15 @@
           Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %>
         </div>
         <div class="time-ago">
-          (<%= time_ago_in_words socialpost.created_at %> ago)
+          Created: (<%= time_ago_in_words socialpost.created_at %> ago)
         </div>
-        <br><%= link_to "Open post", socialpost_path(socialpost) %>
+        <br>
+        <div class="open-post">
+         <%= link_to "Open post", socialpost_path(socialpost) %>
+        </div>
+        <div class="updated-time-ago">
+          Updated: (<%= time_ago_in_words socialpost.updated_at %> ago)
+        </div>
       </div>
       <!-- this will only show the image if it was uploaded and also redirects to the post if we click in the image -->
       <div class="image center-block">

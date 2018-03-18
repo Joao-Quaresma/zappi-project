@@ -3,7 +3,7 @@ class AnnouncementsController < ApplicationController
     before_action :require_same_user, only: [:destroy]
   
   def index
-    @announcements = Announcement.all.order("created_at DESC").paginate(page: params[:page], per_page: 20)
+    @announcements = Announcement.all.order("updated_at DESC").paginate(page: params[:page], per_page: 20)
   end
   
  

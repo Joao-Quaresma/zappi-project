@@ -4,7 +4,7 @@ class SocialpostsController < ApplicationController
 
     
     def index
-        @socialposts = Socialpost.all.order('created_at DESC')
+        @socialposts = Socialpost.all.order('updated_at DESC')
         @socialposts = Kaminari.paginate_array(@socialposts).page(params[:page]).per(4)
     end
 

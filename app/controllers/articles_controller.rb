@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     before_action :require_same_user, only: [:destroy]
   
   def index
-    @articles = Article.all.order("created_at DESC").paginate(page: params[:page], per_page: 20)
+    @articles = Article.all.order("updated_at DESC").paginate(page: params[:page], per_page: 20)
   end
   
  

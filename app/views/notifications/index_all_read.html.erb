@@ -13,7 +13,7 @@
 
 <% if @notifications.where(read: true).length > 1 %>
 <div align="center">
-  <%= will_paginate %>
+  <%= will_paginate @notifications %>
 </div>
 <% end %>
 

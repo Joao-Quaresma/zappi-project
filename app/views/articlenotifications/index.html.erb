@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <ul class="notification-index-list list-group">
+        <h1 class="text-center">Your Wiki Notifications</h1>
+        <a> <%= button_to "Read all", read_all_articlenotifications_path, method: :post %> </a>
+        <a> <%= button_to "Old notifications", articlenotifications_all_read_path, method: :get %> </a>
+        <hr>
+        <%= render @articlenotifications.where(read: false), selector: "long" %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% if @articlenotifications.where(read: false).length > 1 %>
+<div align="center">
+  <%= will_paginate @articlenotifications %>
+</div>
+<% end %>

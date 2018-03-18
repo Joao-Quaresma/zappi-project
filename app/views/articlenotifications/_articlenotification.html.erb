@@ -1,0 +1,21 @@
+<% if selector == "long" %>
+  <li class="list-group-item">
+    <ul class="list-inline list-unstyled text-center">
+      <li class="notification-item">
+        <% unless articlenotification.read %>
+          <span class="glyphicon glyphicon-asterisk"></span>
+        <% end %>
+      </li>
+      <li class="notification-item">
+        <%= link_to "#{articlenotification.notified_by.username} left you a #{articlenotification.notice_type}", link_articlethrough_path(articlenotification) %>
+      </li>
+      <li class="notification-item">
+        <%= time_ago_in_words(articlenotification.created_at) + " ago" %>
+      </li>
+    </ul>
+  </li>
+<% elsif selector == "short" %>
+  <li>
+    <%= link_to "#{articlenotification.notified_by.username} left you a #{articlenotification.notice_type}", link_articlethrough_path(articlenotification) %>
+  </li>
+<% end %>

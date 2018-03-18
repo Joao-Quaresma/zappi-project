@@ -4,14 +4,11 @@ Rails.application.routes.draw do
   
   get 'zappisocial', to: 'socialposts#index'
  
+ #notification routes for socialposts
   get 'notifications/link_through'
- 
-  get 'notifications/:id/link_through', to: 'notifications#link_through',
-                                        as: :link_through
+  get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
   get 'notifications', to: 'notifications#index'
-  
   get 'notifications_all_read', to: 'notifications#index_all_read'
-  
   resources :notifications do
     post :read_all, on: :collection
   end
@@ -46,7 +43,13 @@ Rails.application.routes.draw do
   end
   get 'wiki_search', to: "articles#wiki_search"
   get 'wiki_search_results', to: "articles#search"
-  
+  get 'articlenotifications/link_articlethrough'
+  get 'articlenotifications/:id/link_articlethrough', to: 'articlenotifications#link_articlethrough', as: :link_articlethrough
+  get 'articlenotifications', to: 'articlenotifications#index'
+  get 'articlenotifications_all_read', to: 'articlenotifications#index_all_read'
+  resources :articlenotifications do
+    post :read_all, on: :collection
+  end
   
   resources :categories
   get 'category_search_results', to: "categories#search"

@@ -9,6 +9,7 @@ class ArticleCommentsController < ApplicationController
         @article_comment = @article.article_comments.create(params[:article_comment].permit(:body))
         @article_comment.user_id = current_user.id if current_user
         if @article_comment.save
+            create_notification @article, @article_comment
             redirect_to article_path(@article), notice: "Your comment has been saved."
         else
             flash[:alert] = "Check the comment form, something went wrong."
@@ -40,9 +41,19 @@ class ArticleCommentsController < ApplicationController
         @article_comment = @article.article_comments.find(params[:id])
     end
     def same_user
-       if !current_user.admin? || (!current_user.admin? and current_user.id != @article_comment.id)
+       if !current_user.admin? && current_user.id != @article_comment.user_id
         flash[:danger] = "You can only delete your comments"
         redirect_to article_path(@article)
        end 
     end
+    
+    def create_notification(article, article_comment)
+    	return if article.user.id == current_user.id 
+      Articlenotification.create(user_id: article.user.id,
+                        notified_by_id: current_user.id,
+                        article_id: article.id,
+			                  identifier: @article_comment.id,
+                        notice_type: 'article_comment')
+    end
+    
 end

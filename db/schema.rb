@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317203115) do
+ActiveRecord::Schema.define(version: 20180318002255) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -28,6 +28,21 @@ ActiveRecord::Schema.define(version: 20180317203115) do
 
   add_index "announcement_comments", ["announcement_id"], name: "index_announcement_comments_on_announcement_id"
   add_index "announcement_comments", ["user_id"], name: "index_announcement_comments_on_user_id"
+
+  create_table "announcementnotifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "notified_by_id"
+    t.integer  "announcement_id"
+    t.integer  "identifier"
+    t.string   "notice_type"
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "announcementnotifications", ["announcement_id"], name: "index_announcementnotifications_on_announcement_id"
+  add_index "announcementnotifications", ["notified_by_id"], name: "index_announcementnotifications_on_notified_by_id"
+  add_index "announcementnotifications", ["user_id"], name: "index_announcementnotifications_on_user_id"
 
   create_table "announcements", force: :cascade do |t|
     t.string   "title"

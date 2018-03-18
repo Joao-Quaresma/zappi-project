@@ -9,6 +9,7 @@ class AnnouncementCommentsController < ApplicationController
         @announcement_comment = @announcement.announcement_comments.create(params[:announcement_comment].permit(:body))
         @announcement_comment.user_id = current_user.id if current_user
         if @announcement_comment.save
+            create_notification @announcement, @announcement_comment
             redirect_to announcement_path(@announcement), notice: "Your comment has been saved."
         else
             flash[:alert] = "Check the comment form, something went wrong."
@@ -44,5 +45,14 @@ class AnnouncementCommentsController < ApplicationController
         flash[:danger] = "You can only delete your comments"
         redirect_to announcement_path(@announcement)
        end 
+    end
+    
+    def create_notification(announcement, announcement_comment)
+    	return if announcement.user.id == current_user.id 
+      Announcementnotification.create(user_id: announcement.user.id,
+                        notified_by_id: current_user.id,
+                        announcement_id: announcement.id,
+			                  identifier: @announcement_comment.id,
+                        notice_type: 'announcement_comment')
     end
 end

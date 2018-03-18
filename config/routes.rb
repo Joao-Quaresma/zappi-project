@@ -62,7 +62,13 @@ Rails.application.routes.draw do
   end
   get 'announcement_search', to: "announcements#announcement_search"
   get 'announcement_search_results', to: "announcements#search"
-  
+  get 'announcementnotifications/link_announcementthrough'
+  get 'announcementnotifications/:id/link_announcementthrough', to: 'announcementnotifications#link_announcementthrough', as: :link_announcementthrough
+  get 'announcementnotifications', to: 'announcementnotifications#index'
+  get 'announcementnotifications_all_read', to: 'announcementnotifications#index_all_read'
+  resources :announcementnotifications do
+    post :read_all, on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

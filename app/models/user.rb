@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :article_comments
   has_many :announcement_comments
   has_many :articlenotifications, dependent: :destroy
+  has_many :announcementnotifications, dependent: :destroy
   
   has_attached_file :avatar, styles: { medium: '200x200#' }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

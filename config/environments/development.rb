@@ -41,8 +41,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'https://zappi-project-joaoquaresma.c9users.io' }
+  
   
    # Amazon Web Services - S3
 config.paperclip_defaults = {

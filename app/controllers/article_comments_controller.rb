@@ -53,7 +53,7 @@ class ArticleCommentsController < ApplicationController
                         notified_by_id: current_user.id,
                         article_id: article.id,
 			                  identifier: @article_comment.id,
-                        notice_type: 'article_comment')
+                        notice_type: 'comment')
     end
     
 end

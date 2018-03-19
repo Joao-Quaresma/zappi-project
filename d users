@@ -1,0 +1,36 @@
+                           List of relations
+ Schema |               Name               |   Type   |     Owner      
+--------+----------------------------------+----------+----------------
+ public | announcement_categories          | table    | mkmczwnoyxjybp
+ public | announcement_categories_id_seq   | sequence | mkmczwnoyxjybp
+ public | announcement_comments            | table    | mkmczwnoyxjybp
+ public | announcement_comments_id_seq     | sequence | mkmczwnoyxjybp
+ public | announcementnotifications        | table    | mkmczwnoyxjybp
+ public | announcementnotifications_id_seq | sequence | mkmczwnoyxjybp
+ public | announcements                    | table    | mkmczwnoyxjybp
+ public | announcements_id_seq             | sequence | mkmczwnoyxjybp
+ public | article_categories               | table    | mkmczwnoyxjybp
+ public | article_categories_id_seq        | sequence | mkmczwnoyxjybp
+ public | article_comments                 | table    | mkmczwnoyxjybp
+ public | article_comments_id_seq          | sequence | mkmczwnoyxjybp
+ public | articlenotifications             | table    | mkmczwnoyxjybp
+ public | articlenotifications_id_seq      | sequence | mkmczwnoyxjybp
+ public | articles                         | table    | mkmczwnoyxjybp
+ public | articles_id_seq                  | sequence | mkmczwnoyxjybp
+ public | categories                       | table    | mkmczwnoyxjybp
+ public | categories_id_seq                | sequence | mkmczwnoyxjybp
+ public | comments                         | table    | mkmczwnoyxjybp
+ public | comments_id_seq                  | sequence | mkmczwnoyxjybp
+ public | notifications                    | table    | mkmczwnoyxjybp
+ public | notifications_id_seq             | sequence | mkmczwnoyxjybp
+ public | schema_migrations                | table    | mkmczwnoyxjybp
+ public | socialposts                      | table    | mkmczwnoyxjybp
+ public | socialposts_id_seq               | sequence | mkmczwnoyxjybp
+ public | users                            | table    | mkmczwnoyxjybp
+ public | users_id_seq                     | sequence | mkmczwnoyxjybp
+ public | votes                            | table    | mkmczwnoyxjybp
+ public | votes_id_seq                     | sequence | mkmczwnoyxjybp
+ public | wikinotifications                | table    | mkmczwnoyxjybp
+ public | wikinotifications_id_seq         | sequence | mkmczwnoyxjybp
+(31 rows)
+

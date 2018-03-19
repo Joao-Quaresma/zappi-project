@@ -53,6 +53,6 @@ class AnnouncementCommentsController < ApplicationController
                         notified_by_id: current_user.id,
                         announcement_id: announcement.id,
 			                  identifier: @announcement_comment.id,
-                        notice_type: 'announcement_comment')
+                        notice_type: 'comment')
     end
 end

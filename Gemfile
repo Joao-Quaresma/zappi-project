@@ -21,6 +21,7 @@ gem 'kaminari', '~> 0.16.3'
 gem 'jquery-turbolinks'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk', '~> 2.3'
+gem 'jquery-atwho-rails', '~> 1.3', '>= 1.3.2'
 
 #paranoia for users delete/suspend
 gem "paranoia", "~> 2.2"

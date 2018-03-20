@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     before_action :set_socialpost
-
+    after_action :notified_users, only: [:create, :update]
 
     def create
       @comment = @socialpost.comments.build(comment_params)
@@ -37,6 +37,23 @@ class CommentsController < ApplicationController
           format.html { render layout: !request.xhr? }
         end
       end
+      
+    def mentions
+        @mentions ||= begin
+                        regex = /@([\w]+)/
+                        @comment.content.scan(regex).flatten
+                      end
+    end
+    
+    def mentioned_users
+        @mentioned_users ||= User.where(username: mentions)
+    end
+    
+    def notified_users
+        mentioned_users.each do |user|
+          Mail.new(user)
+        end
+    end
   
 
     

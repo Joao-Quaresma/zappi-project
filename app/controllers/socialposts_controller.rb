@@ -1,7 +1,7 @@
 class SocialpostsController < ApplicationController
     before_action :set_socialpost, only: [:show, :edit, :update, :destroy, :like, :unlike]
     before_action :owned_socialpost, only: [:edit, :update, :destroy]
-
+    after_action :notified_users, only: [:create, :update]
     
     def index
         @socialposts = Socialpost.all.order('updated_at DESC')
@@ -79,6 +79,24 @@ class SocialpostsController < ApplicationController
           flash.now[:danger] = "No Social Posts match this search criteria" if @socialpost.blank?
         end
         render partial: 'socialposts/result'
+    end
+    
+    
+    def mentions
+        @mentions ||= begin
+                        regex = /@([\w]+)/
+                        @socialpost.caption.scan(regex).flatten
+                      end
+    end
+    
+    def mentioned_users
+        @mentioned_users ||= User.where(username: mentions)
+    end
+    
+    def notified_users
+        mentioned_users.each do |user|
+          Mail.new(user)
+        end
     end
 
     

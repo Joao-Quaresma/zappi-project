@@ -1,6 +1,7 @@
 class AnnouncementsController < ApplicationController
     before_action :set_announcement, only: [:edit, :update, :show, :destroy]
     before_action :require_same_user, only: [:destroy]
+    after_action :notified_users, only: [:create, :update]
   
   def index
     @announcements = Announcement.all.order("updated_at DESC").paginate(page: params[:page], per_page: 20)
@@ -53,6 +54,24 @@ class AnnouncementsController < ApplicationController
       flash.now[:danger] = "No announcements match this search criteria" if @announcement.blank?
     end
     render partial: 'announcements/result'
+  end
+  
+  def mentions
+    @mentions ||= begin
+                    regex = /@([\w]+)/
+                    @announcement.description.scan(regex).flatten
+                    @announcement.body.scan(regex).flatten
+                  end
+  end
+  
+  def mentioned_users
+    @mentioned_users ||= User.where(username: mentions)
+  end
+  
+  def notified_users
+    mentioned_users.each do |user|
+      Mail.new(user)
+    end
   end
   
   

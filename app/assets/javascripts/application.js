@@ -15,6 +15,15 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery.turbolinks
+//= require jquery.atwho
 //= require_tree
 
+
+    
+$(document).on('turbolinks:load', function(){
+  return $('[data-behavior="autocomplete"]').atwho({
+    at: "@",
+    'data': "/users.json"
+  });
+});
 

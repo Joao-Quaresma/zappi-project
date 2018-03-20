@@ -7,7 +7,7 @@
               <h4>Add a comment:</h4>
               <div class ="form-group">
                 <div class="col-sm-14">
-                  <%= f.text_area :body, rows: 4, class: "form-control", placeholder: "Write the post here" %>
+                  <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 4, class: "form-control", placeholder: "Write the post here" %>
                 </div>
               </div>
               <%= f.submit "Post your comment", class: 'btn btn-primary' %>

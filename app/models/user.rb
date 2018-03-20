@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   
   
   before_save { self.email = email.downcase }
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
+  validates :username, presence: true, format: { without: /\s/ }, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
   VALID_EMAIL_REGEX = /(\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z)?(@zappistore.com)/i
   validates :email, presence: true, length: { maximum: 105 }, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
   
@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
   end
   def self.email_matches(param)
     matches('email', param)
+  end
+  
+  def to_param
+  username
   end
 
 

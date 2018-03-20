@@ -2,6 +2,7 @@ class AnnouncementCommentsController < ApplicationController
     before_action :set_announcement
     before_action :set_announcement_comment, only: [:update, :edit, :destroy]
     before_action :same_user, only: [:destroy]
+    after_action :notified_users, only: [:create, :update]
     
     
     
@@ -31,6 +32,23 @@ class AnnouncementCommentsController < ApplicationController
     def destroy
         @announcement_comment.destroy
         redirect_to announcement_path(@announcement), notice: "Comment has been deleted."
+    end
+    
+    def mentions
+        @mentions ||= begin
+                        regex = /@([\w]+)/
+                        @announcement_comment.body.scan(regex).flatten
+                      end
+    end
+    
+    def mentioned_users
+        @mentioned_users ||= User.where(username: mentions)
+    end
+    
+    def notified_users
+        mentioned_users.each do |user|
+          Mail.new(user)
+        end
     end
     
     private

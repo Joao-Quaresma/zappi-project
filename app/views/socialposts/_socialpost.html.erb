@@ -3,7 +3,7 @@
     <div class="post-head">
       <div class="thumb-img"></div>
         <div class="user-name">
-          Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %>
+          Created by: <%= link_to socialpost.user.username, user_path(socialpost.user) %>
         </div>
         <div class="time-ago">
           Created: (<%= time_ago_in_words socialpost.created_at %> ago)
@@ -27,10 +27,10 @@
         <div class="caption">
           <div class="caption-content">
             <div class="user-name">
-              <%= link_to socialpost.user.username  + ":", user_path(socialpost.user.id) %>
+              <%= link_to socialpost.user.username  + ":", user_path(socialpost.user) %>
             </div>
             <div style="word-wrap: break-word">
-              <%= socialpost.caption %><hr>
+              <%= linked_users_socialpost socialpost.caption %><hr>
             </div> 
           </div>  
           <div align="left" class="comments">
@@ -56,7 +56,7 @@
         </div>
         <div class="comment-form col-sm-11">
           <%= form_for([socialpost, socialpost.comments.build], remote: true) do |f| %>
-            <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{socialpost.id}" %>
+            <%= f.text_field :content, data: {behavior: "autocomplete"}, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{socialpost.id}" %>
           <% end %>
         </div>
       </div>

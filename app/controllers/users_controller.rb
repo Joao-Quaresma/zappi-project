@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :editlogin, :edit, :update, :user_socialposts_search, :user_announcements_search, :user_articles_search]
   before_action :require_same_user, only: [:edit, :editlogin, :update]
 
-  
-  
+  #Get /users
+  #Get /users/users.json
   def index
     @users = User.all.paginate(page: params[:page], per_page: 40).order('username ASC')
   end
@@ -29,8 +29,10 @@ class UsersController < ApplicationController
   end
 
   def show
-
-
+    if !User.find_by_username(params[:id])
+      flash[:error] = "Invalid user"
+      redirect_to users_path
+    end
   end
   
   
@@ -45,17 +47,17 @@ class UsersController < ApplicationController
   end
   
   def user_socialposts_search
-    @user_socialposts = @user.socialposts.order('created_at DESC')
+    @user_socialposts = @user.socialposts.order('updated_at DESC')
     @user_socialposts = Kaminari.paginate_array(@user_socialposts).page(params[:page]).per(4)
     
   end
   
   def user_announcements_search
-    @user_announcements = @user.announcements.order('created_at DESC').paginate(page: params[:page],per_page: 20)
+    @user_announcements = @user.announcements.order('updated_at DESC').paginate(page: params[:page],per_page: 20)
   end
   
   def user_articles_search
-    @user_articles = @user.articles.order('created_at DESC').paginate(page: params[:page],per_page: 20)
+    @user_articles = @user.articles.order('updated_at DESC').paginate(page: params[:page],per_page: 20)
   end
 
   
@@ -64,7 +66,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username,:password, :first_name, :last_name, :email, :admin, :avatar, :resume, :role, :job_role)
   end
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
   end
   def require_same_user
     unless current_user == @user || current_user.admin?

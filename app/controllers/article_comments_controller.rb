@@ -2,7 +2,7 @@ class ArticleCommentsController < ApplicationController
     before_action :set_article
     before_action :set_article_comment, only: [:update, :edit, :destroy]
     before_action :same_user, only: [:destroy]
-    
+    after_action :notified_users, only: [:create, :update]
     
     
     def create
@@ -27,6 +27,24 @@ class ArticleCommentsController < ApplicationController
 
     def edit
     end
+    
+    def mentions
+        @mentions ||= begin
+                        regex = /@([\w]+)/
+                        @article_comment.body.scan(regex).flatten
+                      end
+    end
+    
+    def mentioned_users
+        @mentioned_users ||= User.where(username: mentions)
+    end
+    
+    def notified_users
+        mentioned_users.each do |user|
+          Mail.new(user)
+        end
+    end
+
     
     def destroy
         @article_comment.destroy

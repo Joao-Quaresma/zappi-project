@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     end
     if @user.update(user_params)
       flash[:success] = "Account updated successfully"
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user)
     else
       @user.errors.full_messages
       flash[:error] = @user.errors.full_messages

@@ -7,7 +7,7 @@
         </div>
         <div class="announcement-body">
           <div style="word-wrap: break-word; overflow-y: hidden;">
-            <strong>Description: </strong><%= simple_format(announcement.description) %>
+            <strong>Description: </strong><%= simple_format(markdownify announcement.description) %>
           </div>
         </div>
         <% if announcement.categories.any? %>

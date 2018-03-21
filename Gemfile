@@ -23,6 +23,12 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk', '~> 2.3'
 gem 'jquery-atwho-rails', '~> 1.3', '>= 1.3.2'
 
+gem 'html-pipeline', '~> 2.7', '>= 2.7.1'
+gem 'github-markdown', '~> 0.6.9'
+gem 'gemoji', '~> 3.0'
+gem 'commonmarker'
+gem 'sanitize', '~> 4.6', '>= 4.6.4'
+
 #paranoia for users delete/suspend
 gem "paranoia", "~> 2.2"
 #paperclip for the zappisocial

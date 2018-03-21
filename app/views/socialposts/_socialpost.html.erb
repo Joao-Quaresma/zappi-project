@@ -30,7 +30,7 @@
               <%= link_to socialpost.user.username  + ":", user_path(socialpost.user) %>
             </div>
             <div style="word-wrap: break-word">
-              <%= linked_users_socialpost socialpost.caption %><hr>
+              <%= linked_users_socialpost markdownify socialpost.caption %><hr>
             </div> 
           </div>  
           <div align="left" class="comments">

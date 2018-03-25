@@ -73,7 +73,7 @@ body {
 .posts-wrapper {
   padding-top: 40px;
   margin: 0 auto;
-  max-width: 750px;
+  max-width: 1000px;
   width: 100%;
 }
 
@@ -281,6 +281,14 @@ body {
   margin-bottom: 7px;
 }
 
+.nice-border {
+    border-color: #7F7F80;
+    border-width:1px;  
+    border-style:ridge;
+  
+}
+
+
 
 /* ## User profile  ## */
 
@@ -381,6 +389,14 @@ body {
   }
 }
 
+.notification-item {
+    border-color: black;
+    border-width:1px;  
+    border-style:ridge;
+    min-width: 100%;
+    min-height: 100%;
+}
+
 .notification-index-list {
   margin-top: 5em;
   list-style: none;
@@ -404,7 +420,7 @@ body {
 /* Articles / Announcements config */
 
 .show-meta-details {
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #7F7F80;
   margin-top: 15px;
 }
 

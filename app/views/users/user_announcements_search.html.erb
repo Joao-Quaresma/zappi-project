@@ -2,7 +2,7 @@
 
 
 <div align="center">
-  <%= will_paginate @user_announcements %>
+  <%= will_paginate @user_announcements, :inner_window => 1, :outer_window => 1 %>
 </div>
 
 <ul class="user-profile-posts">  
@@ -10,5 +10,5 @@
 </ul>  
 
 <div align="center">
-  <%= will_paginate @user_announcements %>
+  <%= will_paginate @user_announcements, :inner_window => 1, :outer_window => 1 %>
 </div>

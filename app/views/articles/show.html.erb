@@ -1,5 +1,5 @@
 <h2 align="center"><%= @article.title %></h2>
-<div class="well col-xs-10 col-xs-offset-1">
+<div class="well col-xs-10 col-xs-offset-1 nice-border">
    <% if @article.user %>
    <div align="center">Created by:</div>
      <ul class="listing">
@@ -68,11 +68,11 @@
 
 
 
-<div class="well col-xs-10 col-xs-offset-1">
+<div class="well col-xs-10 col-xs-offset-1 nice-border">
   <strong>Comments:</strong>
   <hr>
   <%= render @article.article_comments %>
-  <div class="well">
+  <div class="well nice-border">
     <%= render 'article_comments/form' %>
   </div>
 </div>

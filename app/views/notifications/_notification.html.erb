@@ -1,21 +1,34 @@
 <% if selector == "long" %>
-  <li class="list-group-item">
     <ul class="list-inline list-unstyled text-center">
       <li class="notification-item">
         <% unless notification.read %>
           <span class="glyphicon glyphicon-asterisk"></span>
         <% end %>
-      </li>
-      <li class="notification-item">
-        <%= link_to "#{notification.notified_by.username} left you a #{notification.notice_type}", link_through_path(notification) %>
-      </li>
-      <li class="notification-item">
-        <%= time_ago_in_words(notification.created_at) + " ago" %>
+      <%= time_ago_in_words(notification.created_at) + " ago" %>
+      <% if notification.notice_type == "comment" %>
+        <strong>
+          <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}.", link_through_path(notification) %>
+        </strong>
+      <% elsif notification.notice_type == "like" %>  
+        <strong>
+          <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}.", link_through_path(notification) %>
+        </strong>
+      <% else %>
+        <strong>
+          <%= link_to "#{notification.notified_by.username} #{notification.notice_type} you.", link_through_path(notification) %>
+        </strong>
+      <% end %>
       </li>
     </ul>
-  </li>
 <% elsif selector == "short" %>
   <li>
-    <%= link_to "#{notification.notified_by.username} left you a #{notification.notice_type}", link_through_path(notification) %>
+    <% if notification.notice_type == "comment" %>
+        <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
+    <% elsif notification.notice_type == "like" %>  
+          <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
+    <% else %>
+        <%= link_to "#{notification.notified_by.username} #{notification.notice_type} you", link_through_path(notification) %>
+    <% end %>
   </li>
 <% end %>
+

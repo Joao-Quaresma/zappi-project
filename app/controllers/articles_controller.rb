@@ -76,6 +76,17 @@ class ArticlesController < ApplicationController
     end
   end
   
+  def notified_users
+      mentioned_users.each do |user|
+          return if user.id == current_user.id 
+          Articlenotification.create(user_id: user.id,
+                      notified_by_id: current_user.id,
+                      article_id: @article.id,
+  		                  identifier: @article.id,
+                      notice_type: 'tagged')
+      end
+  end
+  
   
   private
     def set_article

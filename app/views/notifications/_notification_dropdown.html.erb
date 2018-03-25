@@ -5,7 +5,7 @@
     <span class="glyphicon glyphicon-flag"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby='dropdownMenu1'>
-    <li class="dropdown-header text-center">Notifications</li>
+    <li class="dropdown-header text-center">Social Post notifications</li>
       <%= render current_user.notifications.where(read: false).last(5).reverse, selector: "short" %>
     </li>
     <li class="divider" role="separator">

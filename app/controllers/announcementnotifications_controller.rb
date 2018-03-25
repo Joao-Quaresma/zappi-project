@@ -12,11 +12,11 @@ class AnnouncementnotificationsController < ApplicationController
   
   
   def index
-    @announcementnotifications = current_user.announcementnotifications.order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @announcementnotifications = current_user.announcementnotifications.where(read: false).order('created_at DESC').paginate(page: params[:page], per_page: 20)
   end
   
   def index_all_read
-    @announcementnotifications = current_user.announcementnotifications.order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @announcementnotifications = current_user.announcementnotifications.where(read: true).order('created_at DESC').paginate(page: params[:page], per_page: 20)
   end   
     
 end

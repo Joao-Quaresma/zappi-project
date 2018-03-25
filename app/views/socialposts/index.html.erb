@@ -1,9 +1,16 @@
+
+
+<div align="center">
+  <h1>All Zappi Social Posts</h1>
+</div>
+<div align="right">
+  <%= will_paginate @socialposts, :inner_window => 1, :outer_window => 1 %>
+</div>
+
 <div id="socialposts">
   <%= render 'socialposts' %>
 </div>
 
-
-  <div class="text-center" id="paginator">
-    <%= link_to_next_page @socialposts, 'LOAD MORE', remote: true, id: 'load_more' %>
-  </div>
-
+<div align="center">
+  <%= will_paginate @socialposts, :inner_window => 1, :outer_window => 1 %>
+</div>

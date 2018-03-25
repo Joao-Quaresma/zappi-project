@@ -1,13 +1,15 @@
 <h1 align="center"><%= @user.username + " Social Posts"%></h1>
 
+<div align="right">
+  <%= will_paginate @user_socialposts, :inner_window => 1, :outer_window => 1 %>
+</div>
+
 <ul class="user-profile-posts">  
   <% @user_socialposts.each do |socialpost| %>
     <%= render 'socialposts/socialpost', socialpost: socialpost %>
   <% end %>
 </ul>  
 
-<% if @user_socialposts.length >= 4 %>
-  <div class="text-center" id="paginator">
-      <%= link_to_next_page @user_socialposts, 'LOAD MORE', remote: true, id: 'load_more' %>
-  </div>
-<% end %>
+<div align="center">
+  <%= will_paginate @user_socialposts, :inner_window => 1, :outer_window => 1 %>
+</div>

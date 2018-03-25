@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-18 col-md-offset-0">
       <ul class="notification-index-list list-group">
         <h1 class="text-center">Your old Announcement Notifications</h1>
         <a> <%= button_to "New notifications", announcementnotifications_path, method: :get %> </a>
@@ -11,9 +11,9 @@
   </div>
 </div>
 
-<% if @announcementnotifications.where(read: true).length > 1 %>
+
 <div align="center">
-  <%= will_paginate @announcementnotifications%>
+  <%= will_paginate @announcementnotifications, :inner_window => 1, :outer_window => 1 %>
 </div>
-<% end %>
+
 

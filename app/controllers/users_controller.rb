@@ -47,9 +47,7 @@ class UsersController < ApplicationController
   end
   
   def user_socialposts_search
-    @user_socialposts = @user.socialposts.order('updated_at DESC')
-    @user_socialposts = Kaminari.paginate_array(@user_socialposts).page(params[:page]).per(4)
-    
+    @user_socialposts = @user.socialposts.all.order('updated_at DESC').paginate(page: params[:page],per_page: 12)
   end
   
   def user_announcements_search

@@ -32,7 +32,6 @@ module ApplicationHelper
       HTML::Pipeline::EmojiFilter,
     ], pipeline_context
     pipeline.call(content)[:output].to_s
-    
   end
     
 end

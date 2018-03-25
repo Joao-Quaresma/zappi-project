@@ -59,7 +59,6 @@ class AnnouncementsController < ApplicationController
   def mentions
     @mentions ||= begin
                     regex = /@([\w]+)/
-                    @announcement.description.scan(regex).flatten
                     @announcement.body.scan(regex).flatten
                   end
   end
@@ -69,11 +68,15 @@ class AnnouncementsController < ApplicationController
   end
   
   def notified_users
-    mentioned_users.each do |user|
-      Mail.new(user)
-    end
+      mentioned_users.each do |user|
+          return if user.id == current_user.id 
+          Announcementnotification.create(user_id: user.id,
+                      notified_by_id: current_user.id,
+                      announcement_id: @announcement.id,
+  		                  identifier: @announcement.id,
+                      notice_type: 'tagged')
+      end
   end
-  
   
   private
     def set_announcement

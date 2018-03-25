@@ -41,7 +41,12 @@ class ArticleCommentsController < ApplicationController
     
     def notified_users
         mentioned_users.each do |user|
-          Mail.new(user)
+            return if user.id == current_user.id 
+            Articlenotification.create(user_id: user.id,
+                        notified_by_id: current_user.id,
+                        article_id: @article.id,
+    		                  identifier: @article_comment.id,
+                        notice_type: 'tagged')
         end
     end
 
@@ -73,5 +78,6 @@ class ArticleCommentsController < ApplicationController
 			                  identifier: @article_comment.id,
                         notice_type: 'comment')
     end
+    
     
 end

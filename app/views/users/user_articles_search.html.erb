@@ -1,7 +1,7 @@
 <h1 align="center"><%= @user.username + " Wiki posts"%></h1>
 
 <div align="center">
-  <%= will_paginate @user_articles %>
+  <%= will_paginate @user_articles, :inner_window => 1, :outer_window => 1 %>
 </div>
 
 <ul class="user-profile-posts">  
@@ -9,5 +9,5 @@
 </ul>  
 
 <div align="center">
-  <%= will_paginate @user_articles %>
+  <%= will_paginate @user_articles, :inner_window => 1, :outer_window => 1 %>
 </div>

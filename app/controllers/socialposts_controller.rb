@@ -4,8 +4,7 @@ class SocialpostsController < ApplicationController
     after_action :notified_users, only: [:create, :update]
     
     def index
-        @socialposts = Socialpost.all.order('updated_at DESC')
-        @socialposts = Kaminari.paginate_array(@socialposts).page(params[:page]).per(4)
+        @socialposts = Socialpost.all.order('updated_at DESC').paginate(page: params[:page],per_page: 12)
     end
 
     
@@ -75,7 +74,7 @@ class SocialpostsController < ApplicationController
         if params[:search_param].blank?
           flash.now[:danger] = "You have entered an empty search string"
         else
-          @socialpost = Socialpost.search(params[:search_param]).paginate(page: params[:page],per_page: 12)
+          @socialpost = Socialpost.order('updated_at DESC').search(params[:search_param]).paginate(page: params[:page],per_page: 12)
           flash.now[:danger] = "No Social Posts match this search criteria" if @socialpost.blank?
         end
         render partial: 'socialposts/result'
@@ -95,7 +94,12 @@ class SocialpostsController < ApplicationController
     
     def notified_users
         mentioned_users.each do |user|
-          Mail.new(user)
+            return if user.id == current_user.id 
+            Notification.create(user_id: user.id,
+                        notified_by_id: current_user.id,
+                        socialpost_id: @socialpost.id,
+    		                  identifier: @socialpost.id,
+                        notice_type: 'tagged')
         end
     end
 

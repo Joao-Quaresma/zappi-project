@@ -47,7 +47,12 @@ class AnnouncementCommentsController < ApplicationController
     
     def notified_users
         mentioned_users.each do |user|
-          Mail.new(user)
+            return if user.id == current_user.id 
+            Announcementnotification.create(user_id: user.id,
+                        notified_by_id: current_user.id,
+                        announcement_id: @announcement.id,
+    		                  identifier: @announcement_comment.id,
+                        notice_type: 'tagged')
         end
     end
     

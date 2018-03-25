@@ -15,9 +15,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "All Categories", categories_path %></li>
+              <li><%= link_to raw('All Categories <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), categories_path %></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "New Category", new_category_path %></li>
+              <li><%= link_to raw('New Categories <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_category_path %></li>
             </ul>
           </li>
       </ul>
@@ -25,11 +25,11 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wiki<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "All posts", articles_path %></li>
+              <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), articles_path %></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "Search posts", wiki_search_path %></li>
+              <li><%= link_to raw('Search Posts <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), wiki_search_path %></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "New post", new_article_path %></li>
+              <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_article_path %></li>
             </ul>
           </li>
           <li>
@@ -40,11 +40,11 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Announcements<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "All Announcements", announcements_path %></li>
+              <li><%= link_to raw('All Announcements <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), announcements_path %></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "Search Announcements", announcement_search_path %></li>
+              <li><%= link_to raw('Search Announcements <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), announcement_search_path %></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "New Announcement", new_announcement_path %></li>
+              <li><%= link_to raw('New Announcement <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_announcement_path %></li>
             </ul>
           </li>
            <li>
@@ -55,9 +55,11 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zappi Social<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "All Posts", zappisocial_path %></li>
-              <li><%= link_to "Search posts", socialpost_search_path %></li>
-              <li><%= link_to "New post", new_socialpost_path %></li>
+              <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), zappisocial_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to raw('Search Posts <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), socialpost_search_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_socialpost_path %></li>
             </ul>
           </li>
           <li>
@@ -66,19 +68,23 @@
       </ul>      
       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", user_path(current_user) %></li>
-              <li><%= link_to "All users", users_path %></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+              <li align="center">Logged in as: <strong><%= current_user.username %></li></strong>
+              <li role="separator" class="divider"></li>
+              <li align="center"><%= link_to raw('Profile <span class="glyphicon glyphicon-user" aria-hidden="true"></span>'), user_path(current_user) %></li>
+              <li role="separator" class="divider"></li>
+              <li align="center"><%= link_to raw('All Users <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), users_path %></li>
+              <li role="separator" class="divider"></li>
+              <li align="center"><%= link_to raw('Sign Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>'), destroy_user_session_path, method: :delete %></li>
             </ul>
           </li>
       </ul>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if !user_signed_in? %>
-          <li><%= link_to "Sign in", new_user_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to raw('Sign In <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>'), new_user_session_path %></li>
+          <li><%= link_to raw('Sign Up <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>'), new_user_registration_path %></li>
         <% end %>
       </ul>
     </div>

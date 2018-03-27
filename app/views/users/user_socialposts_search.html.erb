@@ -1,15 +1,8 @@
 <h1 align="center"><%= @user.username + " Social Posts"%></h1>
 
-<div align="right">
-  <%= will_paginate @user_socialposts, :inner_window => 1, :outer_window => 1 %>
-</div>
-
 <ul class="user-profile-posts">  
   <% @user_socialposts.each do |socialpost| %>
     <%= render 'socialposts/socialpost', socialpost: socialpost %>
   <% end %>
 </ul>  
 
-<div align="center">
-  <%= will_paginate @user_socialposts, :inner_window => 1, :outer_window => 1 %>
-</div>

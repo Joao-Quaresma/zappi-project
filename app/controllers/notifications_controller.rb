@@ -15,7 +15,7 @@ class NotificationsController < ApplicationController
   
   
   def index
-    @notifications = current_user.notifications.where(read: false).order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @notifications = current_user.notifications.where(read: false).order('created_at DESC').paginate(page: params[:page], per_page: 20)
     respond_to do |format|
       format.js
       format.html
@@ -23,7 +23,7 @@ class NotificationsController < ApplicationController
   end
   
   def index_all_read
-    @notifications = current_user.notifications.where(read: true).order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @notifications = current_user.notifications.where(read: true).order('created_at DESC').paginate(page: params[:page], per_page: 20)
     respond_to do |format|
       format.js
       format.html

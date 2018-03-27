@@ -58,7 +58,6 @@ class CategoriesController < ApplicationController
   def category_articles_search
     #will paginate the posts in the category articles filter
     @category_articles = @category.articles.order("created_at DESC").paginate(page: params[:page], per_page: 20)
-    @category_announcements = @category.announcements.order("created_at DESC").paginate(page: params[:page], per_page: 20)
   end
   def category_announcements_search
     #will paginate the posts in the category announcements filter

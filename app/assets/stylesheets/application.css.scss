@@ -18,11 +18,13 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
 html {
   height: 100%;
 }
 
 body {
+  margin-top: 100px;
   height: 100%;
   background-color: #fafafa;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -67,6 +69,50 @@ body {
   max-width: 640px;
   margin: 0 auto;
 }
+
+.navbar-right .dropdown-menu {
+  padding: 40px 0px 5px;
+}
+
+
+.subnav {
+  background-color: #f0f0f0;
+  top: 50px;
+  min-height: 34px;
+  height: 34px;
+  padding-right: 10px;
+
+  .navbar-nav li a {
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    }
+    
+    .btn-default {
+      border: 1px solid black;
+    }
+}
+
+.subnav .navbar-nav li a:hover {
+    color: black;
+}
+
+
+.pagination {
+  margin: 0px 0px;
+  padding-right: 2px;
+  padding-left: 0px;
+}
+
+.subnav .pagination li a {
+  padding: 6px 8px;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  color: black;
+  display: inline-block;
+  border: 1px solid black;
+}
+
 
 /* ## POST CUSTOMISATIONS ## */
 
@@ -117,9 +163,10 @@ body {
   .img-responsive {
     border-bottom: 1px solid #eeefef;
     border-top: 1px solid #eeefef;
+    max-width: 1000px;
     width: 100%;
     height: 100%;
-    max-height: 900px;
+    max-height: 750px;
   }
 }
 
@@ -383,12 +430,18 @@ body {
 /* used to center the dropbox in the navbar  */
 
 .notification-dropdown {
-  margin-top: 10px;
+  
   button {
-    border: none;
+
+    border: 1px solid black;
   }
 }
 
+.dropdown-menu {
+  padding: 0px 0px 0px;
+}
+
+  
 .notification-item {
     border-color: black;
     border-width:1px;  
@@ -453,4 +506,7 @@ body {
 .input.checkbox input {
   width: auto !important;
 }
+
+
+
 

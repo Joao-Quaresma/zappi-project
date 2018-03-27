@@ -3,16 +3,9 @@
     <div class="col-md-18 col-md-offset-0">
       <ul class="notification-index-list list-group">
         <h1 class="text-center">Your old Wiki Notifications</h1>
-        <a> <%= button_to "New notifications", articlenotifications_path, method: :get %> </a>
         <hr>
         <%= render @articlenotifications.where(read: true), selector: "long" %>
       </ul>
     </div>
   </div>
 </div>
-
-<div align="center">
-  <%= will_paginate @articlenotifications, :inner_window => 1, :outer_window => 1 %>
-</div>
-
-

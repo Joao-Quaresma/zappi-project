@@ -3,17 +3,10 @@
     <div class="col-md-18 col-md-offset-0">
       <ul class="notification-index-list list-group">
         <h1 class="text-center">Your old Announcement Notifications</h1>
-        <a> <%= button_to "New notifications", announcementnotifications_path, method: :get %> </a>
         <hr>
         <%= render @announcementnotifications.where(read: true), selector: "long" %>
       </ul>
     </div>
   </div>
 </div>
-
-
-<div align="center">
-  <%= will_paginate @announcementnotifications, :inner_window => 1, :outer_window => 1 %>
-</div>
-
 

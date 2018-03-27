@@ -3,16 +3,9 @@
     <div class="col-md-18 col-md-offset-0">
       <ul class="notification-index-list list-group">
         <h1 class="text-center">Your Announcement Notifications</h1>
-        <a> <%= button_to "Read all", read_all_announcementnotifications_path, method: :post %> </a>
-        <a> <%= button_to "Old notifications", announcementnotifications_all_read_path, method: :get %> </a>
         <hr>
         <%= render @announcementnotifications.where(read: false), selector: "long" %>
       </ul>
     </div>
   </div>
 </div>
-
-<div align="center">
-  <%= will_paginate @announcementnotifications, :inner_window => 1, :outer_window => 1 %>
-</div>
-

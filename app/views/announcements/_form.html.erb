@@ -4,16 +4,20 @@
   <div class='col-xs-12'>
     <%= form_for(@announcement, :html => {class: "form-horizontal", role: "form"}) do |f| %>
         <div class ="form-group">
-          <div class="control-label col-sm-2">
-            <%= f.label :title %>
+          <div class="control-label col-sm-offset-2 col-sm-8">
+            <%= f.label :title %>:
           </div>
-          <div class="col-sm-8">
+          <div class="title">
             <%= f.text_field :title, class: "form-control", placeholder: "Title of the Announcement", autofocus: true %>
           </div>
         </div>
+        <br>
         <div class ="form-group">
           <div class="row">
-            <div class="col-sm-offset-2 col-sm-8">
+            <div class="col-sm-8">
+              <%= f.label :categories %>:
+            </div>
+            <div class="col-sm-8">
               <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
                 <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
               <% end %>
@@ -21,28 +25,28 @@
           </div>  
         </div>
         <div class ="form-group">
-          <div class="control-label col-sm-2">
-            <%= f.label :description %>
+          <div class="control-label col-sm-offset-2 col-sm-8">
+            <%= f.label :description %>:
           </div>
-          <div class="col-sm-8">
+          <div class="description">
             <%= f.text_area :description, data: {behavior: "autocomplete"}, rows: 5, class: "form-control", placeholder: "Description of the Wiki post" %>
           </div>
         </div>
         <div class ="form-group">
-          <div class="control-label col-sm-2">
-            <%= f.label :body %>
+          <div class="control-label col-sm-offset-2 col-sm-8">
+            <%= f.label :body %>:
           </div>
-          <div class="col-sm-8">
+          <div class="body">
             <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 40, class: "form-control", placeholder: "Write the post here" %>
           </div>
         </div>
         <div class ="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
+          <div align ="center" class="announcement-actions">
             <%= f.submit class: 'btn btn-primary' %>
           </div>
         </div>
     <% end %>
-    <div class="col-xs-4 col-xs-offset-4">
+    <div align ="center" class="announcement-actions">
       [ <%= link_to "Cancel request and return to Wiki", articles_path %> ]
     </div>
   

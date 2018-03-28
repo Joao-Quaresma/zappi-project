@@ -1,9 +1,35 @@
-<h4><center>Need to write something here</center></h4>
 
-<div class="jumbotron jumbotron-pages">
-</div>
  
 <% if user_signed_in? %>
+<div class="col-md-12 col-md-offset-0">
+  <div class="col-md-6">
+    <div class="well">
+      <h4 align="center">Recent Social Posts</h4>
+      <hr>
+      <% @socialposts.last(5).each do |socialpost| %>
+          <strong><%= link_to truncate(socialpost.caption), socialpost %></strong>
+          <p>Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</p>
+          <hr>
+      <% end %>
+    </div>
+  </div>
+  
+  
+  <div class="col-md-6">
+    <div class="well">
+      <h4 align="center">Recent joiners</h4>
+      <hr>
+      <% @users.last(5).each do |user| %>
+          <strong><p>Username: <%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</p></strong>
+          <p>Email: <%= user.email %></p>
+          <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="col-md-12 col-md-offset-0">
   <div class="col-md-6">
     <div class="well">
@@ -36,31 +62,6 @@
 </div>
 
 
-<div class="col-md-12 col-md-offset-0">
-  <div class="col-md-6">
-    <div class="well">
-      <h4 align="center">Recent Social Posts</h4>
-      <hr>
-      <% @socialposts.last(5).each do |socialpost| %>
-          <strong><%= link_to truncate(socialpost.caption), socialpost %></strong>
-          <p>Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</p>
-          <hr>
-      <% end %>
-    </div>
-  </div>
-  
-  
-  <div class="col-md-6">
-    <div class="well">
-      <h4 align="center">Recent joiners:</h4>
-      <hr>
-      <% @users.last(5).each do |user| %>
-          <strong><p>Username: <%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</p></strong>
-          <p>Email: <%= user.email %></p>
-          <hr>
-      <% end %>
-    </div>
-  </div>
-</div>
+
 
 <% end %>

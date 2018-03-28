@@ -330,12 +330,20 @@ body {
 
 .nice-border {
     border-color: #7F7F80;
-    border-width:1px;  
-    border-style:ridge;
-  
+    border-width: 1px;  
+    border-style: ridge;
 }
 
+.nice-border-comments {
+    border-color: #7F7F80;
+    border-width: 0px;  
+    border-style: ridge;
+    border-bottom: 1px solid black;
+}
 
+.hr-show {
+   border-bottom: 1px solid black;
+}
 
 /* ## User profile  ## */
 
@@ -343,8 +351,14 @@ body {
 
 .profile-header {
   padding: 20px;
+  margin-left: -100px;
+  margin-right: 0px;
+
 }
 
+.show-header {
+  padding: 20px;
+}
 
 .user-name-and-follow {
   display: inline;
@@ -360,11 +374,21 @@ body {
   margin-left: 20px;
 }
 
+.border-profile {
+  border: 1px solid #000000;
+}
+
 .avatar-image {
   margin-top: 10px;
+  margin: 0px 140px;
+  height: 300px;
+  width: 300px;
+  .profile-image {
+  margin-top: 10px;
   margin: 20px auto;
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
+  }
 }
 
 .profile-image {
@@ -375,7 +399,7 @@ body {
 }
 
 .avatar-image-posts {
-  margin: 0px 120px;
+  margin: -20px 200px;
   height: 200px;
   width: 200px;
 }
@@ -508,5 +532,16 @@ body {
 }
 
 
+/* Articles / Announcements show */
+.container {
+  width: 1500px;
+
+}
 
 
+/* Articles / Announcements edit/new form */
+.form-horizontal .control-label {
+  text-align: center;
+  font-size: 24px;
+  
+}

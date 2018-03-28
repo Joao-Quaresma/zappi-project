@@ -1,10 +1,10 @@
 <h2 align="center"><%= @announcement.title %></h2>
-  <div class="well col-xs-10 col-xs-offset-1 nice-border">
-     <% if @announcement.user %>
+<div class="well col-xs-10 col-xs-offset-1 nice-border">
+   <% if @announcement.user %>
      <div align="center">Created by:</div>
      <ul class="listing">
        <div class="posts-wrapper">
-         <div class="row profile-header">
+         <div class="row show-header">
           <div class="col-md-6">
             <div class="img-circle avatar-image-posts">
               <%= profile_avatar_select(@announcement.user) %>
@@ -33,42 +33,42 @@
         </div>
       </div>
     </ul>
-    <% end %>
-    <% if @announcement.categories.any? %>
-    <hr>
-      <p><strong>Categories: </strong><%= render @announcement.categories %></p>
-    <hr>
-    <% end %>
-    <h4 align="center" class="description"><strong>Description:</strong></h4>
-      <div style="word-wrap: break-word; overflow-y: hidden;">
-        <%= simple_format(linked_users_announcement markdownify @announcement.description) %>
-      </div>
-    <hr>
-    <h4 align="center" class="body"><strong>Post:</strong></h4>
-    
-      <div style="word-wrap: break-word; overflow-y: hidden;">
-        <%= simple_format(linked_users_announcement markdownify @announcement.body) %>
-      </div>
-    <hr>
-    <div align ="center" class="announcement-actions">
-    <!-- just to make sure that no one can edit or delet if not signed in-->
-    <% if user_signed_in? %>
-      <%= link_to "Back to Announcements", announcement_path, class: "btn btn-xs btn-success" %>
-      <%= link_to "Edit this Announcement", edit_announcement_path(@announcement), class: "btn btn-xs btn-primary" %>
-      <% if current_user == @announcement.user || current_user.admin? %>
-        <%= link_to "Delete this Announcement", article_path(@announcement), method: :delete, 
-                                                                  data: { confirm: "Are you sure you want to delete this Announcement?"}, 
-                                                                  class: "btn btn-xs btn-danger" %>
-      <% end %>
-     <% end %>
+  <% end %>
+  <% if @announcement.categories.any? %>
+  <hr>
+    <p><strong>Categories: </strong><%= render @announcement.categories %></p>
+  <hr>
+  <% end %>
+  <h4 align="center" class="description"><strong>Description:</strong></h4>
+    <div style="word-wrap: break-word; overflow-y: hidden;">
+      <%= simple_format(linked_users_announcement markdownify @announcement.description) %>
     </div>
-  </div>  
+  <hr>
+  <h4 align="center" class="body"><strong>Post:</strong></h4>
+  
+    <div style="word-wrap: break-word; overflow-y: hidden;">
+      <%= simple_format(linked_users_announcement markdownify @announcement.body) %>
+    </div>
+  <hr>
+  <div align ="center" class="announcement-actions">
+  <!-- just to make sure that no one can edit or delet if not signed in-->
+  <% if user_signed_in? %>
+    <%= link_to "Back to Announcements", announcement_path, class: "btn btn-xs btn-success" %>
+    <%= link_to "Edit this Announcement", edit_announcement_path(@announcement), class: "btn btn-xs btn-primary" %>
+    <% if current_user == @announcement.user || current_user.admin? %>
+      <%= link_to "Delete this Announcement", article_path(@announcement), method: :delete, 
+                                                                data: { confirm: "Are you sure you want to delete this Announcement?"}, 
+                                                                class: "btn btn-xs btn-danger" %>
+    <% end %>
+   <% end %>
+  </div>
+</div>  
   
   
   
 <div class="well col-xs-10 col-xs-offset-1 nice-border">
   <strong>Comments:</strong>
-  <hr>
+  <hr class="hr-show">
   <%= render @announcement.announcement_comments %>
   <div class="well nice-border">
     <%= render 'announcement_comments/form' %>

@@ -1,3 +1,6 @@
+<%= render 'layouts/navigation' %>
+<%= render 'layouts/sub_nav' %>
+
 <% if params[:action] == 'search' %>
   <div class="results-blck">
     <%= bootstrap_flash %>
@@ -6,15 +9,9 @@
 <hr>
 <% if @socialpost %>
   <% @socialpost.each do |socialpost| %>
-    <div align="center">
-      <%= will_paginate @socialpost, :inner_window => 1, :outer_window => 1 %>
-    </div>
     <tr>
       <%= render 'socialpost', socialpost: socialpost %>
     </tr>
-    <div align="center">
-      <%= will_paginate @socialpost, :inner_window => 1, :outer_window => 1 %>
-    </div>
   <% end %>
 <% end %>
 

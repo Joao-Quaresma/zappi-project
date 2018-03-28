@@ -19,8 +19,6 @@
                     <li><%= will_paginate @category_announcements, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>
-            
-            
         <% when controller_name == "articles" %>
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_article_path %></li>
@@ -30,8 +28,6 @@
                     <li><%= will_paginate @articles, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>
-            
-            
         <% when controller_name == "announcements" %>
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <li><%= link_to raw('New Announcement <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_announcement_path %></li>    
@@ -41,8 +37,6 @@
                     <li><%= will_paginate @announcements, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>  
-            
-            
         <% when controller_name == "socialposts" %>          
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_socialpost_path %></li>
@@ -54,7 +48,6 @@
                     <li><%= will_paginate @socialpost, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>  
-            
         <% when controller_name == "users" %>   
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <% if controller_name == "users" && action_name == "index" %>
@@ -67,7 +60,6 @@
                     <li><%= will_paginate @user_socialposts, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>
-            
         <% when controller_name == "articlenotifications" %>   
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <% if controller_name == "articlenotifications" && action_name == "index" %>
@@ -79,7 +71,6 @@
                     <li><%= will_paginate @articlenotifications, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>
-            
         <% when controller_name == "announcementnotifications" %> 
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <% if controller_name == "announcementnotifications" && action_name == "index" %>
@@ -91,8 +82,6 @@
                     <li><%= will_paginate @announcementnotifications, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>
-        
-        
         <% when controller_name == "notifications" %> 
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <% if controller_name == "notifications" && action_name == "index" %>
@@ -104,8 +93,6 @@
                     <li><%= will_paginate @notifications, :inner_window => 0, :outer_window => 0 %></li>
                 <% end %>
             </ul>    
-        <% else %>   
-            
         <% end %>
     <% end %>
 </nav>

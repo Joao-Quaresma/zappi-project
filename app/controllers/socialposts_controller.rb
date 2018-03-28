@@ -74,7 +74,7 @@ class SocialpostsController < ApplicationController
         if params[:search_param].blank?
           flash.now[:danger] = "You have entered an empty search string"
         else
-          @socialpost = Socialpost.order('updated_at DESC').search(params[:search_param]).paginate(page: params[:page],per_page: 1)
+          @socialpost = Socialpost.order('updated_at DESC').search(params[:search_param]).paginate(page: params[:page],per_page: 12)
           flash.now[:danger] = "No Social Posts match this search criteria" if @socialpost.blank?
         end
         render partial: 'socialposts/result'

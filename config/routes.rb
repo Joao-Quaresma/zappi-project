@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   
-  get 'zappisocial', to: 'socialposts#index'
+  get 'zappisocial', to: 'pages#index'
  
  #notification routes for socialposts
   get 'notifications/link_through'
@@ -124,4 +124,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+  match '*path' => redirect('/'), via: :get
 end

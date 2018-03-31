@@ -2,64 +2,137 @@
  
 <% if user_signed_in? %>
 <div class="col-md-12 col-md-offset-0">
-  <div class="col-md-6">
-    <div class="well">
-      <h4 align="center">Recent Social Posts</h4>
-      <hr>
-      <% @socialposts.last(5).each do |socialpost| %>
-          <strong><%= link_to truncate(socialpost.caption), socialpost %></strong>
-          <p>Created by: <%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</p>
-          <hr>
-      <% end %>
+  <div id="dashboard" class="results-blocks col-md-6">
+    <div class="panel panel-info dashboard-table">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <div align="center">
+          <h1>Recent Social Posts</h2>
+        </div>
+      </div>
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Caption</th>
+            <th>Created by</th>
+          </tr>
+        </thead>
+        <tbody>
+           <% @socialposts.last(5).each do |socialpost| %>
+            <tr>
+              <td><%= link_to truncate(socialpost.caption), socialpost %></td>
+              <td><%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
   
-  
-  <div class="col-md-6">
-    <div class="well">
-      <h4 align="center">Recent joiners</h4>
-      <hr>
-      <% @users.last(5).each do |user| %>
-          <strong><p>Username: <%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</p></strong>
-          <p>Email: <%= user.email %></p>
-          <hr>
-      <% end %>
+  <div id="dashboard" class="results-blocks col-md-6">
+    <div class="panel panel-info dashboard-table">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <div align="center">
+          <h1>Recent joiners</h2>
+        </div>
+      </div>
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email by</th>
+          </tr>
+        </thead>
+        <tbody>
+           <% @users.last(5).each do |user| %>
+            <tr>
+              <td><%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</td>
+              <td><%= user.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-
 
 
 <div class="col-md-12 col-md-offset-0">
-  <div class="col-md-6">
-    <div class="well">
-      <h4 align="center">Recent Announcements</h4>
-      <hr>
-      <% @announcements.last(5).each do |announcement| %>
-          <strong>Title: <%= link_to announcement.title, announcement %></strong>
-          <p><%= render announcement.categories %></p>
-          <p><%= truncate(announcement.description) %></p>
-          <p>Created by: <%= link_to announcement.user.username, user_path(announcement.user.id) %> (<%= time_ago_in_words announcement.created_at %> ago)</p>
-        <hr>
-      <% end %>
+  <div id="dashboard" class="results-blocks col-md-6">
+    <div class="panel panel-info dashboard-table">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <div align="center">
+          <h1>Recent Announcements</h2>
+        </div>
+      </div>
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Categories</th>
+            <th>Description</th>
+            <th>Created by</th>
+          </tr>
+        </thead>
+        <tbody>
+           <% @announcements.last(5).each do |announcement| %>
+            <tr>
+              <td><%= link_to announcement.title, announcement %></td>
+              <td><%= render announcement.categories %></td>
+              <td><%= truncate(announcement.description) %></td>
+              <td><%= link_to announcement.user.username, user_path(announcement.user.id) %> (<%= time_ago_in_words announcement.created_at %> ago)</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
   
-  
-  <div class="col-md-6">
-    <div class="well">
-      <h4 align="center">Recent Wiki Posts</h4>
-      <hr>
-      <% @articles.last(5).each do |article| %>
-          <strong>Title: <%= link_to article.title, article %></strong>
-          <p><%= render article.categories %></p>
-          <p><%= truncate(article.description) %></p>
-          <p>Created by: <%= link_to article.user.username, user_path(article.user.id) %> (<%= time_ago_in_words article.created_at %> ago)</p>
-        <hr>
-      <% end %>
+  <div id="dashboard" class="results-blocks col-md-6">
+    <div class="panel panel-info dashboard-table">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <div align="center">
+          <h1>Recent Wiki Posts</h2>
+        </div>
+      </div>
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Categories</th>
+            <th>Description</th>
+            <th>Created by</th>
+          </tr>
+        </thead>
+        <tbody>
+           <% @articles.last(5).each do |article| %>
+            <tr>
+              <td><%= link_to article.title, article %></td>
+              <td><%= render article.categories %></td>
+              <td><%= truncate(article.description) %></td>
+              <td><%= link_to article.user.username, user_path(article.user.id) %> (<%= time_ago_in_words article.created_at %> ago)</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
 
 
 

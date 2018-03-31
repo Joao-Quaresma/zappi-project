@@ -4,21 +4,39 @@
   </div>
 <% end %>  
 
-
 <% if @user %>
-    <div id="user-search-results" class="well results-blocks col-md-12">
-      <table class="search-results-table col-md-12">
-        <tbody>
-          <% @user.each do |user| %>
-            <tr>
-              <td><strong>Username: </strong> <%= link_to user.username, user %></td>
-              <td><strong>Email: </strong> <%= user.email %></td>
-              <td><strong>First name: </strong> <%= user.first_name %></td>
-              <td><strong>Last name: </strong> <%= user.last_name %></td>
-              <td><strong>Role: </strong> <%= user.role %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.each do |user| %>
+        <tr>
+          <td><%= link_to user.username, user %></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.first_name? %>
+              <%= user.first_name %>
+            <% else %>
+              ------
+            <% end %>
+          </td>
+          <td>
+            <% if user.last_name? %>
+              <%= user.last_name %>
+            <% else %>
+              ------
+            <% end %>
+          </td>
+          <td><%= user.role %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>

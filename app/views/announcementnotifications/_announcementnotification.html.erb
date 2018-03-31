@@ -1,22 +1,31 @@
 <% if selector == "long" %>
-    <ul class="list-inline list-unstyled text-center">
-      <li class="notification-item">
-        <% unless announcementnotification.read %>
-          <span class="glyphicon glyphicon-asterisk"></span>
-        <% end %>
-        <%= time_ago_in_words(announcementnotification.created_at) + " ago" %>
-        <% if announcementnotification.notice_type == "comment" %>
-          <strong>
-            <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type}: ", link_announcementthrough_path(announcementnotification) %>
-          </strong>
-        <% else %>
-          <strong>
-            <%= link_to "#{announcementnotification.notified_by.username} #{announcementnotification.notice_type} you: ", link_announcementthrough_path(announcementnotification) %>
-          </strong>
-        <% end %>
-        <%= announcementnotification.announcement.title %>
-      </li>
-    </ul>
+<!-- Table -->
+  <tbody>
+    <td>
+      <% if !announcementnotification.read %>
+        <span class="glyphicon glyphicon-asterisk"></span>New
+      <% else %>
+        Viewed
+      <% end %>
+    </td>
+    <td>
+      <%= time_ago_in_words(announcementnotification.created_at) + " ago" %>
+    </td>
+    <td>
+      <% if announcementnotification.notice_type == "comment" %>
+        <strong>
+          <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type}", link_announcementthrough_path(announcementnotification) %>
+        </strong>
+      <% else %>  
+        <strong>
+          <%= link_to "#{announcementnotification.notified_by.username} #{announcementnotification.notice_type} you", link_announcementthrough_path(announcementnotification) %>
+        </strong>
+      <% end %>
+    </td>
+    <td>
+      <%= announcementnotification.announcement.title %> 
+    </td>
+  </tbody>
 <% elsif selector == "short" %>
      <li>
       <% if announcementnotification.notice_type == "comment" %>
@@ -26,5 +35,7 @@
       <% end %>
      </li>
 <% end %>
+
+
 
 

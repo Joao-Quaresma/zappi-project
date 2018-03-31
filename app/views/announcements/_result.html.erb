@@ -5,13 +5,19 @@
 <% end %>  
 
 <% if @announcement %>
-    <div id="announcement-search-results" class="well results-blocks col-md-10">
-      <table class="search-results-table col-md-12">
+    <div id="announcement-search-results" class="well results-blocks col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Categories</th>
+            <th>Title</th>
+          </tr>
+        </thead>
         <tbody>
           <% @announcement.each do |announcement| %>
             <tr>
-              <td><strong>Title: </strong> <%= link_to announcement.title, announcement %></td>
-              <td><strong>Categories: </strong> <%= render announcement.categories %></td>
+              <td><%= render announcement.categories %></td>
+              <td><%= link_to announcement.title, announcement %></td>
             </tr>
           <% end %>
         </tbody>

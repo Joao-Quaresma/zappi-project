@@ -1,12 +1,20 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <ul class="notification-index-list list-group">
-        <h1 class="text-center">Your Notifications</h1>
-        <hr>
-        <%= render @notifications.where(read: false), selector: "long" %>
-      </ul>
+<div id="notifications" class="results-blocks col-xs-6 col-xs-offset-3">
+  <div class="panel panel-info notifications-table">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+      <div align="center">
+        <h1>Social Notifications</h2>
+      </div>
     </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Time ago</th>
+          <th>Info</th>
+        </tr>
+      </thead>
+      <%= render @notifications.where(read: false), selector: "long" %>
+    </table
   </div>
 </div>

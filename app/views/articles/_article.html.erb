@@ -12,13 +12,13 @@
         </div>
         <% if article.categories.any? %>
           <div class="article-actions">
-            <p>Categories: <%= render article.categories %></p>
+            <p><strong>Categories: </strong><%= render article.categories %></p>
           </div>
         <% end %>
         <!-- this next if logged_in is to make sure that if for some reason-->
         <!-- a user that is not logged can see the post then at least that person cant delete or edit -->
           <% if user_signed_in? %>
-            <div class="article-actions">
+            <div class="article-actions" align="right">
                 <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-xs btn-primary" %>
                 <% if current_user == article.user || current_user.admin? %>
                   <%= link_to "Delete this article", article_path(article), method: :delete, 

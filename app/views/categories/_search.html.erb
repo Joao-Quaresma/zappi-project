@@ -1,13 +1,13 @@
 
 <div id="categories-search">
   <%= form_tag category_search_results_path, remote: true, method: :get, id: 'category-search-form' do %>
-    <div class="form-group row no-padding text-center col-md-12">
-      <div class="col-md-10">
+    <div class="form-group row no-padding text-center col-xs-12">
+      <div class="col-xs-4 col-xs-offset-4">
         <%= text_field_tag :search_param, params[:search_param], 
               placeholder: "Enter title or description", autofocus: true, 
               class: "form-control search-box input-lg" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-xs-1">
         <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
           <i class="fa fa-search"></i> Search
         <% end %>

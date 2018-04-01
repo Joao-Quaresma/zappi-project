@@ -40,7 +40,7 @@
         <% when controller_name == "socialposts" %>          
             <ul class="nav navbar-nav navbar-right navbar-centered">
                 <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_socialpost_path %></li>
-                <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), zappisocial_path %></li>
+                <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), socialposts_path %></li>
                 <li><%= link_to raw('Search Posts <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), socialpost_search_path %></li>
                 <% if controller_name == "socialposts" && action_name == "index" %>
                     <li><%= will_paginate @socialposts, :inner_window => 0, :outer_window => 0 %></li>

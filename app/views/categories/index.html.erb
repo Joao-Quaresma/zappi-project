@@ -1,19 +1,16 @@
 <div align="center">
   <h1>Listing all categories</h1>
 </div>
-
+<hr>
 
 <%= render 'search' %>
 
 
-
-<div id="categories" class="well results-blocks col-md-12">
-  <table class="categories-table col-md-12">
+<div id="categories" class="well results-blocks col-xs-10 col-xs-offset-1">
+  <table class="categories-table col-xs-10 col-xs-offset-1">
     <tbody>
       <% @categories.each do |category| %>
-        <tr>
           <%= render category %>
-        </tr>
       <% end %>
     </tbody>
   </table>

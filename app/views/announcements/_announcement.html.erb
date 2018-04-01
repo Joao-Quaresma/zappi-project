@@ -12,13 +12,13 @@
         </div>
         <% if announcement.categories.any? %>
           <div class="announcement-actions">
-            <p>Categories: <%= render announcement.categories %></p>
+            <p><strong>Categories: </strong><%= render announcement.categories %></p>
           </div>
         <% end %>
         <!-- this next if logged_in is to make sure that if for some reason-->
         <!-- a user that is not logged can see the post then at least that person cant delete or edit -->
           <% if user_signed_in? %>
-            <div class="announcement-actions">
+            <div class="announcement-actions" align="right">
                 <%= link_to "Edit this announcement", edit_announcement_path(announcement), class: "btn btn-xs btn-primary" %>
                 <% if current_user == announcement.user || current_user.admin? %>
                   <%= link_to "Delete this announcement", announcement_path(announcement), method: :delete, 

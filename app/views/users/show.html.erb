@@ -1,4 +1,4 @@
-<h1 align="center"><%= @user.username + " profile"%></h1>
+<h1 align="center"><%= @user.username + "'s profile"%></h1>
 
 <div class="posts-wrapper">
   <div class="well border-profile">
@@ -9,25 +9,25 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="user-name-and-follow">
-        <h6 class="account-type">
+      <div class="user-name">
+        <h5 class="account-type">
           <% if @user.admin?  %>
             Account type: Admin
           <% else %>
               Account type: User
           <% end %>
-        </h6>
+        </h5>
         <% if @user.first_name.present? and @user.last_name.present? %>
-        <h6 class="User-first-name">
+        <h5 class="user-first-last-name">
           Name: <%= @user.first_name %> <%= @user.last_name %>
-        </h6>
+        </h5>
         <% end %>
-        <h6 class="role">
+        <h5 class="role">
           Role: <%= @user.role %>
-        </h6>
-        <h6 class="job-title">
-          Title: <%= @user.job_role %>
-        </h6>
+        </h5>
+        <h5 class="job-title">
+          Job title: <%= @user.job_role %>
+        </h5>
         <div class="details" align="left">
           <small align="center">
             <%= link_to pluralize(@user.articles.count, "Wiki post"), user_articles_search_path(@user) if @user.articles %><br>
@@ -35,9 +35,9 @@
             <%= link_to pluralize(@user.socialposts.count, "Social Post"), user_socialposts_search_path(@user) if @user.socialposts %>
           </small>
         </div>
-        <h6 class="resume">
+        <h5 class="resume">
           Resume: <%= @user.resume %>
-        </h6>
+        </h5>
         <span>
           <% if @user == current_user || current_user.admin? %>
             <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-xs btn-primary" %>

@@ -1,9 +1,2 @@
 
 <%= render 'form' %>
-<div class="text-center edit-links">
-    <% if current_user.admin? || current_user == @socialpost.user %>
-        <%= link_to "Delete Post", socialpost_path(@socialpost), method: :delete, data: { confirm: "Are you sure you want to delete this post?" } %>
-        |
-    <% end %>
-    <%= link_to "cancel", socialposts_path %>
-</div>

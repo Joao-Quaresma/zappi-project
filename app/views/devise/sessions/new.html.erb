@@ -13,7 +13,7 @@
               <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' } %>
               <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' } %>
               <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-              <%= f.button :submit, "Log in", class: 'btn-lg btn-info btn-block' %>
+              <%= f.button :button, "Log in".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Logging in..."} %>
             </div>
           <% end %>
           <%= render "devise/shared/links" %>

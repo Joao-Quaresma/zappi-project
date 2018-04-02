@@ -12,7 +12,9 @@
                   <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 4, class: "form-control", placeholder: "Write the post here" %>
                 </div>
               </div>
-              <%= f.submit "Update comment", class: 'btn btn-primary' %>
+              <div align ="center" class="comment-actions col-xs-2 col-xs-offset-5">
+                <%= f.button "Update comment".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-circle-notch fa-spin'></i> Updating..."} %>
+              </div>
           </div>
       </div>  
       <% end %>

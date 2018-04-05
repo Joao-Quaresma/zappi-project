@@ -9,7 +9,9 @@
           <div class="form-group text-center">
               <div class ="form-group">
                 <div class="col-sm-14">
-                  <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 4, class: "form-control", placeholder: "Write the post here" %>
+                  <%= md_simple_editor do %>
+                    <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 4, class: "form-control", placeholder: "Write the post here" %>
+                  <% end %>
                 </div>
               </div>
               <div align ="center" class="comment-actions col-xs-2 col-xs-offset-5">

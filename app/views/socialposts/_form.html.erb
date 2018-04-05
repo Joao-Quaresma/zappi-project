@@ -15,7 +15,9 @@
               <%= f.input :image, label: false, input_html: { onChange: 'loadFile(event)' } %>
             </div>
             <div class="form-group text-center">
-              <%= f.text_area :caption, data: {behavior: "autocomplete"}, label: false, rows: 3, class: "form-control", placeholder: 'Add your caption' %>
+              <%= md_simple_editor do %>
+                <%= f.text_area :caption, data: {behavior: "autocomplete"}, label: false, rows: 3, class: "form-control", placeholder: 'Add your caption' %>
+              <% end %>
             </div>
             <div class="form-group text-center col-xs-6 col-xs-offset-3">
               <% if controller_name == "socialposts" && action_name == "new" %>

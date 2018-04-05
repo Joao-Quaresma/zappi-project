@@ -29,6 +29,8 @@ gem 'gemoji', '~> 3.0'
 gem 'commonmarker'
 gem 'sanitize', '~> 4.6', '>= 4.6.4'
 
+gem 'md_simple_editor'
+
 #paranoia for users delete/suspend
 gem "paranoia", "~> 2.2"
 #paperclip for the zappisocial

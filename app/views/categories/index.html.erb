@@ -1,19 +1,18 @@
-<div align="center">
-  <h1>Listing all categories</h1>
-</div>
-<hr>
-
-<%= render 'search' %>
-
-
-<div id="categories" class="well results-blocks col-xs-10 col-xs-offset-1">
-  <table class="categories-table col-xs-10 col-xs-offset-1">
-    <tbody>
-      <% @categories.each do |category| %>
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="panel panel-info categories-index">
+      <div class="panel-heading">
+        <div align="center">
+          <strong><h3>All categories</h1></strong>
+        </div>
+      </div>
+      <div class="panel-body">
+        <% @categories.each do |category| %>
           <%= render category %>
-      <% end %>
-    </tbody>
-  </table>
+        <% end %>
+        <hr>
+        <%= render 'search' %>
+      </div>
+    </div>
+  </div>
 </div>
-
-

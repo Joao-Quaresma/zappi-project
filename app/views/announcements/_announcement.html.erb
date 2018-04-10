@@ -1,40 +1,46 @@
-<% obj.each do |announcement| %>
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <div class="well well-lg nice-border">
-        <div class="show-title">
-          Title: <%= link_to announcement.title, announcement_path(announcement) %>
-        </div>
-        <div class="announcement-body">
-          <div style="word-wrap: break-word; overflow-y: hidden;">
-            <strong>Description: </strong><%= simple_format(linked_users_announcement markdownify announcement.description) %>
-          </div>
-        </div>
-        <% if announcement.categories.any? %>
-          <div class="announcement-actions">
-            <p><strong>Categories: </strong><%= render announcement.categories %></p>
-          </div>
-        <% end %>
-        <!-- this next if logged_in is to make sure that if for some reason-->
-        <!-- a user that is not logged can see the post then at least that person cant delete or edit -->
-          <% if user_signed_in? %>
-            <div class="announcement-actions" align="right">
-                <%= link_to "Edit this announcement", edit_announcement_path(announcement), class: "btn btn-xs btn-primary" %>
-                <% if current_user == announcement.user || current_user.admin? %>
-                  <%= link_to "Delete this announcement", announcement_path(announcement), method: :delete, 
-                                                                         data: { confirm: "Are you sure you want to delete this post?"}, 
-                                                                        class: "btn btn-xs btn-danger" %>
-                <% end %> 
-                <div class="show-meta-details">
-                  <small>
-                    Created by: <%= link_to announcement.user.username, user_path(announcement.user) if announcement.user %>,
-                    <%= time_ago_in_words(announcement.created_at) %> ago,
-                    last updated: <%= time_ago_in_words(announcement.updated_at) %> ago
-                  </small>
-                </div>
+<% obj.in_groups_of(3, false).each do |group| %>
+<div class="row">
+  <% group.each do |announcement| %>
+      <div class="col-xs-12 col-md-4">
+        <div class="panel panel-info announcement-article-view">
+          <div class="panel-heading">
+            <div align="center">
+              <%= link_to announcement.title, announcement_path(announcement) %>
             </div>
-          <% end %>  
+          </div>
+          <div class="panel-body">
+            <div style="word-wrap: break-word; overflow-y: hidden;">
+              <%= simple_format(linked_users_announcement markdownify announcement.description) %>
+            </div>
+            <% if announcement.categories.any? %>
+              <div class="announcement-actions">
+                <%= render announcement.categories %></p>
+              </div>
+            <% end %>
+          </div>
+          <!-- this next if logged_in is to make sure that if for some reason-->
+          <!-- a user that is not logged can see the post then at least that person cant delete or edit -->
+            <% if user_signed_in? %>
+              <div class="panel-footer">
+                <div class="announcement-actions" align="right">
+                    <%= link_to "Edit announcement", edit_announcement_path(announcement), class: "btn btn-xs btn-primary" %>
+                    <% if current_user == announcement.user || current_user.admin? %>
+                      <%= link_to "Delete announcement", announcement_path(announcement), method: :delete, 
+                                                                             data: { confirm: "Are you sure you want to delete this announcement?"}, 
+                                                                            class: "btn btn-xs btn-danger" %>
+                    <% end %> 
+                    <div class="show-meta-details">
+                      <small>
+                        Created by: <%= link_to announcement.user.username, user_path(announcement.user) if announcement.user %>,
+                        <%= time_ago_in_words(announcement.created_at) %> ago,
+                        last updated: <%= time_ago_in_words(announcement.updated_at) %> ago
+                      </small>
+                    </div>
+                </div>
+              </div>  
+            <% end %>  
+        </div>
       </div>
-    </div>
-  </div>
+  <% end %>
+ </div>
 <% end %>

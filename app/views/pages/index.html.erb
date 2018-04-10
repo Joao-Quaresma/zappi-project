@@ -1,122 +1,120 @@
-
- 
 <% if user_signed_in? %>
 <div class="col-xs-12 col-xs-offset-0">
-  <div id="dashboard" class="results-blocks col-xs-6">
+  <div id="dashboard" class="results-blocks col-xs-12 col-md-6">
     <div class="panel panel-info dashboard-table">
       <!-- Default panel contents -->
-      <div class="panel-heading">
-        <div align="center">
-          <h1>Recent Wiki Posts</h2>
-        </div>
+      <div class="panel-heading" align="center">
+         <strong>Recent Wiki Posts</strong>
       </div>
       <!-- Table -->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Categories</th>
-            <th>Created by</th>
-          </tr>
-        </thead>
-        <tbody>
-           <% @articles.first(5).each do |article| %>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= link_to article.title, article %></td>
-              <td><%= render article.categories %></td>
-              <td><%= link_to article.user.username, user_path(article.user.id) %> (<%= time_ago_in_words article.created_at %> ago)</td>
+              <th class="col-xs-8">Title</th>
+              <th class="col-xs-3">Categories</th>
+              <th class="col-xs-1">Created by</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+             <% @articles.first(5).each do |article| %>
+              <tr>
+                <td class="col-xs-8"><%= link_to article.title, article %></td>
+                <td class="col-xs-3"><%= render article.categories %></td>
+                <td class="col-xs-1"><%= link_to article.user.username, user_path(article.user.id) %> <br> (<%= time_ago_in_words article.created_at %> ago)</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   
-  <div id="dashboard" class="results-blocks col-xs-6">
+  <div id="dashboard" class="results-blocks col-xs-12 col-md-6">
     <div class="panel panel-info dashboard-table">
       <!-- Default panel contents -->
-      <div class="panel-heading">
-        <div align="center">
-          <h1>Recent Announcements</h2>
-        </div>
+      <div class="panel-heading" align="center">
+         <strong>Recent Announcements</strong>
       </div>
       <!-- Table -->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Categories</th>
-            <th>Created by</th>
-          </tr>
-        </thead>
-        <tbody>
-           <% @announcements.first(5).each do |announcement| %>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= link_to announcement.title, announcement %></td>
-              <td><%= render announcement.categories %></td>
-              <td><%= link_to announcement.user.username, user_path(announcement.user.id) %> (<%= time_ago_in_words announcement.created_at %> ago)</td>
+              <th class="col-xs-8">Title</th>
+              <th class="col-xs-3">Categories</th>
+              <th class="col-xs-1">Created by</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+             <% @announcements.first(5).each do |announcement| %>
+              <tr>
+                <td class="col-xs-8"><%= link_to announcement.title, announcement %></td>
+                <td class="col-xs-3"><%= render announcement.categories %></td>
+                <td class="col-xs-1"><%= link_to announcement.user.username, user_path(announcement.user.id) %> (<%= time_ago_in_words announcement.created_at %> ago)</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="col-xs-12 col-xs-offset-0">
-  <div id="dashboard" class="results-blocks col-xs-6">
+  <div id="dashboard" class="results-blocks col-xs-12 col-md-6">
     <div class="panel panel-info dashboard-table">
       <!-- Default panel contents -->
-      <div class="panel-heading">
-        <div align="center">
-          <h1>Recent Social Posts</h2>
-        </div>
+      <div class="panel-heading" align="center">
+          <strong>Recent Social Posts</strong>
       </div>
       <!-- Table -->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Caption</th>
-            <th>Created by</th>
-          </tr>
-        </thead>
-        <tbody>
-           <% @socialposts.first(5).each do |socialpost| %>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= link_to simple_format(linked_users_socialpost markdownify socialpost.caption), socialpost %></td>
-              <td><%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</td>
+              <th class="col-xs-11">Caption</th>
+              <th class="col-xs-1">Created by</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+             <% @socialposts.first(5).each do |socialpost| %>
+              <tr>
+                <td class="col-xs-11"><%= link_to simple_format(markdownify socialpost.caption), socialpost %></td>
+                <td class="col-xs-1"><%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   
-  <div id="dashboard" class="results-blocks col-xs-6">
+  <div id="dashboard" class="results-blocks col-xs-12 col-md-6">
     <div class="panel panel-info dashboard-table">
       <!-- Default panel contents -->
-      <div class="panel-heading">
-        <div align="center">
-          <h1>Recent joiners</h2>
-        </div>
+      <div class="panel-heading" align="center">
+          <strong>Recent joiners</strong>
       </div>
       <!-- Table -->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email by</th>
-          </tr>
-        </thead>
-        <tbody>
-           <% @users.first(5).each do |user| %>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</td>
-              <td><%= user.email %></td>
+              <th class="col-xs-4">Username</th>
+              <th class="col-xs-4">Email by</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+             <% @users.first(5).each do |user| %>
+              <tr>
+                <td class="col-xs-4"><%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</td>
+                <td class="col-xs-4"><%= user.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -1,60 +1,73 @@
 <%= render 'errors', obj: @announcement %>
 
-<div class='well col-xs-8 col-xs-offset-2 nice-border'>
-  <div class='col-xs-12'>
-    <%= form_for(@announcement, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-        <div class ="form-group">
-          <div class="control-label" align="center">
-            <%= f.label :title %>:
-          </div>
-          <div class="title">
-            <%= f.text_field :title, class: "form-control", placeholder: "Title of the Announcement", autofocus: true %>
-          </div>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div align="center">
+          <% if controller_name == "announcements" && action_name == "new" %>
+            <h3>New Announcement</h3>
+          <% else %>
+            <h3>Edit Announcement</h3>
+          <% end %>
         </div>
-        <br>
-        <div class ="form-group">
-          <div class="row">
-            <div class="col-xs-12">
-              <%= f.label :categories %>:
+      </div>
+      <div class="panel-body">
+        <%= form_for(@announcement, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+          <div class ="form-group">
+            <div class="control-label" align="center">
+              <%= f.label :title %>:
             </div>
-            <div class="col-xs-12">
-              <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-                <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+            <div class="title">
+              <%= f.text_field :title, class: "form-control", placeholder: "Title of the Announcement", autofocus: true %>
+            </div>
+          </div>
+          <br>
+          <div class ="form-group">
+            <div class="row">
+              <div class="col-xs-12">
+                <%= f.label :categories %>:
+              </div>
+              <div class="col-xs-12">
+                <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+                  <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+                <% end %>
+              </div>
+            </div>  
+          </div>
+          <div class ="form-group">
+            <div class="control-label" align="center">
+              <%= f.label :description %>:
+            </div>
+            <div class="description">
+              <%= f.text_area :description, data: {behavior: "autocomplete"}, rows: 5, class: "form-control", placeholder: "Description of the announcement" %>
+            </div>
+          </div>
+          <div class ="form-group">
+            <div class="control-label" align="center">
+              <%= f.label :body %>:
+            </div>
+            <div class="body">
+              <%= md_simple_editor do %>
+                <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 40, class: "form-control", placeholder: "Write the announcement here" %>
               <% end %>
             </div>
-          </div>  
+          </div>
+          <div class ="form-group">
+            <div align ="center" class="announcement-actions col-xs-6 col-xs-offset-3">
+              <% if controller_name == "announcements" && action_name == "new" %>
+                <%= f.button "Create Announcement".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-circle-notch fa-spin'></i> Creating..."} %>
+              <% elsif controller_name == "announcements" && action_name == "edit" %>
+                <%= f.button "Update Announcement".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-circle-notch fa-spin'></i> Updating..."} %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <div align ="center" class="announcement-actions">
+          [ <%= link_to "Cancel request and return to Announcement", announcements_path %> ]
         </div>
-        <div class ="form-group">
-          <div class="control-label" align="center">
-            <%= f.label :description %>:
-          </div>
-          <div class="description">
-            <%= f.text_area :description, data: {behavior: "autocomplete"}, rows: 5, class: "form-control", placeholder: "Description of the Wiki post" %>
-          </div>
-        </div>
-        <div class ="form-group">
-          <div class="control-label" align="center">
-            <%= f.label :body %>:
-          </div>
-          <div class="body">
-            <%= md_simple_editor do %>
-              <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 40, class: "form-control", placeholder: "Write the post here" %>
-            <% end %>
-          </div>
-        </div>
-        <div class ="form-group">
-          <div align ="center" class="announcement-actions col-xs-6 col-xs-offset-3">
-            <% if controller_name == "announcements" && action_name == "new" %>
-              <%= f.button "Create Announcement".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-circle-notch fa-spin'></i> Creating..."} %>
-            <% elsif controller_name == "announcements" && action_name == "edit" %>
-              <%= f.button "Update Announcement".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-circle-notch fa-spin'></i> Updating..."} %>
-            <% end %>
-          </div>
-        </div>
-    <% end %>
-    <div align ="center" class="announcement-actions">
-      [ <%= link_to "Cancel request and return to Wiki", articles_path %> ]
+      </div>  
     </div>
-  
   </div>
-</div>  
+</div>
+

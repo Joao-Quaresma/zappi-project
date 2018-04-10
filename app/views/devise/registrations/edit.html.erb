@@ -1,103 +1,97 @@
 <!-- this is used to change the login details if the user is the current user, if its an admin and is trying to edit another user then it will use users/editlogin -->
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-  <div class="posts-wrapper">
-    <div class="post">
-        <div class="post-body">
-            <div class="image-wrap">
-                <div class="form-inputs">
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <div class="form-group text-center">
-                          <h4>Update Username:</h4>
-                          <%= f.input :username, class: "form-control", placeholder: "Enter username", required: true, autofocus: true %>
-                        </div>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div align="center">
+          <strong><h3><%= "Edit your details" %></h3></strong>
+        </div>
+      </div>
+      <div class="panel-body">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+            <div class="form-inputs">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group text-center">
+                      <%= f.input :username, class: "form-control", placeholder: "Enter username", required: true, autofocus: true %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="form-group text-center">
+                      <%= f.input :email, class: "form-control", placeholder: "Enter email", required: true %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group text-center">
+                      <%= f.input :first_name, class: "form-control", placeholder: "Enter first name", required: false %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="form-group text-center">
+                      <%= f.input :last_name, class: "form-control", placeholder: "Enter last name", required: false %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="form-group text-center">
+                      <%= f.input :job_role, class: "form-control", placeholder: "Enter job role", required: false %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                      <% if :authenticate_user? and current_user.admin? %>
+                      <div class="form-group text-left">
+                          <%= f.label "Admin" %> 
+                          <%= f.check_box :admin %>
                       </div>
-                      <div class="col-xs-6">
-                        <div class="form-group text-center">
-                          <h4>Update Email:</h4>
-                          <%= f.input :email, class: "form-control", placeholder: "Enter email", required: true %>
-                        </div>
+                      <% end %>
+                      <div class="form-group text-left">
+                          <%= f.label "Role" %>
+                          <%= f.select :role, User.roles.keys.to_a %>
+                      </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6">
+                      <div class="form-group text-center">
+                        <%= f.input :password, class: "form-control", autocomplete: "off", placeholder: "Leave it blank if you don't want to change it", required: false %>
                       </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                          <div class="form-group text-center">
-                            <h4>Update First name:</h4>
-                            <%= f.input :first_name, class: "form-control", placeholder: "Enter first name", required: false %>
-                          </div>
-                        </div>
-                        <div class="col-xs-6">
-                          <div class="form-group text-center">
-                            <h4>Update Last name:</h4>
-                            <%= f.input :last_name, class: "form-control", placeholder: "Enter last name", required: false %>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                          <div class="form-group text-center">
-                            <h4>Job title:</h4>
-                            <%= f.input :job_role, class: "form-control", placeholder: "Enter job role", required: false %>
-                          </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <br>
-                            <br>
-                            <% if :authenticate_user? and current_user.admin? %>
-                            <div class="form-group text-left">
-                                <%= f.label "Admin" %> 
-                                <%= f.check_box :admin %>
-                            </div>
-                            <% end %>
-                            <div class="form-group text-left">
-                                <%= f.label "Role" %>
-                                <%= f.select :role, User.roles.keys.to_a %>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-xs-6">
-                          <div class="form-group text-center">
-                            <h4>Update Password:</h4>
-                            <%= f.input :password, class: "form-control", autocomplete: "off", placeholder: "Leave it blank if you don't want to change it", required: false %>
-                          </div>
-                        </div>
-                        <div class="col-xs-6">
-                          <div class="form-group text-center">
-                            <h4>Update Password:</h4>
-                            <%= f.input :password_confirmation, class: "form-control", autocomplete: "off", placeholder: "Confirm password", required: false %>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                          <div class="form-group text-center">
-                            <h4>Current password:</h4>
-                            <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-                          </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group text-center col-xs-6 col-xs-offset-3">
-                        <%= f.button :button, "Update".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Updating..."} %>
-                    </div>
-                     <div class="row">
-                        <div class="col-xs-12">
-                            <div class="form-group text-center">
-                                [<%= link_to "Go back to profile", user_path(@user) %>]
-                            </div>
-                        </div>    
+                    <div class="col-xs-6">
+                      <div class="form-group text-center">
+                        <%= f.input :password_confirmation, class: "form-control", autocomplete: "off", placeholder: "Confirm password", required: false %>
+                      </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                      <div class="form-group text-center">
+                        <%= f.input :current_password, placeholder: "needed to confirm any changes", required: true %>
+                      </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group text-center col-xs-6 col-xs-offset-3">
+                    <%= f.button :button, "Update".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Updating..."} %>
+                </div>
+                 <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group text-center">
+                            [<%= link_to "Go back to profile", user_path(@user) %>]
+                        </div>
+                    </div>    
+                </div>
             </div>
-        </div>
+        <% end %>
+      </div>
     </div>
-  </div>    
-<% end %>
-
-    
-    
+  </div>
+</div>
+          
+          
     

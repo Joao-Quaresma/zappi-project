@@ -1,27 +1,37 @@
 <%= render 'articles/errors', obj: @category %>
 
-<div class='well col-xs-6 col-xs-offset-3 nice-border'>
-  <div class='col-xs-8 col-xs-offset-2'>
-    <%= form_for(@category, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-        <div class ="form-group">
-          <div class="control-label" align ="center">
-            <%= f.label "New category name"%>
-          </div>
-          <div class="name">
-            <%= f.text_field :name, class: "form-control", placeholder: "Category name", autofocus: true %>
-          </div>
+
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 col-xs-12 col-xs-offset-0 ">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div align="center">
+          <% if controller_name == "categories" && action_name == "new" %>
+            <h3>New Category</h3>
+          <% else %>
+            <h3>Edit Category</h3>
+          <% end %>
         </div>
-        
+      </div>
+      <div class="panel-body">
+        <%= form_for(@category, :html => {class: "form-horizontal", role: "form"}) do |f| %>
           <div class ="form-group">
-            <div align ="center" class="article-actions">
-              <%= f.submit class: 'btn btn-primary' %>
+            <div class="name col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
+              <%= f.text_field :name, class: "form-control", placeholder: "Category name", autofocus: true %>
             </div>
           </div>
-        
-    <% end %>
-    <div align ="center" class="article-actions">
-      [<%= link_to "Cancel and return the categries page", categories_path %>]
+          <div class ="form-group">
+            <div align ="center" class="article-actions">
+              <%= f.submit class: 'btn btn-success' %>
+            </div>
+          </div>
+        <% end %>
+        <div align ="center" class="article-actions">
+          [<%= link_to "Cancel and return the categries page", categories_path %>]
+        </div>
+      </div>
     </div>
-
   </div>
-</div>  
+</div>

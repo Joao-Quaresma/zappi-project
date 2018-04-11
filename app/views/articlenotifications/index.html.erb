@@ -1,25 +1,27 @@
-
-<div id="articlenotifications" class="results-blocks col-xs-10 col-xs-offset-1">
-  <div class="panel panel-info wiki-notifications-table">
-    <!-- Default panel contents -->
-    <div class="panel-heading">
-      <div align="center">
-        <h1>Wiki Notifications</h2>
+<div class="row">
+  <div id="articlenotifications" class="results-blocks col-xs-12 col-md-10 col-md-offset-1">
+    <div class="panel panel-info notifications-table">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <div align="center">
+          <h1>Wiki Notifications</h2>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Time ago</th>
+              <th>Info</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <%= render @articlenotifications.where(read: false), selector: "long" %>
+        </table>
       </div>
     </div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Status</th>
-          <th>Time ago</th>
-          <th>Info</th>
-          <th>Title</th>
-        </tr>
-      </thead>
-      <%= render @articlenotifications.where(read: false), selector: "long" %>
-    </table
   </div>
 </div>
-
 
 

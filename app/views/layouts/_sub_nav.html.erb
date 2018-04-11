@@ -1,5 +1,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top subnav">
 <div class="container-fluid">
+    <% if user_signed_in? %>
     <div class="navbar-header" align="left">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#subnav">
             <span class="icon-bar"></span>
@@ -7,7 +8,6 @@
             <span class="icon-bar"></span> 
         </button>
     </div>
-    <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="subnav">
         <ul class="nav navbar-nav navbar-left">
             <li><%= render 'articlenotifications/articlenotification_dropdown' %></li>

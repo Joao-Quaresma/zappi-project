@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
     before_action :set_announcement, only: [:edit, :update, :show, :destroy]
-    before_action :require_same_user, only: [:destroy]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     after_action :notified_users, only: [:create, :update]
   
   def index

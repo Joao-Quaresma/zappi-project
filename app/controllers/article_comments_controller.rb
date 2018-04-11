@@ -1,7 +1,7 @@
 class ArticleCommentsController < ApplicationController
     before_action :set_article
     before_action :set_article_comment, only: [:update, :edit, :destroy]
-    before_action :same_user, only: [:destroy]
+    before_action :same_user, only: [:edit, :update, :destroy]
     after_action :notified_users, only: [:create, :update]
     
     

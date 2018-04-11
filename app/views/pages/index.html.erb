@@ -21,7 +21,7 @@
               <tr>
                 <td class="col-xs-8"><%= link_to article.title, article %></td>
                 <td class="col-xs-3"><%= render article.categories %></td>
-                <td class="col-xs-1"><%= link_to article.user.username, user_path(article.user.id) %> <br> (<%= time_ago_in_words article.created_at %> ago)</td>
+                <td class="col-xs-1"><%= link_to article.user.username, user_path(article.user) %> <br> (<%= time_ago_in_words article.created_at %> ago)</td>
               </tr>
             <% end %>
           </tbody>
@@ -51,7 +51,7 @@
               <tr>
                 <td class="col-xs-8"><%= link_to announcement.title, announcement %></td>
                 <td class="col-xs-3"><%= render announcement.categories %></td>
-                <td class="col-xs-1"><%= link_to announcement.user.username, user_path(announcement.user.id) %> (<%= time_ago_in_words announcement.created_at %> ago)</td>
+                <td class="col-xs-1"><%= link_to announcement.user.username, user_path(announcement.user) %> (<%= time_ago_in_words announcement.created_at %> ago)</td>
               </tr>
             <% end %>
           </tbody>
@@ -81,7 +81,7 @@
              <% @socialposts.first(5).each do |socialpost| %>
               <tr>
                 <td class="col-xs-11"><%= link_to simple_format(markdownify socialpost.caption), socialpost %></td>
-                <td class="col-xs-1"><%= link_to socialpost.user.username, user_path(socialpost.user.id) %> (<%= time_ago_in_words socialpost.created_at %> ago)</td>
+                <td class="col-xs-1"><%= link_to socialpost.user.username, user_path(socialpost.user) %> (<%= time_ago_in_words socialpost.created_at %> ago)</td>
               </tr>
             <% end %>
           </tbody>
@@ -108,7 +108,7 @@
           <tbody>
              <% @users.first(5).each do |user| %>
               <tr>
-                <td class="col-xs-4"><%= link_to user.username, user_path(user.id) %> (<%= time_ago_in_words user.created_at %> ago)</td>
+                <td class="col-xs-4"><%= link_to user.username, user_path(user) %> (<%= time_ago_in_words user.created_at %> ago)</td>
                 <td class="col-xs-4"><%= user.email %></td>
               </tr>
             <% end %>

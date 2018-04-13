@@ -1,17 +1,27 @@
 <!-- this is used to change the login details if the user is the current user, if its an admin and is trying to edit another user then it will use users/editlogin -->
+<%= render 'layouts/errors', obj: @user %>
 
 <div class="row">
   <div class="col-xs-12 col-md-8 col-md-offset-2">
     <div class="panel panel-success">
       <div class="panel-heading">
         <div align="center">
-          <strong><h3><%= "Edit your details" %></h3></strong>
+          <strong><h3><%= "Edit your profile" %></h3></strong>
         </div>
       </div>
       <div class="panel-body">
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= f.error_notification %>
             <div class="form-inputs">
+                <div class="container-fluid">
+                  <div class="form-group text-center">
+                    <div class="img-circle profile-image-edit">
+                      <%= profile_avatar_select(@user) %>
+                    </div>
+                    <div class="upload-profile-image" align="center">
+                      <%= f.input :avatar, onChange: 'loadFile(event)' %>
+                      </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-xs-6">
                     <div class="form-group text-center">
@@ -57,6 +67,17 @@
                 </div>
                 <hr>
                 <div class="row">
+                  <div class="col-xs-12">
+                    <div class="form-group text-center">
+                      <h4>Update your resume:</h4>
+                      <%= md_simple_editor do %>
+                        <%= f.input :resume, label: false, input_html: { rows: 10 } %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
                     <div class="col-xs-6">
                       <div class="form-group text-center">
                         <%= f.input :password, class: "form-control", autocomplete: "off", placeholder: "Leave it blank if you don't want to change it", required: false %>
@@ -82,7 +103,7 @@
                  <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group text-center">
-                            [<%= link_to "Go back to profile", user_path(@user) %>]
+                            [<%= link_to "Go back to profile", user_path(@user.username) %>]
                         </div>
                     </div>    
                 </div>

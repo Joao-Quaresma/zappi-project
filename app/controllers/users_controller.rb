@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :editlogin, :edit, :update, :user_socialposts_search, :user_announcements_search, :user_articles_search]
-  before_action :require_same_user, only: [:edit, :editlogin, :update]
+  before_action :set_user, only: [:show, :edit, :update, :user_socialposts_search, :user_announcements_search, :user_articles_search]
+  before_action :require_same_user, only: [:edit, :update]
 
   #Get /users
   #Get /users/users.json
@@ -11,9 +11,6 @@ class UsersController < ApplicationController
   def edit
   end
   
-  def editlogin
-  end
-  
   def update
     if params[:user][:password].blank? #will allow the admin to update the user without entering a password
       params[:user].delete(:password)
@@ -22,9 +19,7 @@ class UsersController < ApplicationController
       flash[:success] = "Account updated successfully"
       redirect_to user_path(@user)
     else
-      @user.errors.full_messages
-      flash[:error] = @user.errors.full_messages
-      render 'editlogin'
+      render 'edit'
     end
   end
 

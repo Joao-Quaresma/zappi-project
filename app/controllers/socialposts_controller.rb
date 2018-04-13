@@ -18,8 +18,7 @@ class SocialpostsController < ApplicationController
             flash[:success] = "Your post has been created!"
             redirect_to socialposts_path
         else
-            flash.now[:alert] = "Your new post couldn't be created!  Please check the form."
-        render :new
+            render :new
         end
     end
     
@@ -39,7 +38,6 @@ class SocialpostsController < ApplicationController
             flash[:success] = "Post updated."
             redirect_to(socialpost_path(@socialpost))
         else
-            flash.now[:alert] = "Update failed.  Please check the form."
             render :edit
         end
     end

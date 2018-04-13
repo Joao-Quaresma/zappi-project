@@ -6,13 +6,12 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   
-  <%= favicon_link_tag '/assets/favicon.ico' %>
+  <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
 
 <%= render 'layouts/navigation' %>
 <%= render 'layouts/sub_nav' %>
-
 <%= bootstrap_flash %>
 
 <div class="container-fluid">

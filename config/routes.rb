@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   
+  
   get 'zappisocial', to: 'pages#index'
  
  #notification routes for socialposts
@@ -16,7 +17,6 @@ Rails.application.routes.draw do
   get 'users', to: "users#index", as: "users"
   get 'users/:id', to: "users#show", as: "user"
   patch 'users/edit', to: 'users#update', as: :update_user
-  get 'users/:id/editlogin', to: "users#editlogin", as: "editlogin"
   resources :users
   get 'user_search_results', to: "users#search"
   get 'user/:id/user_socialposts_search', to: "users#user_socialposts_search", as: "user_socialposts_search"

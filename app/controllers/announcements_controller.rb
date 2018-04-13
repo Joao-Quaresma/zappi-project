@@ -80,11 +80,11 @@ class AnnouncementsController < ApplicationController
   
   private
     def set_announcement
-    @announcement = Announcement.find(params[:id])
+      @announcement = Announcement.find(params[:id])
     end
     
     def announcement_params
-    params.require(:announcement).permit(:title, :description, :body, category_ids: [])
+      params.require(:announcement).permit(:title, :description, :body, category_ids: [])
     end
 
     def require_same_user

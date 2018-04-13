@@ -27,8 +27,19 @@ html {
 body {
   margin-top: 100px;
   height: 100%;
-  background-color: #fafafa;
+  background-color: #dedddd;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  
+}
+
+body.welcome {
+  height: 100%;
+  background: url(zda2017.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 
 .alert {
@@ -53,7 +64,10 @@ body {
   }
 }
 
-
+.login-registration-bg {
+  margin-top:40px;
+  position:fixed;
+}
 
 /* ## jumbotron  ## */
 
@@ -195,71 +209,68 @@ body {
 
 
 
-
-
 @media (min-width: 1px) and (max-width: 1200px) {
   .subnav {
-position: static;
-top: auto;
-z-index: auto;
-width: auto;
-height: auto;
-padding-right: 0px;
--webkit-box-shadow: none;
--moz-box-shadow: none;
-box-shadow: none;
-.subnav .nav > li {
-float: none;
-}
-.subnav .nav > li > a {
-border: 0;
-}
-.subnav .nav > li + li > a {
-border-top: 1px solid #e5e5e5;
-}
-.subnav .nav > li:first-child > a,
-.subnav .nav > li:first-child > a:hover {
--webkit-border-radius: 4px 4px 0 0;
--moz-border-radius: 4px 4px 0 0;
-border-radius: 4px 4px 0 0;
-}
-.navbar-header {
+      position: static;
+      top: auto;
+      z-index: auto;
+      width: auto;
+      height: auto;
+      padding-right: 0px;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      .subnav .nav > li {
       float: none;
-  }
-  .navbar-left,.navbar-right {
-      float: none !important;
-  }
-  .navbar-toggle {
-      display: block;
-  }
-  .navbar-collapse {
-      border-top: 1px solid transparent;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-  }
-  .navbar-fixed-top {
-      top: 0;
-      border-width: 0 0 1px;
-  }
-  .navbar-collapse.collapse {
-      display: none!important;
-  }
-  .navbar-nav {
-      float: none!important;
-      margin-top: 7.5px;
-  }
-  .navbar-nav>li {
-      float: none;
-  }
-  .navbar-nav>li>a {
-      padding-top: 10px;
-      padding-bottom: 10px;
-  }
-  .collapse.in{
-      display:block !important;
-  }
-  }
+    }
+    .subnav .nav > li > a {
+      border: 0;
+    }
+    .subnav .nav > li + li > a {
+      border-top: 1px solid #e5e5e5;
+    }
+    .subnav .nav > li:first-child > a,
+    .subnav .nav > li:first-child > a:hover {
+      -webkit-border-radius: 4px 4px 0 0;
+      -moz-border-radius: 4px 4px 0 0;
+      border-radius: 4px 4px 0 0;
+    }
+    .navbar-header {
+          float: none;
+      }
+      .navbar-left,.navbar-right {
+          float: none !important;
+      }
+      .navbar-toggle {
+          display: block;
+      }
+      .navbar-collapse {
+          border-top: 1px solid transparent;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+      }
+      .navbar-fixed-top {
+          top: 0;
+          border-width: 0 0 1px;
+      }
+      .navbar-collapse.collapse {
+          display: none!important;
+      }
+      .navbar-nav {
+          float: none!important;
+          margin-top: 7.5px;
+      }
+      .navbar-nav>li {
+          float: none;
+      }
+      .navbar-nav>li>a {
+          padding-top: 10px;
+          padding-bottom: 10px;
+      }
+      .collapse.in{
+          display:block !important;
+      }
+    }
 }
-
 
 
 
@@ -390,16 +401,6 @@ border-radius: 4px 4px 0 0;
   margin-bottom: 40px;
 }
 
-.registration-bg {
-  padding-top: 4em;
-  height: 100%;
-  background-image: asset-url('backgroundreg.jpg');
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 .log-in{
   margin-left: auto;
   margin-right: auto;
@@ -418,15 +419,6 @@ border-radius: 4px 4px 0 0;
 }
 
 
-.login-bg {
-  padding-top: 4em;
-  height: 100%;
-  background-image: image-url('backgroundreg.jpg');
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 
 #image-preview {
   margin: 0 auto;

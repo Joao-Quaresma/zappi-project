@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <%= form_for ([@announcement, @announcement.announcement_comments.build]) do |f| %>
+    <%= simple_form_for ([@announcement, @announcement.announcement_comments.build]) do |f| %>
       <div class="container-fluid">
         <div class="form-group text-center">
           <h4>Add a comment:</h4>
@@ -12,7 +12,7 @@
             </div>
           </div>
           <div align ="center" class="comment-actions col-xs-4 col-xs-offset-4">
-            <%= f.button "Post comment".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-circle-notch fa-spin'></i> Creating..."} %>
+            <%= f.button :button, "Post comment".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Creating..."} %>
           </div>
         </div>
       </div>  

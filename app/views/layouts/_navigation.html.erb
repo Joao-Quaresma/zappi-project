@@ -8,28 +8,26 @@
       </button>
       <%= link_to "Zappi Project", root_path, class: "navbar-brand", id: "logo" %>
     </div>
-    <% if user_signed_in? %>
     <div class="collapse navbar-collapse MainNav">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Categories", categories_path %></li>
-        <li><%= link_to "Wiki", articles_path %></li>
-        <li><%= link_to "Announcements", announcements_path %></li>
-        <li><%= link_to "Social Posts", socialposts_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-          <ul class="dropdown-menu">
-            <li align="center">Logged in as: <strong><%= current_user.username %></li></strong>
-            <li role="separator" class="divider"></li>
-            <li align="center"><%= link_to raw('Profile <span class="glyphicon glyphicon-user" aria-hidden="true"></span>'), user_path(current_user) %></li>
-            <li role="separator" class="divider"></li>
-            <li align="center"><%= link_to raw('All Users <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), users_path %></li>
-            <li role="separator" class="divider"></li>
-            <li align="center"><%= link_to raw('Sign Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>'), destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
-      </ul>
-      <% end %>
-      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "Categories", categories_path %></li>
+          <li><%= link_to "Wiki", articles_path %></li>
+          <li><%= link_to "Announcements", announcements_path %></li>
+          <li><%= link_to "Social Posts", socialposts_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+            <ul class="dropdown-menu">
+              <li align="center">Logged in as: <strong><%= current_user.username %></li></strong>
+              <li role="separator" class="divider"></li>
+              <li align="center"><%= link_to raw('Profile <span class="glyphicon glyphicon-user" aria-hidden="true"></span>'), user_path(current_user) %></li>
+              <li role="separator" class="divider"></li>
+              <li align="center"><%= link_to raw('All Users <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), users_path %></li>
+              <li role="separator" class="divider"></li>
+              <li align="center"><%= link_to raw('Sign Out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>'), destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% end %>
         <% if !user_signed_in? %>
           <li><%= link_to raw('Sign In <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>'), new_user_session_path %></li>
           <li><%= link_to raw('Sign Up <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>'), new_user_registration_path %></li>

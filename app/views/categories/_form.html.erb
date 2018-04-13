@@ -1,6 +1,4 @@
-<%= render 'articles/errors', obj: @category %>
-
-
+<%= render 'layouts/errors', obj: @category %>
 
 
 <div class="row">
@@ -8,7 +6,7 @@
     <div class="panel panel-success">
       <div class="panel-heading">
         <div align="center">
-          <% if controller_name == "categories" && action_name == "new" %>
+          <% if controller_name == "categories" && (action_name == "new" || action_name == "create") %>
             <h3>New Category</h3>
           <% else %>
             <h3>Edit Category</h3>

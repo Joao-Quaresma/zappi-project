@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div align="center">
+                  <h4><%= link_to @article.title, article_path(@article) %></h4>
+                </div>
+            </div>
+            <div class="panel-body">
+              <div style="word-wrap: break-word; overflow-y: hidden;">
+                <%= linked_users_article_comment markdownify @article_comment.body %>
+              </div>
+            </div>
+            <hr class="col-xs-6 col-xs-offset-6">
+            <div class="comment-user-info" align="right">
+                <small>Commented by: <%= link_to @article_comment.user.username, user_path(@article_comment.user) %> | 
+                Created <%= time_ago_in_words(@article_comment.created_at) %> | Updated <%= time_ago_in_words(@article_comment.updated_at) %></small>
+                <% if current_user == @article_comment.user || current_user.admin? %>
+                    <%= link_to "Edit", edit_article_article_comment_path(@article_comment.article, @article_comment), class: "btn btn-xs btn-primary" %>
+                    <%= link_to "Delete", [@article_comment.article, @article_comment], method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger" %>
+                <% end %>
+            </div>
+        </div>
+    </div> 
+</div>
+

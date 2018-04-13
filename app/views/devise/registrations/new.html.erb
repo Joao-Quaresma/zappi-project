@@ -1,23 +1,25 @@
-<div class="registration-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <div class="log-in panel">
-          <div class="panel-heading">
-            <h2>Create Your Account</h2>
-          </div>
-          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
-            <div class="panel-body">
-              <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' } %>
-              <%= f.input :username, required: true, label: false, placeholder: 'Username', input_html: { class: 'input-lg' } %>
-              <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' },hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-              <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' } %>
-              <%= f.button :button, "Sign up".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Creating account..."} %>
+<body class="welcome">
+  <div class="login-registration-bg col-xs-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="log-in panel">
+            <div class="panel-heading">
+              <h2>Create Your Account</h2>
             </div>
-          <% end %>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= f.error_notification %>
+              <div class="panel-body">
+                <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' } %>
+                <%= f.input :username, required: true, label: false, placeholder: 'Username', input_html: { class: 'input-lg' } %>
+                <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' },hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' } %>
+                <%= f.button :button, "Sign up".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Creating account..."} %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</body>

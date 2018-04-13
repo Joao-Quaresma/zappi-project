@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, format: { without: /\s/ }, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
   VALID_EMAIL_REGEX = /(\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z)?(@zappistore.com)/i
   validates :email, presence: true, length: { maximum: 105 }, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
-  
+  validates :resume, length: { maximum: 4000 }
 
   #roles available in the profile/sign up
   enum role: {'None': 0, 'Developer': 1, 'Support': 2, 'Product Owner': 3, 'Research': 4, 'Client Excelence': 5, 'Sales': 6, 'Office Manager': 7}

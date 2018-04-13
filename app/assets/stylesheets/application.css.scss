@@ -34,7 +34,8 @@ body {
 
 body.welcome {
   height: 100%;
-  background: url(zda2017.jpg) no-repeat center center fixed;
+  background-image: image-url('zda2017.jpg');
+  background-repeat: no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -39,9 +39,9 @@
                 <%= link_to pluralize(@user.socialposts.count, "Social Post"), user_socialposts_search_path(@user) if @user.socialposts %>
               </small>
             </div>
-            <h5 class="resume">
-              Resume: <%= simple_format(markdownify @user.resume) %>
-            </h5>
+            <h5 class="resume">Resume: </h5>
+            <hr>
+            <h5 align="left"><%= simple_format(markdownify @user.resume) %></h5>
             <span>
               <!-- check users/editlogin and devise/registrations/edit to check a comment about these 2 next if's -->
               <% if @user == current_user %>

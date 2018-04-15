@@ -34,14 +34,28 @@ body {
 
 body.welcome {
   height: 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
   background-image: image-url('zda2017.jpg');
-  background-repeat: no-repeat center center fixed;
+   background-position: center;
+  background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  overflow: scroll;
+  .mainnavebar {
+    margin-top: 0px;
+  }
+  .alert {
+    margin-top: 50px;
+  }
+}
+
+.login-registration-bg {
+  margin-top: 100px;
 
 }
+
 
 .alert {
   margin-bottom: 0px;
@@ -65,10 +79,6 @@ body.welcome {
   }
 }
 
-.login-registration-bg {
-  margin-top:40px;
-  position:fixed;
-}
 
 /* ## jumbotron  ## */
 
@@ -751,6 +761,32 @@ body.welcome {
   }
   
   
-  
-
-
+/* SocialPost search */
+.posts {
+  background-color: #fff;
+  border-color: #edeeee;
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 1px;
+  margin-bottom: 60px;
+  .post-head {
+    height: 110px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 10px;
+    color: #125688;
+    font-size: 15px;
+    line-height: 18px;
+  }
+  .img-responsive {
+    border-bottom: 1px solid #eeefef;
+    border-top: 1px solid #eeefef;
+    max-width: 1000px;
+    width: 100%;
+    height: 100%;
+    height: 330px;
+  }
+  .post-bottom {
+    height: 150px;
+  }
+}

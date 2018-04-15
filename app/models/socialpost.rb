@@ -28,7 +28,11 @@ class Socialpost < ActiveRecord::Base
 
     
     def self.matches(field_name, param)
-      Socialpost.where("#{field_name} like ?", "%#{param}%")
+      if Rails.env.development?
+        Socialpost.where("#{field_name} like ?", "%#{param}%")
+      else
+        Socialpost.where("#{field_name} ilike ?", "%#{param}%")
+      end
     end
     
 end

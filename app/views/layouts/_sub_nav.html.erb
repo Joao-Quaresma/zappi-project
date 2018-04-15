@@ -1,109 +1,107 @@
-<nav class="navbar navbar-inverse navbar-fixed-top subnav">
-<div class="container-fluid">
-    <% if user_signed_in? %>
-    <div class="navbar-header" align="left">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#subnav">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span> 
-        </button>
-    </div>
-    <div class="collapse navbar-collapse" id="subnav">
-        <ul class="nav navbar-nav navbar-left">
-            <li><%= render 'articlenotifications/articlenotification_dropdown' %></li>
-            <li><%= render 'announcementnotifications/announcementnotification_dropdown' %></li>
-            <li><%= render 'notifications/notification_dropdown' %></li>
-        </ul>
-        
-        <% case %>
-        <% when controller_name == "categories" %>
-            <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to raw('New Category <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_category_path %></li>
-                <li><%= link_to raw('All Categories <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), categories_path %></li>
-                <% if controller_name == "categories" && action_name == "index" %>
-                    <li><%= will_paginate @categories, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "categories" && action_name == "category_articles_search" %>    
-                    <li><%= will_paginate @category_articles, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "categories" && action_name == "category_announcements_search" %>   
-                    <li><%= will_paginate @category_announcements, :inner_window => 0, :outer_window => 0 %></li>
+<% if user_signed_in? %>
+    <nav class="navbar navbar-inverse navbar-fixed-top subnav">
+        <div class="container-fluid">
+            <div class="navbar-header" align="left">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#subnav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="subnav">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><%= render 'articlenotifications/articlenotification_dropdown' %></li>
+                    <li><%= render 'announcementnotifications/announcementnotification_dropdown' %></li>
+                    <li><%= render 'notifications/notification_dropdown' %></li>
+                </ul>
+                
+                <% case %>
+                <% when controller_name == "categories" %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><%= link_to raw('New Category <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_category_path %></li>
+                        <li><%= link_to raw('All Categories <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), categories_path %></li>
+                        <% if controller_name == "categories" && action_name == "index" %>
+                            <li><%= will_paginate @categories, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "categories" && action_name == "category_articles_search" %>    
+                            <li><%= will_paginate @category_articles, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "categories" && action_name == "category_announcements_search" %>   
+                            <li><%= will_paginate @category_announcements, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>
+                <% when controller_name == "articles" %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_article_path %></li>
+                        <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), articles_path %></li>
+                        <li><%= link_to raw('Search Posts <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), wiki_search_path %></li>
+                        <% if controller_name == "articles" && action_name == "index" %>
+                            <li><%= will_paginate @articles, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>
+                <% when controller_name == "announcements" %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><%= link_to raw('New Announcement <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_announcement_path %></li>    
+                        <li><%= link_to raw('All Announcements <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), announcements_path %></li>
+                        <li><%= link_to raw('Search Announcements <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), announcement_search_path %></li>
+                        <% if controller_name == "announcements" && action_name == "index" %>
+                            <li><%= will_paginate @announcements, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>  
+                <% when controller_name == "socialposts" %>          
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_socialpost_path %></li>
+                        <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), socialposts_path %></li>
+                        <li><%= link_to raw('Search Posts <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), socialpost_search_path %></li>
+                        <% if controller_name == "socialposts" && action_name == "index" %>
+                            <li><%= will_paginate @socialposts, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>  
+                <% when controller_name == "users" %>   
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if controller_name == "users" && action_name == "index" %>
+                            <li><%= will_paginate @users, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "users" && action_name == "user_announcements_search" %>
+                            <li><%= will_paginate @user_announcements, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "users" && action_name == "user_articles_search" %>
+                            <li><%= will_paginate @user_articles, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "users" && action_name == "user_socialposts_search" %>
+                            <li><%= will_paginate @user_socialposts, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>
+                <% when controller_name == "articlenotifications" %>   
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if controller_name == "articlenotifications" && action_name == "index" %>
+                            <li><%= button_to "Old notifications", articlenotifications_all_read_path, method: :get %></li>
+                            <li><%= button_to "Read all", read_all_articlenotifications_path, method: :post %></li>
+                            <li><%= will_paginate @articlenotifications, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "articlenotifications" && action_name == "index_all_read" %>
+                            <li><%= button_to "New notifications", articlenotifications_path, method: :get %></li>
+                            <li><%= will_paginate @articlenotifications, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>
+                <% when controller_name == "announcementnotifications" %> 
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if controller_name == "announcementnotifications" && action_name == "index" %>
+                            <li><%= button_to "Old notifications", announcementnotifications_all_read_path, method: :get %></li>
+                            <li><%= button_to "Read all", read_all_announcementnotifications_path, method: :post %></li>
+                            <li><%= will_paginate @announcementnotifications, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "announcementnotifications" && action_name == "index_all_read" %>
+                            <li><%= button_to "New notifications", announcementnotifications_path, method: :get %></li>
+                            <li><%= will_paginate @announcementnotifications, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>
+                <% when controller_name == "notifications" %> 
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if controller_name == "notifications" && action_name == "index" %>
+                            <li><%= button_to "Old notifications", notifications_all_read_path, method: :get %></li>
+                            <li><%= button_to "Read all", read_all_notifications_path, method: :post %></li>
+                            <li><%= will_paginate @notifications, :inner_window => 0, :outer_window => 0 %></li>
+                        <% elsif controller_name == "notifications" && action_name == "index_all_read" %>
+                            <li><%= button_to "New notifications", notifications_path, method: :get %></li>
+                            <li><%= will_paginate @notifications, :inner_window => 0, :outer_window => 0 %></li>
+                        <% end %>
+                    </ul>    
                 <% end %>
-            </ul>
-        <% when controller_name == "articles" %>
-            <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_article_path %></li>
-                <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), articles_path %></li>
-                <li><%= link_to raw('Search Posts <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), wiki_search_path %></li>
-                <% if controller_name == "articles" && action_name == "index" %>
-                    <li><%= will_paginate @articles, :inner_window => 0, :outer_window => 0 %></li>
-                <% end %>
-            </ul>
-        <% when controller_name == "announcements" %>
-            <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to raw('New Announcement <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_announcement_path %></li>    
-                <li><%= link_to raw('All Announcements <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), announcements_path %></li>
-                <li><%= link_to raw('Search Announcements <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), announcement_search_path %></li>
-                <% if controller_name == "announcements" && action_name == "index" %>
-                    <li><%= will_paginate @announcements, :inner_window => 0, :outer_window => 0 %></li>
-                <% end %>
-            </ul>  
-        <% when controller_name == "socialposts" %>          
-            <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to raw('New Post <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>'), new_socialpost_path %></li>
-                <li><%= link_to raw('All Posts <span class="glyphicon glyphicon-list" aria-hidden="true"></span>'), socialposts_path %></li>
-                <li><%= link_to raw('Search Posts <span class="glyphicon glyphicon-search" aria-hidden="true"></span>'), socialpost_search_path %></li>
-                <% if controller_name == "socialposts" && action_name == "index" %>
-                    <li><%= will_paginate @socialposts, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "socialposts" && action_name == "search" %>
-                    <li><%= will_paginate @socialpost, :inner_window => 0, :outer_window => 0 %></li>
-                <% end %>
-            </ul>  
-        <% when controller_name == "users" %>   
-            <ul class="nav navbar-nav navbar-right">
-                <% if controller_name == "users" && action_name == "index" %>
-                    <li><%= will_paginate @users, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "users" && action_name == "user_announcements_search" %>
-                    <li><%= will_paginate @user_announcements, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "users" && action_name == "user_articles_search" %>
-                    <li><%= will_paginate @user_articles, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "users" && action_name == "user_socialposts_search" %>
-                    <li><%= will_paginate @user_socialposts, :inner_window => 0, :outer_window => 0 %></li>
-                <% end %>
-            </ul>
-        <% when controller_name == "articlenotifications" %>   
-            <ul class="nav navbar-nav navbar-right">
-                <% if controller_name == "articlenotifications" && action_name == "index" %>
-                    <li><%= button_to "Old notifications", articlenotifications_all_read_path, method: :get %></li>
-                    <li><%= button_to "Read all", read_all_articlenotifications_path, method: :post %></li>
-                    <li><%= will_paginate @articlenotifications, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "articlenotifications" && action_name == "index_all_read" %>
-                    <li><%= button_to "New notifications", articlenotifications_path, method: :get %></li>
-                    <li><%= will_paginate @articlenotifications, :inner_window => 0, :outer_window => 0 %></li>
-                <% end %>
-            </ul>
-        <% when controller_name == "announcementnotifications" %> 
-            <ul class="nav navbar-nav navbar-right">
-                <% if controller_name == "announcementnotifications" && action_name == "index" %>
-                    <li><%= button_to "Old notifications", announcementnotifications_all_read_path, method: :get %></li>
-                    <li><%= button_to "Read all", read_all_announcementnotifications_path, method: :post %></li>
-                    <li><%= will_paginate @announcementnotifications, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "announcementnotifications" && action_name == "index_all_read" %>
-                    <li><%= button_to "New notifications", announcementnotifications_path, method: :get %></li>
-                    <li><%= will_paginate @announcementnotifications, :inner_window => 0, :outer_window => 0 %></li>
-                <% end %>
-            </ul>
-        <% when controller_name == "notifications" %> 
-            <ul class="nav navbar-nav navbar-right">
-                <% if controller_name == "notifications" && action_name == "index" %>
-                    <li><%= button_to "Old notifications", notifications_all_read_path, method: :get %></li>
-                    <li><%= button_to "Read all", read_all_notifications_path, method: :post %></li>
-                    <li><%= will_paginate @notifications, :inner_window => 0, :outer_window => 0 %></li>
-                <% elsif controller_name == "notifications" && action_name == "index_all_read" %>
-                    <li><%= button_to "New notifications", notifications_path, method: :get %></li>
-                    <li><%= will_paginate @notifications, :inner_window => 0, :outer_window => 0 %></li>
-                <% end %>
-            </ul>    
-        <% end %>
-    </div>
-    <% end %>
-</div>
-</nav>
+            </div>
+        </div>
+    </nav>
+<% end %>

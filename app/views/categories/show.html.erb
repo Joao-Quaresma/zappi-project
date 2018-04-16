@@ -11,8 +11,12 @@
         <li align="center"><%= link_to pluralize(@category.announcements.count, "Announcement"), category_announcements_search_path(@category) %></li>
         <div class="category-actions">
           <div class="category-meta-details" align="center">
-            Created at: <%= time_ago_in_words(@category.created_at) %> ago,
-            last updated: <%= time_ago_in_words(@category.updated_at) %> ago
+            <% if @category.created_at.to_s != @category.updated_at.to_s %>
+              Created at: <%= time_ago_in_words(@category.created_at) %> ago,
+              last updated: <%= time_ago_in_words(@category.updated_at) %> ago
+            <% else %>
+              Created at: <%= time_ago_in_words(@category.created_at) %> ago
+            <% end %>
           </div>
         </div>
         <div class="row" align="center">

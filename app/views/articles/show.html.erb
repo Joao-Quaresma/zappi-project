@@ -56,6 +56,15 @@
           </div>
         <hr>
         <div align ="center" class="article-actions">
+          <small>
+            <% if @article.created_at.to_s != @article.updated_at.to_s %>
+                Created <%= time_ago_in_words(@article.created_at) %> ago
+                | Updated <%= time_ago_in_words(@article.updated_at) %> ago
+            <% else %>
+                Created <%= time_ago_in_words(@article.created_at) %> ago
+            <% end %>
+          </small>
+          <br>
           <!-- just to make sure that no one can edit or delet if not signed in-->
           <% if user_signed_in? %>
             <%= link_to "Back to Wikis", articles_path, class: "btn btn-xs btn-success" %>

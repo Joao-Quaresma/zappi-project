@@ -7,8 +7,15 @@
     </div>
     <hr class="col-xs-6 col-xs-offset-6">
     <div class="comment-user-info" align="right">
-      <small>Commented by: <%= link_to announcement_comment.user.username, user_path(announcement_comment.user) %> | 
-      Created <%= time_ago_in_words(announcement_comment.created_at) %> | Updated <%= time_ago_in_words(announcement_comment.updated_at) %></small>
+      <small>
+        Commented by: <%= link_to announcement_comment.user.username, user_path(announcement_comment.user) %>  
+        <% if announcement_comment.created_at.to_s != announcement_comment.updated_at.to_s %>
+          | Created <%= time_ago_in_words(announcement_comment.created_at) %> ago 
+          | Updated <%= time_ago_in_words(announcement_comment.updated_at) %> ago
+        <% else %>
+          | Created <%= time_ago_in_words(announcement_comment.created_at) %> ago
+        <% end %>
+      </small>
       <% if current_user == announcement_comment.user || current_user.admin? %>
         <%= link_to "Edit", edit_announcement_announcement_comment_path(announcement_comment.announcement, announcement_comment), class: "btn btn-xs btn-primary" %>
         <%= link_to "Delete", [announcement_comment.announcement, announcement_comment], method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger" %>

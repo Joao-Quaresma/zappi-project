@@ -56,6 +56,15 @@
           </div>
         <hr>
         <div align ="center" class="announcement-actions">
+          <small>
+            <% if @announcement.created_at.to_s != @announcement.updated_at.to_s %>
+                Created <%= time_ago_in_words(@announcement.created_at) %> ago
+                | Updated <%= time_ago_in_words(@announcement.updated_at) %> ago
+            <% else %>
+                Created <%= time_ago_in_words(@announcement.created_at) %> ago
+            <% end %>
+          </small>
+          <br>
           <!-- just to make sure that no one can edit or delet if not signed in-->
           <% if user_signed_in? %>
             <%= link_to "Back to Announcements", announcements_path, class: "btn btn-xs btn-success" %>

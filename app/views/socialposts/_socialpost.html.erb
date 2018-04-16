@@ -12,9 +12,11 @@
         <div class="open-post">
          <%= link_to "Open post", socialpost_path(socialpost) %>
         </div>
+        <% if socialpost.created_at.to_s != socialpost.updated_at.to_s %>
         <div class="updated-time-ago">
           Updated: (<%= time_ago_in_words socialpost.updated_at %> ago)
         </div>
+        <% end %>
       </div>
       <!-- this will only show the image if it was uploaded and also redirects to the post if we click in the image -->
       <div class="image center-block">

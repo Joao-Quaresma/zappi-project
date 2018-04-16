@@ -1,11 +1,11 @@
-
 <div class="dropdown notification-dropdown">
   <button class="btn btn-default dropdown-toggle" type='button', id='dropdownMenu1', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true'>
     <strong>Announcements: </strong><%= current_user.announcementnotifications.where(read:false).count %>
     <span class="glyphicon glyphicon-flag"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby='dropdownMenu1'>
-    <li class="dropdown-header text-center">Announcement notifications</li>
+    <li class="dropdown-header text-center"><u>Announcement notifications</u></li>
+    <hr>
       <%= render current_user.announcementnotifications.where(read: false).last(5).reverse, selector: "short" %>
     </li>
     <li class="divider" role="separator">

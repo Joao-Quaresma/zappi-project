@@ -110,6 +110,10 @@ body.welcome {
   }
 }
 
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #c13c5f;
+}
+
 
 .navbar-container {
   max-width: 640px;

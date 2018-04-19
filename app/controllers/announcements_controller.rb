@@ -1,5 +1,5 @@
 class AnnouncementsController < ApplicationController
-    before_action :set_announcement, only: [:edit, :update, :show, :destroy]
+    before_action :set_announcement, only: [:edit, :update, :show, :destroy, :require_same_user]
     before_action :require_same_user, only: [:edit, :update, :destroy]
     after_action :notified_users, only: [:create, :update]
   
@@ -88,9 +88,9 @@ class AnnouncementsController < ApplicationController
     end
 
     def require_same_user
-      if current_user != @announcement.user || !current_user.admin?
+      unless current_user == @announcement.user || current_user.admin?
         flash[:danger] = "You can only delete your Announcements"
-        redirect_to root_path
+        redirect_to announcements_path
       end
     end
   

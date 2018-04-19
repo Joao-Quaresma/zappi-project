@@ -1,0 +1,53 @@
+
+<%= render 'search' %>
+
+<div class="row">
+  <div id="users" class="results-blocks col-md-10 col-md-offset-1 col-xs-12">
+    <div class="panel panel-info users-table">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <div align="center">
+          <h1>Deleted users</h2>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <% @users.each do |user| %>
+            <tbody>
+              <tr>
+                <td><%= link_to user.username, user %></td>
+                <td><%= user.email %></td>
+                <td>
+                  <% if user.first_name? %>
+                    <%= user.first_name %>
+                  <% else %>
+                    ------
+                  <% end %>
+                </td>
+                <td>
+                  <% if user.last_name? %>
+                    <%= user.last_name %>
+                  <% else %>
+                    ------
+                  <% end %>
+                </td>
+                <td><%= user.role %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

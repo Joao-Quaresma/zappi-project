@@ -9,6 +9,10 @@ class Article < ActiveRecord::Base
     has_many :categories, through: :article_categories
     has_many :article_comments
     has_many :articlenotifications, dependent: :destroy
+
+    def user
+      User.unscoped { super }
+    end
     
     def self.search(param)
       param.strip!

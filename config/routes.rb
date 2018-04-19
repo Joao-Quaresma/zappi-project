@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'user/:id/user_socialposts_search', to: "users#user_socialposts_search", as: "user_socialposts_search"
   get 'user/:id/user_articles_search', to: "users#user_articles_search", as: "user_articles_search"
   get 'user/:id/user_announcements_search', to: "users#user_announcements_search", as: "user_announcements_search"
+  get 'deleted_users_index', to: "users#deleted_users_index"
   
   root to: 'pages#index'
   get 'contact', to: 'pages#contact'

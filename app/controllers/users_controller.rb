@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :user_socialposts_search, :user_announcements_search, :user_articles_search]
   before_action :require_same_user, only: [:edit, :update]
+  before_action :require_admin, only: [:deleted_users_index]
 
   #Get /users
   #Get /users/users.json
   def index
     @users = User.all.paginate(page: params[:page], per_page: 40).order('username ASC')
   end
+
+  def deleted_users_index
+    @users = User.only_deleted.paginate(page: params[:page], per_page: 40).order('username ASC')
+  end
+
   
   def edit
   end
@@ -24,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if !User.find_by_username(params[:id])
+    if !User.with_deleted.find_by_username(params[:id])
       flash[:error] = "Invalid user"
       redirect_to users_path
     end
@@ -59,7 +65,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username,:password, :first_name, :last_name, :email, :admin, :avatar, :resume, :role, :job_role)
   end
   def set_user
-    @user = User.find_by_username(params[:id])
+    @user = User.with_deleted.find_by_username(params[:id])
   end
   def require_same_user
     unless current_user == @user || current_user.admin?
@@ -67,7 +73,12 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
   end
+  def require_admin
+    unless current_user.admin?
+      flash[:danger] = "You can't see this page!"
+      redirect_to users_path
+    end
+  end
 
 
-  
 end

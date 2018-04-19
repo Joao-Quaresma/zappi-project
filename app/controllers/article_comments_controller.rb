@@ -67,10 +67,10 @@ class ArticleCommentsController < ApplicationController
         @article_comment = @article.article_comments.find(params[:id])
     end
     def same_user
-       if !current_user.admin? && current_user.id != @article_comment.user_id
-        flash[:danger] = "You can only delete your comments"
-        redirect_to article_path(@article)
-       end 
+        unless current_user.id == @article_comment.user_id || current_user.admin?
+            flash[:danger] = "You can only delete your comments"
+            redirect_to article_path(@article)
+        end 
     end
     
     def create_notification(article, article_comment)

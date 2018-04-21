@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :user_socialposts_search, :user_announcements_search, :user_articles_search]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search]
   before_action :require_same_user, only: [:edit, :update]
-  before_action :require_admin, only: [:deleted_users_index]
+  before_action :require_admin, only: [:deleted_users_index, :destroy]
 
   #Get /users
   #Get /users/users.json
@@ -35,7 +35,12 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
   end
-  
+
+  def destroy
+      @user.destroy
+      redirect_to users_path, notice: "User has been deleted."
+  end
+
   
   def search
     if params[:search_param].blank?
@@ -75,7 +80,7 @@ class UsersController < ApplicationController
   end
   def require_admin
     unless current_user.admin?
-      flash[:danger] = "You can't see this page!"
+      flash[:danger] = "No access!"
       redirect_to users_path
     end
   end

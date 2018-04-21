@@ -520,7 +520,19 @@ body.welcome {
 
 /* ## User profile  ## */
 
+#deleted_badge {
+  background-color: #EE2109;
+  text-transform: upercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
 
+#active_badge {
+  background-color: #0BC216;
+  text-transform: upercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
 
 .profile-header {
   padding: 20px;

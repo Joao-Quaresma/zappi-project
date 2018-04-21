@@ -17,7 +17,7 @@
 <div class="container-fluid">
   <%= bootstrap_flash %>
     <%= yield %>
-    
+    <%= debug(params) if Rails.env.development? %>
 </div>
 <%= render 'layouts/footer' %>
 

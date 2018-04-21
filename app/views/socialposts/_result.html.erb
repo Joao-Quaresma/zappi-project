@@ -16,7 +16,7 @@
                 <h5>
                   Created by: <%= link_to socialpost.user.username, user_path(socialpost.user) %><br>
                   Created: (<%= time_ago_in_words socialpost.created_at %> ago)<br>
-                  pdated: (<%= time_ago_in_words socialpost.updated_at %> ago)<br>
+                  Updated: (<%= time_ago_in_words socialpost.updated_at %> ago)<br>
                   <%= link_to "Open post", socialpost_path(socialpost) %>
                 </h5>
               </div>

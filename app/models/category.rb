@@ -5,7 +5,8 @@ class Category < ActiveRecord::Base
   has_many :announcements, through: :announcement_categories
   validates :name, presence: true, length: { minimum: 2, maximum: 25 }
   validates_uniqueness_of :name
-  
+  acts_as_followable
+
     def self.search(param)
       param.strip!
       param.downcase!

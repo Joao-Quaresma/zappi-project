@@ -1,7 +1,7 @@
 <div class="dropdown notification-dropdown">
   <button class="btn btn-default dropdown-toggle" type='button', id='dropdownMenu1', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true'>
-    <strong>Wiki: </strong><%= current_user.articlenotifications.where(read:false).count %>
-    <span class="glyphicon glyphicon-flag"></span>
+    <%= current_user.articlenotifications.where(read:false).count %>
+    <span class="glyphicon glyphicon-briefcase"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby='dropdownMenu1'>
     <li class="dropdown-header text-center"><u>Wiki notifications</u></li>

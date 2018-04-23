@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @categories = Category.all
     if !User.with_deleted.find_by_username(params[:id])
       flash[:error] = "Invalid user"
       redirect_to users_path

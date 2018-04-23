@@ -40,15 +40,22 @@
               Job title: <%= @user.job_role %>
             </h5>
             <div class="details">
-              <small align="center">
+              <h5 align="center">
                 <%= link_to pluralize(@user.articles.count, "Wiki post"), user_articles_search_path(@user) if @user.articles %><br>
                 <%= link_to pluralize(@user.announcements.count, "Announcement"), user_announcements_search_path(@user) if @user.announcements %><br>
                 <%= link_to pluralize(@user.socialposts.count, "Social Post"), user_socialposts_search_path(@user) if @user.socialposts %>
-              </small>
+              </h5>
+              <strong>Following <%= pluralize(@user.follow_count, "category") %></strong><br>
+              <% @categories.each do |category| %>
+                <% if @user.following?(category) %>
+                  <span class="badge"><%= link_to category.name, category_path(category) %></span>&nbsp;
+                <% end%>
+              <% end %>
             </div>
-            <h5 class="resume">Resume: </h5>
             <hr>
+            <h4 class="resume">Resume: </h4>
             <h5 align="left"><%= simple_format(markdownify @user.resume) %></h5>
+            <hr>
             <span>
               <!-- check users/editlogin and devise/registrations/edit to check a comment about these 2 next if's -->
               <% if @user == current_user %>

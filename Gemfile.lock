@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_follower (0.2.1)
     acts_as_votable (0.10.0)
     arel (6.0.4)
     autoprefixer-rails (8.1.0.1)
@@ -246,6 +247,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_follower
   acts_as_votable (~> 0.10.0)
   aws-sdk (~> 2.3)
   bootstrap-sass (~> 3.3.7)

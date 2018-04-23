@@ -7,8 +7,20 @@
         </div>
       </div>
       <div class="panel-body">
+        <div align="center">
+          <%= render :partial => "categories/follow_category", :locals => {:category => @category} %>
+        
+        <hr>
         <li align="center"><%= link_to pluralize(@category.articles.count, "Wiki"), category_articles_search_path(@category) %></li>
         <li align="center"><%= link_to pluralize(@category.announcements.count, "Announcement"), category_announcements_search_path(@category) %></li>
+        <li align="center"><%= pluralize(@category.followers_count, "User") %> following</li>
+        <% @users.each do |user| %>
+          <% if @category.followed_by?(user) %>
+            <span class="badge"><%= link_to user.username, user_path(user) %></span>&nbsp;
+          <% end%>
+        <% end %>
+        </div>
+        <hr>
         <div class="category-actions">
           <div class="category-meta-details" align="center">
             <% if @category.created_at.to_s != @category.updated_at.to_s %>

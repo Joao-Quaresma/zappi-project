@@ -36,6 +36,7 @@ class CategoriesController < ApplicationController
 
 
   def show
+    @users = User.all
   end
   
   def destroy

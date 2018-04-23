@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318233801) do
+ActiveRecord::Schema.define(version: 20180423071320) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -112,6 +112,19 @@ ActiveRecord::Schema.define(version: 20180318233801) do
   add_index "comments", ["socialpost_id"], name: "index_comments_on_socialpost_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
+  create_table "follows", force: :cascade do |t|
+    t.integer  "followable_id",                   null: false
+    t.string   "followable_type",                 null: false
+    t.integer  "follower_id",                     null: false
+    t.string   "follower_type",                   null: false
+    t.boolean  "blocked",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables"
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "notified_by_id"
@@ -190,20 +203,5 @@ ActiveRecord::Schema.define(version: 20180318233801) do
 
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
-
-  create_table "wikinotifications", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "notified_by_id"
-    t.integer  "article_id"
-    t.integer  "identifier"
-    t.string   "notice_type"
-    t.boolean  "read"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "wikinotifications", ["article_id"], name: "index_wikinotifications_on_article_id"
-  add_index "wikinotifications", ["notified_by_id"], name: "index_wikinotifications_on_notified_by_id"
-  add_index "wikinotifications", ["user_id"], name: "index_wikinotifications_on_user_id"
 
 end

@@ -52,7 +52,9 @@ Rails.application.routes.draw do
     post :read_all, on: :collection
   end
   
-  resources :categories
+  resources :categories do
+    resources :follows, :only => [:create, :destroy]
+  end
   get 'category_search_results', to: "categories#search"
   get 'category/:id/category_articles_search', to: "categories#category_articles_search", as: "category_articles_search"
   get 'category/:id/category_announcements_search', to: "categories#category_announcements_search", as: "category_announcements_search"

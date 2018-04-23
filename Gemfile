@@ -33,6 +33,8 @@ gem 'md_simple_editor'
 
 gem 'gemoji-parser'
 
+gem "acts_as_follower"
+
 #paranoia for users delete/suspend
 gem 'paranoia', '~> 2.4', '>= 2.4.1'
 #paperclip for the zappisocial

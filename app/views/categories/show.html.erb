@@ -9,7 +9,6 @@
       <div class="panel-body">
         <div align="center">
           <%= render :partial => "categories/follow_category", :locals => {:category => @category} %>
-        
         <hr>
         <li align="center"><%= link_to pluralize(@category.articles.count, "Wiki"), category_articles_search_path(@category) %></li>
         <li align="center"><%= link_to pluralize(@category.announcements.count, "Announcement"), category_announcements_search_path(@category) %></li>

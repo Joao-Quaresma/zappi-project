@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     after_action :notified_users, only: [:create, :update]
   
   def index
-    @articles = Article.all.order("updated_at DESC").paginate(page: params[:page], per_page: 20)
+    @articles = Article.all.order("updated_at DESC").paginate(page: params[:page], per_page: 21)
   end
   
  
@@ -20,6 +20,10 @@ class ArticlesController < ApplicationController
         @article = Article.new(article_params)
         @article.user = current_user
         if @article.save
+          if @article.categories.any? do |category|
+              create_notification @article, category
+            end
+          end
           flash[:success] = "Post was successfully created"
           redirect_to article_path(@article)
         else
@@ -100,6 +104,19 @@ class ArticlesController < ApplicationController
       unless current_user == @article.user || current_user.admin?
         flash[:danger] = "You can only delete your Posts"
         redirect_to articles_path
+      end
+    end
+
+    def create_notification(article, category)
+      @users = User.all.where("id != ?", current_user.id)
+      @users.each do |user|
+        if user.following?(category)
+          Articlenotification.create(user_id: user.id,
+                            notified_by_id: current_user.id,
+                            article_id: @article.id,
+                            identifier: @article.id,
+                            notice_type: 'New Article')
+        end
       end
     end
   

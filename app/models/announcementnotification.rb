@@ -5,11 +5,11 @@ class Announcementnotification < ActiveRecord::Base
   
   validates :user_id, :notified_by_id, :announcement_id, :identifier, :notice_type, presence: true
 
-  	def user
+  def user
 	  User.unscoped { super }
 	end
 	def notified_by
-      User.unscoped { super }
-    end
+    User.unscoped { super }
+  end
 
 end

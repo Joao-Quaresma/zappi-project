@@ -4,7 +4,7 @@ class AnnouncementsController < ApplicationController
     after_action :notified_users, only: [:create, :update]
   
   def index
-    @announcements = Announcement.all.order("updated_at DESC").paginate(page: params[:page], per_page: 20)
+    @announcements = Announcement.all.order("updated_at DESC").paginate(page: params[:page], per_page: 21)
   end
   
  
@@ -20,6 +20,10 @@ class AnnouncementsController < ApplicationController
         @announcement = Announcement.new(announcement_params)
         @announcement.user = current_user
         if @announcement.save
+          if @announcement.categories.any? do |category|
+              create_notification @announcement, category
+            end
+          end
           flash[:success] = "Announcement was successfully created"
           redirect_to announcement_path(@announcement)
         else
@@ -91,6 +95,19 @@ class AnnouncementsController < ApplicationController
       unless current_user == @announcement.user || current_user.admin?
         flash[:danger] = "You can only delete your Announcements"
         redirect_to announcements_path
+      end
+    end
+
+    def create_notification(announcement, category)
+      @users = User.all.where("id != ?", current_user.id)
+      @users.each do |user|
+        if user.following?(category)
+          Announcementnotification.create(user_id: user.id,
+                            notified_by_id: current_user.id,
+                            announcement_id: @announcement.id,
+                            identifier: @announcement.id,
+                            notice_type: 'New Announcement')
+        end
       end
     end
   

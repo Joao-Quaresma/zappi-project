@@ -16,6 +16,10 @@
         <strong>
           <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type}", link_announcementthrough_path(announcementnotification) %>
         </strong>
+      <% elsif  announcementnotification.notice_type == "New Announcement" %>
+        <strong>
+          <%= link_to "#{announcementnotification.notice_type} for the following categories: ", link_announcementthrough_path(announcementnotification) %><%= render announcementnotification.announcement.categories %>
+        </strong>
       <% else %>  
         <strong>
           <%= link_to "#{announcementnotification.notified_by.username} #{announcementnotification.notice_type} you", link_announcementthrough_path(announcementnotification) %>
@@ -30,6 +34,8 @@
      <li>
       <% if announcementnotification.notice_type == "comment" %>
           <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type}", link_announcementthrough_path(announcementnotification) %>
+      <% elsif %>
+          <%= link_to "#{announcementnotification.notice_type} for categories which you're following!", link_announcementthrough_path(announcementnotification) %>
       <% else %>
           <%= link_to "#{announcementnotification.notified_by.username} #{announcementnotification.notice_type} you", link_announcementthrough_path(announcementnotification) %>
       <% end %>

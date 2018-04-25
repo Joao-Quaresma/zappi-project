@@ -72,15 +72,10 @@ class FaqsController < ApplicationController
   def mentioned_users
     @mentioned_users ||= User.where(username: mentions)
   end
-  
-  def notified_users
-    mentioned_users.each do |user|
-      Mail.new(user)
-    end
-  end
-  
+
   def notified_users
       mentioned_users.each do |user|
+        Mail.new(user)
           return if user.id == current_user.id 
           Faqnotification.create(user_id: user.id,
                       notified_by_id: current_user.id,

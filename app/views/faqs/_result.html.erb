@@ -9,15 +9,15 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Categories</th>
-            <th>Title</th>
+            <th class="col-xs-8">Title</th>
+            <th class="col-xs-4">Categories</th>
           </tr>
         </thead>
         <tbody>
           <% @faq.each do |faq| %>
             <tr>
-              <td><%= render faq.categories %></td>
-              <td><%= link_to faq.title, faq %></td>
+              <td class="col-xs-8"><%= link_to faq.title, faq %></td>
+              <td class="col-xs-4"><%= render faq.categories %></td>
             </tr>
           <% end %>
         </tbody>

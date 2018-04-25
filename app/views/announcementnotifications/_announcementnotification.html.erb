@@ -1,17 +1,17 @@
 <% if selector == "long" %>
 <!-- Table -->
   <tbody>
-    <td>
+    <td lass="col-xs-1">
       <% if !announcementnotification.read %>
         <span class="glyphicon glyphicon-asterisk"></span>New
       <% else %>
         Viewed
       <% end %>
     </td>
-    <td>
+    <td lass="col-xs-1">
       <%= time_ago_in_words(announcementnotification.created_at) + " ago" %>
     </td>
-    <td>
+    <td lass="col-xs-5">
       <% if announcementnotification.notice_type == "comment" %>
         <strong>
           <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type}", link_announcementthrough_path(announcementnotification) %>
@@ -26,8 +26,10 @@
         </strong>
       <% end %>
     </td>
-    <td>
-      <%= announcementnotification.announcement.title %> 
+    <td lass="col-xs-5">
+      <strong>
+        <%= link_to "#{announcementnotification.announcement.title}", link_announcementthrough_path(announcementnotification) %> 
+      </strong> 
     </td>
   </tbody>
 <% elsif selector == "short" %>

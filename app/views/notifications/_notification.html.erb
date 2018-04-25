@@ -1,24 +1,24 @@
 <% if selector == "long" %>
 <!-- Table -->
   <tbody>
-    <td>
+    <td class="col-xs-2">
       <% if !notification.read %>
         <span class="glyphicon glyphicon-asterisk"></span>New
       <% else %>
         Viewed
       <% end %>
     </td>
-    <td>
+    <td class="col-xs-4">
       <%= time_ago_in_words(notification.created_at) + " ago" %>
     </td>
-    <td>
+    <td class="col-xs-6">
       <% if notification.notice_type == "comment" %>
         <strong>
           <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
         </strong>
       <% else %>  
         <strong>
-          <%= link_to "#{notification.notified_by.username} #{notification.notice_type} you", link_through_path(notification) %>
+          <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
         </strong>
       <% end %>
     </td>
@@ -30,7 +30,7 @@
     <% elsif notification.notice_type == "like" %>  
           <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
     <% else %>
-        <%= link_to "#{notification.notified_by.username} #{notification.notice_type} you", link_through_path(notification) %>
+        <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
     <% end %>
   </li>
 <% end %>

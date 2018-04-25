@@ -4,7 +4,7 @@
     <span class="glyphicon glyphicon-pushpin"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby='dropdownMenu1'>
-    <li class="dropdown-header text-center"><u>Faq notifications</u></li>
+    <li class="dropdown-header text-center"><u>FAQ notifications</u></li>
     <hr>
       <%= render current_user.faqnotifications.where(read: false).last(5).reverse, selector: "short" %>
     </li>

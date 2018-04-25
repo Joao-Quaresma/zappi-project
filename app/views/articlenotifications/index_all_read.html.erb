@@ -11,10 +11,10 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Status</th>
-              <th>Time ago</th>
-              <th>Info</th>
-              <th>Title</th>
+              <th class="col-xs-1">Status</th>
+              <th class="col-xs-1">Time ago</th>
+              <th class="col-xs-5">Info</th>
+              <th class="col-xs-5">Title</th>
             </tr>
           </thead>
           <%= render @articlenotifications.where(read: true), selector: "long" %>

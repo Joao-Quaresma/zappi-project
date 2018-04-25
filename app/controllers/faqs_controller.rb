@@ -116,7 +116,7 @@ class FaqsController < ApplicationController
                             notified_by_id: current_user.id,
                             faq_id: @faq.id,
                             identifier: @faq.id,
-                            notice_type: 'New Faq')
+                            notice_type: 'New FAQ')
         end
       end
     end

@@ -1,22 +1,22 @@
 <% if selector == "long" %>
 <!-- Table -->
   <tbody id="notificationslist">
-    <td>
+    <td class="col-xs-1">
       <% if !faqnotification.read %>
         <span class="glyphicon glyphicon-asterisk"></span>New
       <% else %>
         Viewed
       <% end %>
     </td>
-    <td>
+    <td class="col-xs-1">
       <%= time_ago_in_words(faqnotification.created_at) + " ago" %>
     </td>
-    <td>
+    <td class="col-xs-5">
       <% if faqnotification.notice_type == "comment" %>
         <strong>
-          <%= link_to "#{faqnotification.notified_by.username} left a #{faqnotification.notice_type}", link_faqthrough_path(faqnotification) %>
+          <%= faqnotification.notified_by.username + "left a" + faqnotification.notice_type %>
         </strong>
-      <% elsif faqnotification.notice_type == "New Faq" %>
+      <% elsif faqnotification.notice_type == "New FAQ" %>
         <strong>
           <%= link_to "#{faqnotification.notice_type} for the following categories: ", link_faqthrough_path(faqnotification) %><%= render faqnotification.faq.categories %>
         </strong>
@@ -26,15 +26,17 @@
         </strong>
       <% end %>
     </td>
-    <td>
-      <%= faqnotification.faq.title %> 
+    <td class="col-xs-5">
+      <strong>
+        <%= link_to "#{faqnotification.faq.title}", link_faqthrough_path(faqnotification) %> 
+      </strong> 
     </td>
   </tbody>
 <% elsif selector == "short" %>
     <li>
       <% if faqnotification.notice_type == "comment" %>
         <%= link_to "#{faqnotification.notified_by.username} left a #{faqnotification.notice_type}", link_faqthrough_path(faqnotification) %>
-      <% elsif faqnotification.notice_type == "New Faq" %>
+      <% elsif faqnotification.notice_type == "New FAQ" %>
         <%= link_to "#{faqnotification.notice_type} for categories which you're following!", link_faqthrough_path(faqnotification) %>
       <% else %>
         <%= link_to "#{faqnotification.notified_by.username} #{faqnotification.notice_type} you ", link_faqthrough_path(faqnotification) %>

@@ -34,7 +34,7 @@
      <li>
       <% if announcementnotification.notice_type == "comment" %>
           <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type}", link_announcementthrough_path(announcementnotification) %>
-      <% elsif %>
+      <% elsif announcementnotification.notice_type == "New Announcement" %>
           <%= link_to "#{announcementnotification.notice_type} for categories which you're following!", link_announcementthrough_path(announcementnotification) %>
       <% else %>
           <%= link_to "#{announcementnotification.notified_by.username} #{announcementnotification.notice_type} you", link_announcementthrough_path(announcementnotification) %>

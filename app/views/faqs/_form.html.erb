@@ -1,0 +1,72 @@
+<%= render 'layouts/errors', obj: @faq %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div align="center">
+          <% if controller_name == "faqs" && action_name == "new" %>
+            <h3>New Faq</h3>
+          <% else %>
+            <h3>Edit Faq</h3>
+          <% end %>
+        </div>
+      </div>
+      <div class="panel-body">
+        <%= simple_form_for(@faq, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+          <div class ="form-group">
+            <div class="control-label" align="center">
+              <%= f.label :title %>:
+            </div>
+            <div class="title">
+              <%= f.text_field :title, class: "form-control", placeholder: "Faq title", autofocus: true %>
+            </div>
+          </div>
+          <br>
+          <div class ="form-group">
+            <div class="row">
+              <div class="col-xs-12">
+                <%= f.label :categories %>:
+              </div>
+              <div class="col-xs-12">
+                <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+                  <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+                <% end %>
+              </div>
+            </div>  
+          </div>
+          <div class ="form-group">
+            <div class="control-label" align="center">
+              <%= f.label :description %>:
+            </div>
+            <div class="description">
+              <%= f.text_area :description, data: {behavior: "autocomplete"}, rows: 5, class: "form-control", placeholder: "Faq description" %>
+            </div>
+          </div>
+          <div class ="form-group">
+            <div class="control-label" align="center">
+              <%= f.label :body %>:
+            </div>
+            <div class="body">
+              <%= md_simple_editor do %>
+                <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 40, class: "form-control", placeholder: "Write the faq here" %>
+              <% end %>
+            </div>
+          </div>
+          <div class ="form-group">
+            <div align ="center" class="faq-actions col-md-6 col-md-offset-3 col-xs-12">
+              <% if controller_name == "faqs" && (action_name == "new" || action_name == "create") %>
+                <%= f.button :button, "Create Faq".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Creating..."} %>
+              <% elsif controller_name == "faqs" && (action_name == "edit" || action_name == "update") %>
+                <%= f.button :button, "Update Faq".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Updating..."} %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <div align ="center" class="faq-actions">
+          [ <%= link_to "Cancel request and return to Faqs", faqs_path %> ]
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>

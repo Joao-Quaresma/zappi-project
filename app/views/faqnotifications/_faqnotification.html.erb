@@ -1,0 +1,46 @@
+<% if selector == "long" %>
+<!-- Table -->
+  <tbody id="notificationslist">
+    <td>
+      <% if !faqnotification.read %>
+        <span class="glyphicon glyphicon-asterisk"></span>New
+      <% else %>
+        Viewed
+      <% end %>
+    </td>
+    <td>
+      <%= time_ago_in_words(faqnotification.created_at) + " ago" %>
+    </td>
+    <td>
+      <% if faqnotification.notice_type == "comment" %>
+        <strong>
+          <%= link_to "#{faqnotification.notified_by.username} left a #{faqnotification.notice_type}", link_faqthrough_path(faqnotification) %>
+        </strong>
+      <% elsif faqnotification.notice_type == "New Faq" %>
+        <strong>
+          <%= link_to "#{faqnotification.notice_type} for the following categories: ", link_faqthrough_path(faqnotification) %><%= render faqnotification.faq.categories %>
+        </strong>
+      <% else %>  
+        <strong>
+          <%= link_to "#{faqnotification.notified_by.username} #{faqnotification.notice_type} you", link_faqthrough_path(faqnotification) %>
+        </strong>
+      <% end %>
+    </td>
+    <td>
+      <%= faqnotification.faq.title %> 
+    </td>
+  </tbody>
+<% elsif selector == "short" %>
+    <li>
+      <% if faqnotification.notice_type == "comment" %>
+        <%= link_to "#{faqnotification.notified_by.username} left a #{faqnotification.notice_type}", link_faqthrough_path(faqnotification) %>
+      <% elsif faqnotification.notice_type == "New Faq" %>
+        <%= link_to "#{faqnotification.notice_type} for categories which you're following!", link_faqthrough_path(faqnotification) %>
+      <% else %>
+        <%= link_to "#{faqnotification.notified_by.username} #{faqnotification.notice_type} you ", link_faqthrough_path(faqnotification) %>
+      <% end %>
+    </li>
+<% end %>
+
+
+

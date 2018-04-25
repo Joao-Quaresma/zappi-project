@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= simple_form_for ([@faq, @faq.faq_comments.build]) do |f| %>
+      <div class="container-fluid">
+        <div class="form-group text-center">
+          <h4>Add a comment:</h4>
+          <div class ="form-group">
+            <div class="col-sm-14">
+              <%= md_simple_editor do %>
+                <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 4, class: "form-control", placeholder: "Write the comment here" %>
+              <% end %>
+            </div>
+          </div>
+          <div align ="center" class="comment-actions col-xs-4 col-xs-offset-4">
+            <%= f.button :button, "Faq comment".html_safe, class: 'btn-success btn-block', data: {disable_with: "<i class='fa fa-spinner fa-pulse'></i> Creating..."} %>
+          </div>
+        </div>
+      </div>  
+    <% end %>
+  </div>  
+</div>  

@@ -3,6 +3,8 @@ class Category < ActiveRecord::Base
   has_many :articles, through: :article_categories
   has_many :announcement_categories
   has_many :announcements, through: :announcement_categories
+  has_many :faq_categories
+  has_many :faqs, through: :faq_categories
   validates :name, presence: true, length: { minimum: 2, maximum: 25 }
   validates_uniqueness_of :name
   acts_as_followable

@@ -1,0 +1,26 @@
+<div class="row nice-border-comments">
+  <div class="col-xs-12">
+    <div class="content-fluid">
+      <div style="word-wrap: break-word; overflow-y: hidden;">
+        <%= linked_users_faq_comment markdownify faq_comment.body %>
+      </div>
+    </div>
+    <hr class="col-xs-6 col-xs-offset-6">
+    <div class="comment-user-info" align="right">
+      <small>
+        Commented by: <%= link_to faq_comment.user.username, user_path(faq_comment.user) %>  
+        <% if faq_comment.created_at.to_s != faq_comment.updated_at.to_s %>
+          | Created <%= time_ago_in_words(faq_comment.created_at) %> ago 
+          | Updated <%= time_ago_in_words(faq_comment.updated_at) %> ago
+        <% else %>
+          | Created <%= time_ago_in_words(faq_comment.created_at) %> ago
+        <% end %>
+      </small>
+      <% if current_user == faq_comment.user || current_user.admin? %>
+        <%= link_to "Edit", edit_faq_faq_comment_path(faq_comment.faq, faq_comment), class: "btn btn-xs btn-primary" %>
+        <%= link_to "Delete", [faq_comment.faq, faq_comment], method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-xs btn-danger" %>
+      <% end %>
+    </div>
+  </div> 
+</div>
+

@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+    <div class="panel panel-info announcement-article-show">
+      <div class="panel-heading">
+        <div align="center">
+         <strong><%= @faq.title %></strong>
+        </div>
+      </div>
+      <div class="panel-body">
+        <% if @faq.user %>
+        <ul class="listing col-xs-12">
+          <div class="posts-wrapper">
+            <div class="row show-header">
+              <div align="center"><strong>Created by:</strong></div>
+              <div class="col-sm-2 col-sm-offset-4 col-xs-12">
+                <div class="img-circle avatar-image-posts">
+                  <%= profile_avatar_select(@faq.user) %>
+                </div>
+              </div>
+              <div class="col-sm-6 col-sm-offset-0 col-xs-8 col-xs-offset-4">
+                <div class="user-details">
+                  <h6 class="role">
+                    Username: <%= link_to @faq.user.username, user_path(@faq.user) %>
+                  </h6>
+                  <h6 class="role">
+                    Role: <%= @faq.user.role %>
+                  </h6>
+                  <h6 class="job-title">
+                    Job title: <%= @faq.user.job_role %>
+                  </h6>
+                  <div class="details" align="left">
+                    <small align="center">
+                        <%= link_to pluralize(@faq.user.articles.count, "Wiki post"), user_articles_search_path(@faq.user) if @faq.user.articles %><br>
+                        <%= link_to pluralize(@faq.user.announcements.count, "Announcement"), user_announcements_search_path(@faq.user) if @faq.user.announcements %><br>
+                        <%= link_to pluralize(@faq.user.socialposts.count, "Social Post"), user_socialposts_search_path(@faq.user) if @faq.user.socialposts %>
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+        <% end %>
+        <% if @faq.categories.any? %>
+        <hr>
+          <p><strong>Categories: </strong><%= render @faq.categories %></p>
+        <hr>
+        <% end %>
+        <h4 align="center" class="description"><strong>Description:</strong></h4>
+          <div style="word-wrap: break-word; overflow-y: hidden;">
+            <%= simple_format(linked_users_faq markdownify @faq.description) %>
+          </div>
+          <hr>
+          <div style="word-wrap: break-word; overflow-y: hidden;">
+            <%= simple_format(linked_users_faq markdownify @faq.body) %>
+          </div>
+        <hr>
+        <div align ="center" class="faq-actions">
+          <small>
+            <% if @faq.created_at.to_s != @faq.updated_at.to_s %>
+                Created <%= time_ago_in_words(@faq.created_at) %> ago
+                | Updated <%= time_ago_in_words(@faq.updated_at) %> ago
+            <% else %>
+                Created <%= time_ago_in_words(@faq.created_at) %> ago
+            <% end %>
+          </small>
+          <br>
+          <!-- just to make sure that no one can edit or delet if not signed in-->
+          <% if user_signed_in? %>
+            <%= link_to "Back to Faqs", faq_path, class: "btn btn-xs btn-success" %>
+            <% if current_user == @faq.user || current_user.admin? %>
+              <%= link_to "Edit this Faq", edit_faq_path(@faq), class: "btn btn-xs btn-primary" %>
+              <%= link_to "Delete this Faq", faq_path(@faq), method: :delete, 
+                                                                        data: { confirm: "Are you sure you want to delete this Faq?"}, 
+                                                                        class: "btn btn-xs btn-danger" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-lg-8 col-lg-offset-2 col-xs-12">
+  <div class="panel panel-info article-announcement-comments">
+    <div class="panel-heading">
+      <div align="center">
+       <strong>Comments</strong>
+      </div>
+    </div>
+    <div class="panel-body">
+      <%= render @faq.faq_comments %>
+      <%= render 'faq_comments/form' %>
+    </div>
+  </div>
+</div>
+</div>

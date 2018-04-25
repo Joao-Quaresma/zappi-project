@@ -1,0 +1,50 @@
+<% obj.in_groups_of(3, false).each do |group| %>
+  <div class="row">
+  <% group.each do |faq| %>
+      <div class="col-xs-12 col-md-4">
+        <div class="panel panel-info announcement-article-view">
+          <div class="panel-heading">
+            <div align="center">
+              <%= link_to faq.title, faq_path(faq) %>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div style="word-wrap: break-word; overflow-y: hidden;">
+              <%= simple_format(linked_users_faq markdownify faq.description) %>
+            </div>
+            <% if faq.categories.any? %>
+              <div class="faq-actions">
+                <%= render faq.categories %></p>
+              </div>
+            <% end %>
+          </div>
+          <!-- this next if logged_in is to make sure that if for some reason-->
+          <!-- a user that is not logged can see the post then at least that person cant delete or edit -->
+            <% if user_signed_in? %>
+              <div class="panel-footer">
+                <div class="faq-actions" align="right">
+                    <% if current_user == faq.user || current_user.admin? %>
+                      <%= link_to "Edit wiki", edit_faq_path(faq), class: "btn btn-xs btn-primary" %>
+                      <%= link_to "Delete wiki", faq_path(faq), method: :delete, 
+                                                                             data: { confirm: "Are you sure you want to delete this faq?"}, 
+                                                                            class: "btn btn-xs btn-danger" %>
+                    <% end %> 
+                    <div class="show-meta-details">
+                      <small>
+                        Created by: <%= link_to faq.user.username, user_path(faq.user) if faq.user %>,
+                        <% if faq.created_at.to_s != faq.updated_at.to_s %>
+                          <%= time_ago_in_words(faq.created_at) %> ago,
+                          last updated: <%= time_ago_in_words(faq.updated_at) %> ago
+                        <% else %>
+                          <%= time_ago_in_words(faq.created_at) %> ago
+                        <% end %>
+                      </small>
+                    </div>
+                </div>
+              </div>  
+            <% end %>  
+        </div>
+      </div>
+  <% end %>
+ </div>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423071320) do
+ActiveRecord::Schema.define(version: 20180424171421) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -111,6 +111,46 @@ ActiveRecord::Schema.define(version: 20180423071320) do
 
   add_index "comments", ["socialpost_id"], name: "index_comments_on_socialpost_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "faq_categories", force: :cascade do |t|
+    t.integer "faq_id"
+    t.integer "category_id"
+  end
+
+  create_table "faq_comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "faq_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "faq_comments", ["faq_id"], name: "index_faq_comments_on_faq_id"
+  add_index "faq_comments", ["user_id"], name: "index_faq_comments_on_user_id"
+
+  create_table "faqnotifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "notified_by_id"
+    t.integer  "faq_id"
+    t.integer  "identifier"
+    t.string   "notice_type"
+    t.boolean  "read",           default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "faqnotifications", ["faq_id"], name: "index_faqnotifications_on_faq_id"
+  add_index "faqnotifications", ["notified_by_id"], name: "index_faqnotifications_on_notified_by_id"
+  add_index "faqnotifications", ["user_id"], name: "index_faqnotifications_on_user_id"
+
+  create_table "faqs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",                   null: false

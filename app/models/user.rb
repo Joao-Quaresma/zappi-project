@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :announcement_comments
   has_many :articlenotifications
   has_many :announcementnotifications
+  has_many :faqs
+  has_many :faq_comments
+  has_many :faqnotifications
   
   has_attached_file :avatar, styles: { medium: '200x200#' }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

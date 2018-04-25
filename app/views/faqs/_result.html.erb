@@ -1,0 +1,26 @@
+<% if params[:action] == 'search' %>
+  <div class="results-blck">
+    <%= bootstrap_flash %>
+  </div>
+<% end %>  
+
+<% if @faq %>
+    <div id="faq-search-results" class="row results-blocks col-xs-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Categories</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @faq.each do |faq| %>
+            <tr>
+              <td><%= render faq.categories %></td>
+              <td><%= link_to faq.title, faq %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+<% end %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :faqnotifications
   devise_for :users, :controllers => { registrations: 'registrations' }
   
   
@@ -70,6 +71,20 @@ Rails.application.routes.draw do
   get 'announcementnotifications', to: 'announcementnotifications#index'
   get 'announcementnotifications_all_read', to: 'announcementnotifications#index_all_read'
   resources :announcementnotifications do
+    post :read_all, on: :collection
+  end
+
+
+  resources :faqs do
+    resources :faq_comments
+  end
+  get 'faq_search', to: "faqs#faq_search"
+  get 'faq_search_results', to: "faqs#search"
+  get 'faqnotifications/link_faqthrough'
+  get 'faqnotifications/:id/link_faqthrough', to: 'faqnotifications#link_faqthrough', as: :link_faqthrough
+  get 'faqnotifications', to: 'faqnotifications#index'
+  get 'faqnotifications_all_read', to: 'faqnotifications#index_all_read'
+  resources :faqnotifications do
     post :read_all, on: :collection
   end
 

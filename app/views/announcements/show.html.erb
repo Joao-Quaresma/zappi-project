@@ -32,6 +32,7 @@
                     <small align="center">
                         <%= link_to pluralize(@announcement.user.articles.count, "Wiki post"), user_articles_search_path(@announcement.user) if @announcement.user.articles %><br>
                         <%= link_to pluralize(@announcement.user.announcements.count, "Announcement"), user_announcements_search_path(@announcement.user) if @announcement.user.announcements %><br>
+                        <%= link_to pluralize(@announcement.user.faqs.count, "FAQ"), user_faqs_search_path(@announcement.user) if @announcement.user.faqs %><br>
                         <%= link_to pluralize(@announcement.user.socialposts.count, "Social Post"), user_socialposts_search_path(@announcement.user) if @announcement.user.socialposts %>
                     </small>
                   </div>

@@ -12,6 +12,7 @@
         <hr>
         <li align="center"><%= link_to pluralize(@category.articles.count, "Wiki"), category_articles_search_path(@category) %></li>
         <li align="center"><%= link_to pluralize(@category.announcements.count, "Announcement"), category_announcements_search_path(@category) %></li>
+        <li align="center"><%= link_to pluralize(@category.faqs.count, "FAQ"), category_faqs_search_path(@category) %></li>
         <li align="center"><%= pluralize(@category.followers_count, "User") %> following</li>
         <% @users.each do |user| %>
           <% if @category.followed_by?(user) %>

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'user_search_results', to: "users#search"
   get 'user/:id/user_socialposts_search', to: "users#user_socialposts_search", as: "user_socialposts_search"
   get 'user/:id/user_articles_search', to: "users#user_articles_search", as: "user_articles_search"
+  get 'user/:id/user_faqs_search', to: "users#user_faqs_search", as: "user_faqs_search"
   get 'user/:id/user_announcements_search', to: "users#user_announcements_search", as: "user_announcements_search"
   get 'deleted_users_index', to: "users#deleted_users_index"
   
@@ -59,7 +60,7 @@ Rails.application.routes.draw do
   get 'category_search_results', to: "categories#search"
   get 'category/:id/category_articles_search', to: "categories#category_articles_search", as: "category_articles_search"
   get 'category/:id/category_announcements_search', to: "categories#category_announcements_search", as: "category_announcements_search"
-  
+  get 'category/:id/category_faqs_search', to: "categories#category_faqs_search", as: "category_faqs_search"
   
   resources :announcements do
     resources :announcement_comments

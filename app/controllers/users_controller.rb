@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search, :user_faqs_search]
   before_action :require_same_user, only: [:edit, :update]
   before_action :require_admin, only: [:deleted_users_index, :destroy]
 
@@ -63,6 +63,9 @@ class UsersController < ApplicationController
   
   def user_articles_search
     @user_articles = @user.articles.order('updated_at DESC').paginate(page: params[:page],per_page: 20)
+  end
+  def user_faqs_search
+    @user_faqs = @user.faqs.order('updated_at DESC').paginate(page: params[:page],per_page: 20)
   end
 
   

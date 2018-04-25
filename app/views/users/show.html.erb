@@ -43,6 +43,7 @@
               <h5 align="center">
                 <%= link_to pluralize(@user.articles.count, "Wiki post"), user_articles_search_path(@user) if @user.articles %><br>
                 <%= link_to pluralize(@user.announcements.count, "Announcement"), user_announcements_search_path(@user) if @user.announcements %><br>
+                <%= link_to pluralize(@user.faqs.count, "FAQ"), user_faqs_search_path(@user) if @user.faqs %><br>
                 <%= link_to pluralize(@user.socialposts.count, "Social Post"), user_socialposts_search_path(@user) if @user.socialposts %>
               </h5>
               <strong>Following <%= pluralize(@user.follow_count, "category") %></strong><br>

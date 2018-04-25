@@ -126,7 +126,8 @@ body.welcome {
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 880px) {
+  
   .mainnavebar{
     position: static;
     margin-top: -100px;
@@ -218,7 +219,7 @@ body.welcome {
   }
 }
 
-@media (min-width: 801px) and (max-width: 1200px) {
+@media (min-width: 881px) and (max-width: 1200px) {
   .subnav {
   margin-top: -50px;
   }

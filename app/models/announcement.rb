@@ -17,7 +17,7 @@ class Announcement < ActiveRecord::Base
     def self.search(param)
       param.strip!
       param.downcase!
-      to_send_back = (title_matches(param) + description_matches(param) + body_matches(param)).uniq
+      to_send_back = (title_matches(param) + description_matches(param)).uniq
       return nil unless to_send_back
       to_send_back
     end
@@ -27,9 +27,6 @@ class Announcement < ActiveRecord::Base
     end
     def self.description_matches(param)
       matches('description', param)
-    end
-    def self.body_matches(param)
-      matches('body', param)
     end
     
     def self.matches(field_name, param)

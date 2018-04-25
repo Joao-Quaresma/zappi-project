@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
  before_action :require_admin, only: [:destroy]
- before_action :set_category, only: [:edit, :update,:show,:destroy,:category_articles_search, :category_announcements_search]
+ before_action :set_category, only: [:edit, :update,:show,:destroy,:category_articles_search, :category_announcements_search, :category_faqs_search]
   
   def index
     @categories = Category.all.paginate(page: params[:page], per_page: 100).order('name ASC')
@@ -63,6 +63,10 @@ class CategoriesController < ApplicationController
   def category_announcements_search
     #will paginate the posts in the category announcements filter
     @category_announcements = @category.announcements.order("created_at DESC").paginate(page: params[:page], per_page: 20)
+  end
+  def category_faqs_search
+    #will paginate the posts in the category faqs filter
+    @category_faqs = @category.faqs.order("created_at DESC").paginate(page: params[:page], per_page: 20)
   end
 
   

@@ -10,6 +10,7 @@ class ArticleCommentsController < ApplicationController
         @article_comment.user_id = current_user.id if current_user
         if @article_comment.save
             create_notification @article, @article_comment
+            create_comment_notification @article, @article_comment
             redirect_to article_path(@article), notice: "Your comment has been saved."
         else
             flash[:alert] = "Check the comment form, something went wrong."
@@ -80,6 +81,19 @@ class ArticleCommentsController < ApplicationController
                         article_id: article.id,
 			                  identifier: @article_comment.id,
                         notice_type: 'comment')
+    end
+
+    def create_comment_notification(article, article_comment)
+      @users = User.all.where("id != ?", current_user.id)
+      @users.each do |user|
+        if user.following?(article)
+          Articlenotification.create(user_id: user.id,
+                            notified_by_id: current_user.id,
+                            article_id: @article.id,
+                            identifier: @article_comment.id,
+                            notice_type: 'New Comment')
+        end
+      end
     end
     
     

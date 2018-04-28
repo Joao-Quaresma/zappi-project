@@ -1,0 +1,6 @@
+<% if current_user.following?(@article) %>
+	<%= button_to("Following", article_follow_path(@article.to_param, current_user.get_follow(@article).id), :method => :delete, :remote => true, class: 'btn unfollow-button', id: 'unfollow-button') %>
+<% else %>
+	<%= button_to("Follow", article_follows_path(@article.to_param), :remote => true, class: 'btn follow-button', id: 'follow-button') %>
+<% end %>
+

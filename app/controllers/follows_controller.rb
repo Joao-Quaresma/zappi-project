@@ -1,20 +1,18 @@
 class FollowsController < ApplicationController
 
   def create
-    @category = Category.find(params[:category_id])
-		if current_user.follow(@category)
+		if current_user.follow(followable)
 		respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html
         format.js
       end
     end
   end
 
   def destroy
-    @category = Category.find(params[:category_id])
-    	if current_user.stop_following(@category)
+    	if current_user.stop_following(followable)
     		respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html
         format.js
       end
     end

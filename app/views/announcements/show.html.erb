@@ -42,8 +42,19 @@
           </div>
         </ul>
         <% end %>
-        <% if @announcement.categories.any? %>
+        <% if current_user != @announcement.user %>
+          <div align="center"><%= render :partial => "announcements/follow_announcement", :locals => {:announcement => @announcement} %></div>
+        <% end %>
+        <div class="following-users" align="center">
+          <li><%= pluralize(@announcement.followers_count, "User") %> following</li>
+          <% @users.each do |user| %>
+            <% if @announcement.followed_by?(user) %>
+              <span class="badge"><%= link_to user.username, user_path(user) %></span>&nbsp;
+            <% end%>
+          <% end %>
+        </div>
         <hr>
+        <% if @announcement.categories.any? %>
           <p><strong>Categories: </strong><%= render @announcement.categories.order('name ASC') %></p>
         <hr>
         <% end %>

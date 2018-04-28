@@ -11,6 +11,7 @@ class AnnouncementCommentsController < ApplicationController
         @announcement_comment.user_id = current_user.id if current_user
         if @announcement_comment.save
             create_notification @announcement, @announcement_comment
+            create_comment_notification @announcement, @announcement_comment
             redirect_to announcement_path(@announcement), notice: "Your comment has been saved."
         else
             flash[:alert] = "Check the comment form, something went wrong."
@@ -80,5 +81,18 @@ class AnnouncementCommentsController < ApplicationController
                         announcement_id: announcement.id,
 			                  identifier: @announcement_comment.id,
                         notice_type: 'comment')
+    end
+
+    def create_comment_notification(announcement, announcement_comment)
+      @users = User.all.where("id != ?", current_user.id)
+      @users.each do |user|
+        if user.following?(announcement)
+          Announcementnotification.create(user_id: user.id,
+                            notified_by_id: current_user.id,
+                            announcement_id: @announcement.id,
+                            identifier: @announcement_comment.id,
+                            notice_type: 'New Comment')
+        end
+      end
     end
 end

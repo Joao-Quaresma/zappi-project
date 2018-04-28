@@ -10,6 +10,8 @@ class Faq < ActiveRecord::Base
     has_many :faq_comments
     has_many :faqnotifications, dependent: :destroy
 
+    acts_as_followable
+
     def user
       User.unscoped { super }
     end

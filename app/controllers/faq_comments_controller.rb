@@ -11,6 +11,7 @@ class FaqCommentsController < ApplicationController
         if @faq_comment.save
             create_notification @faq, @faq_comment
             redirect_to faq_path(@faq), notice: "Your comment has been saved."
+            create_comment_notification @faq, @faq_comment
         else
             flash[:alert] = "Check the comment form, something went wrong."
             redirect_to :back
@@ -81,4 +82,17 @@ class FaqCommentsController < ApplicationController
                         identifier: @faq_comment.id,
                         notice_type: 'comment')
     end  
+
+    def create_comment_notification(faq, faq_comment)
+      @users = User.all.where("id != ?", current_user.id)
+      @users.each do |user|
+        if user.following?(faq)
+          Faqnotification.create(user_id: user.id,
+                            notified_by_id: current_user.id,
+                            faq_id: @faq.id,
+                            identifier: @faq_comment.id,
+                            notice_type: 'New Comment')
+        end
+      end
+    end
 end

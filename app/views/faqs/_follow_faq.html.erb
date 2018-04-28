@@ -1,0 +1,6 @@
+<% if current_user.following?(@faq) %>
+	<%= button_to("Following", faq_follow_path(@faq.to_param, current_user.get_follow(@faq).id), :method => :delete, :remote => true, class: 'btn unfollow-button', id: 'unfollow-button') %>
+<% else %>
+	<%= button_to("Follow", faq_follows_path(@faq.to_param), :remote => true, class: 'btn follow-button', id: 'follow-button') %>
+<% end %>
+

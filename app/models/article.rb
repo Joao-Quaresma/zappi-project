@@ -10,6 +10,8 @@ class Article < ActiveRecord::Base
     has_many :article_comments
     has_many :articlenotifications, dependent: :destroy
 
+    acts_as_followable
+
     def user
       User.unscoped { super }
     end

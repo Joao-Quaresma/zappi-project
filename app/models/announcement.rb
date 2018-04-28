@@ -10,6 +10,8 @@ class Announcement < ActiveRecord::Base
     has_many :announcement_comments
     has_many :announcementnotifications, dependent: :destroy
 
+    acts_as_followable
+
     def user
       User.unscoped { super }
     end

@@ -24,6 +24,10 @@
         <strong>
           <%= link_to announcementnotification.notified_by.username %><%= link_to " mentioned you", link_announcementthrough_path(announcementnotification) %>
         </strong>
+       <% elsif announcementnotification.notice_type == "New Comment" %>  
+        <strong>
+          <%= link_to announcementnotification.notified_by.username %><%= link_to " commented a post which you're following", link_announcementthrough_path(announcementnotification) %>
+        </strong>
       <% end %>
     </td>
     <td class="col-xs-5">
@@ -35,11 +39,13 @@
 <% elsif selector == "short" %>
      <li>
       <% if announcementnotification.notice_type == "comment" %>
-          <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type}", link_announcementthrough_path(announcementnotification) %>
+          <%= link_to "#{announcementnotification.notified_by.username} left a #{announcementnotification.notice_type} in your post", link_announcementthrough_path(announcementnotification) %>
       <% elsif announcementnotification.notice_type == "New Announcement" %>
           <%= link_to "#{announcementnotification.notice_type} created for categories which you're following!", link_announcementthrough_path(announcementnotification) %>
       <% elsif announcementnotification.notice_type == "tagged" %>
           <%= link_to "#{announcementnotification.notified_by.username} mentioned you", link_announcementthrough_path(announcementnotification) %>
+      <% elsif announcementnotification.notice_type == "New Comment" %>  
+        <%= link_to "#{announcementnotification.notice_type} created in a post which you're following", link_announcementthrough_path(announcementnotification) %>
       <% end %>
      </li>
 <% end %>

@@ -42,6 +42,7 @@ class FaqsController < ApplicationController
   end
   
   def show
+    @users = User.all.order('username ASC')
   end
   
   def destroy

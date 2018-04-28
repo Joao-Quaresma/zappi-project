@@ -14,15 +14,15 @@
     <td class="col-xs-5">
       <% if articlenotification.notice_type == "comment" %>
         <strong>
-          <%= link_to "#{articlenotification.notified_by.username} left a #{articlenotification.notice_type}", link_articlethrough_path(articlenotification) %>
+          <%= link_to articlenotification.notified_by.username %><%= link_to " left a #{articlenotification.notice_type} in your post", link_articlethrough_path(articlenotification) %>
         </strong>
-      <% elsif articlenotification.notice_type == "New Article" %>
+      <% elsif articlenotification.notice_type == "New Wiki" %>
         <strong>
-          <%= link_to "#{articlenotification.notice_type} for the following categories: ", link_articlethrough_path(articlenotification) %><%= render articlenotification.article.categories %>
+          <%= link_to "#{articlenotification.notice_type} created for the following categories: ", link_articlethrough_path(articlenotification) %><%= render articlenotification.article.categories %>
         </strong>
-      <% else %>  
+      <% elsif articlenotification.notice_type == "tagged" %>  
         <strong>
-          <%= link_to "#{articlenotification.notified_by.username} #{articlenotification.notice_type} you", link_articlethrough_path(articlenotification) %>
+          <%= link_to articlenotification.notified_by.username %><%= link_to " mentioned you", link_articlethrough_path(articlenotification) %>
         </strong>
       <% end %>
     </td>
@@ -37,9 +37,9 @@
       <% if articlenotification.notice_type == "comment" %>
         <%= link_to "#{articlenotification.notified_by.username} left a #{articlenotification.notice_type}", link_articlethrough_path(articlenotification) %>
       <% elsif articlenotification.notice_type == "New Article" %>
-        <%= link_to "#{articlenotification.notice_type} for categories which you're following!", link_articlethrough_path(articlenotification) %>
-      <% else %>
-        <%= link_to "#{articlenotification.notified_by.username} #{articlenotification.notice_type} you ", link_articlethrough_path(articlenotification) %>
+        <%= link_to "#{articlenotification.notice_type} created for categories which you're following!", link_articlethrough_path(articlenotification) %>
+      <% elsif articlenotification.notice_type == "tagged" %>
+        <%= link_to "#{articlenotification.notified_by.username} mentioned you ", link_articlethrough_path(articlenotification) %>
       <% end %>
     </li>
 <% end %>

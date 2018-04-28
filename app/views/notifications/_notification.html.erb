@@ -1,36 +1,45 @@
 <% if selector == "long" %>
 <!-- Table -->
-  <tbody>
-    <td class="col-xs-2">
+  <tbody id="notificationslist">
+    <td class="col-xs-1">
       <% if !notification.read %>
         <span class="glyphicon glyphicon-asterisk"></span>New
       <% else %>
         Viewed
       <% end %>
     </td>
-    <td class="col-xs-4">
+    <td class="col-xs-2">
       <%= time_ago_in_words(notification.created_at) + " ago" %>
     </td>
-    <td class="col-xs-6">
+    <td class="col-xs-4">
       <% if notification.notice_type == "comment" %>
         <strong>
-          <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
+          <%= link_to notification.notified_by.username %><%= link_to " left a #{notification.notice_type} in your post", link_through_path(notification) %>
         </strong>
-      <% else %>  
+      <% elsif notification.notice_type == "like" %>  
         <strong>
-          <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
+           <%= link_to notification.notified_by.username %><%= link_to " #{notification.notice_type}d your post", link_through_path(notification) %>
+        </strong>
+      <% elsif notification.notice_type == "tagged" %>
+        <strong>
+           <%= link_to notification.notified_by.username %><%= link_to " mentioned you", link_through_path(notification) %>
         </strong>
       <% end %>
+    </td>
+    <td class="col-xs-5">
+      <strong>
+        <%= link_to "#{notification.socialpost.caption}", link_through_path(notification) %> 
+      </strong> 
     </td>
   </tbody>
 <% elsif selector == "short" %>
   <li>
     <% if notification.notice_type == "comment" %>
-        <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
+        <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type} in your post", link_through_path(notification) %>
     <% elsif notification.notice_type == "like" %>  
-          <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
-    <% else %>
-        <%= link_to "#{notification.notified_by.username} left a #{notification.notice_type}", link_through_path(notification) %>
+          <%= link_to "#{notification.notified_by.username} #{notification.notice_type}d your post", link_through_path(notification) %>
+    <% elsif notification.notice_type == "tagged" %>
+        <%= link_to "#{notification.notified_by.username} mentioned you", link_through_path(notification) %>
     <% end %>
   </li>
 <% end %>

@@ -29,7 +29,7 @@
                 <%= f.label :categories %>:
               </div>
               <div class="col-xs-12">
-                <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+                <%= f.collection_check_boxes :category_ids, Category.all.order('name ASC'), :id, :name do |cb| %>
                   <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
                 <% end %>
               </div>

@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
 
 
   def show
-    @users = User.all
+    @users = User.all.order('username ASC')
   end
   
   def destroy

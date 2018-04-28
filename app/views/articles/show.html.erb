@@ -44,7 +44,7 @@
         <% end %>
         <% if @article.categories.any? %>
         <hr>
-          <p><strong>Categories: </strong><%= render @article.categories %></p>
+          <p><strong>Categories: </strong><%= render @article.categories.order('name ASC') %></p>
         <hr>
         <% end %>
         <h4 align="center" class="description"><strong>Description:</strong></h4>

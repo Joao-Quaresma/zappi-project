@@ -14,7 +14,7 @@
             </div>
             <% if announcement.categories.any? %>
               <div class="announcement-actions">
-                <%= render announcement.categories %></p>
+                <%= render announcement.categories.order('name ASC') %></p>
               </div>
             <% end %>
           </div>

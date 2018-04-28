@@ -14,15 +14,15 @@
     <td class="col-xs-5">
       <% if faqnotification.notice_type == "comment" %>
         <strong>
-          <%= faqnotification.notified_by.username + "left a" + faqnotification.notice_type %>
+          <%= link_to faqnotification.notified_by.username %><%= link_to " left a #{faqnotification.notice_type} in your post", link_faqthrough_path(faqnotification) %>
         </strong>
       <% elsif faqnotification.notice_type == "New FAQ" %>
         <strong>
-          <%= link_to "#{faqnotification.notice_type} for the following categories: ", link_faqthrough_path(faqnotification) %><%= render faqnotification.faq.categories %>
+          <%= link_to "#{faqnotification.notice_type} created for the following categories: ", link_faqthrough_path(faqnotification) %><%= render faqnotification.faq.categories %>
         </strong>
-      <% else %>  
+      <% elsif faqnotification.notice_type == "tagged" %>  
         <strong>
-          <%= link_to "#{faqnotification.notified_by.username} #{faqnotification.notice_type} you", link_faqthrough_path(faqnotification) %>
+          <%= link_to faqnotification.notified_by.username %><%= link_to " mentioned you", link_faqthrough_path(faqnotification) %>
         </strong>
       <% end %>
     </td>
@@ -37,9 +37,9 @@
       <% if faqnotification.notice_type == "comment" %>
         <%= link_to "#{faqnotification.notified_by.username} left a #{faqnotification.notice_type}", link_faqthrough_path(faqnotification) %>
       <% elsif faqnotification.notice_type == "New FAQ" %>
-        <%= link_to "#{faqnotification.notice_type} for categories which you're following!", link_faqthrough_path(faqnotification) %>
-      <% else %>
-        <%= link_to "#{faqnotification.notified_by.username} #{faqnotification.notice_type} you ", link_faqthrough_path(faqnotification) %>
+        <%= link_to "#{faqnotification.notice_type} created for categories which you're following!", link_faqthrough_path(faqnotification) %>
+      <% elsif faqnotification.notice_type == "tagged" %>
+        <%= link_to "#{faqnotification.notified_by.username} mentioned you ", link_faqthrough_path(faqnotification) %>
       <% end %>
     </li>
 <% end %>

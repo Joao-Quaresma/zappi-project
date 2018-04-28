@@ -14,7 +14,7 @@
             </div>
             <% if article.categories.any? %>
               <div class="article-actions">
-                <%= render article.categories %></p>
+                <%= render article.categories.order('name ASC') %></p>
               </div>
             <% end %>
           </div>

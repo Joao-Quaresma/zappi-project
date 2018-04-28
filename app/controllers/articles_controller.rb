@@ -109,7 +109,7 @@ class ArticlesController < ApplicationController
                             notified_by_id: current_user.id,
                             article_id: @article.id,
                             identifier: @article.id,
-                            notice_type: 'New Article')
+                            notice_type: 'New Wiki')
         end
       end
     end

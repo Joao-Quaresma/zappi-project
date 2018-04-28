@@ -44,7 +44,7 @@
         <% end %>
         <% if @faq.categories.any? %>
         <hr>
-          <p><strong>Categories: </strong><%= render @faq.categories %></p>
+          <p><strong>Categories: </strong><%= render @faq.categories.order('name ASC') %></p>
         <hr>
         <% end %>
         <h4 align="center" class="description"><strong>Description:</strong></h4>
@@ -68,10 +68,10 @@
           <br>
           <!-- just to make sure that no one can edit or delet if not signed in-->
           <% if user_signed_in? %>
-            <%= link_to "Back to Faqs", faq_path, class: "btn btn-xs btn-success" %>
+            <%= link_to "Back to FAQs", faq_path, class: "btn btn-xs btn-success" %>
             <% if current_user == @faq.user || current_user.admin? %>
-              <%= link_to "Edit this Faq", edit_faq_path(@faq), class: "btn btn-xs btn-primary" %>
-              <%= link_to "Delete this Faq", faq_path(@faq), method: :delete, 
+              <%= link_to "Edit this FAQ", edit_faq_path(@faq), class: "btn btn-xs btn-primary" %>
+              <%= link_to "Delete this FAQ", faq_path(@faq), method: :delete, 
                                                                         data: { confirm: "Are you sure you want to delete this Faq?"}, 
                                                                         class: "btn btn-xs btn-danger" %>
             <% end %>

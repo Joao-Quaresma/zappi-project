@@ -1,0 +1,30 @@
+<div class="row">
+  <div id="following" class="results-blocks col-md-10 col-md-offset-1 col-xs-12">
+    <div class="panel panel-info following-table">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <div align="center">
+          <h1><%= "FAQ's followed by #{@user.username} "%></h1>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="col-xs-8">Title</th>
+            <th class="col-xs-4">Categories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @faqs.each do |faq| %>
+              <tr>
+                <td class="col-xs-8"><%= link_to faq.title, faq %></td>
+                <td class="col-xs-4"><%= render faq.categories %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

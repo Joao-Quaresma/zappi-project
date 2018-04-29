@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search, :user_faqs_search]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search, :user_faqs_search, :user_follow_articles, :user_follow_announcements, :user_follow_faqs]
   before_action :require_same_user, only: [:edit, :update]
   before_action :require_admin, only: [:deleted_users_index, :destroy]
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @categories = Category.all.order('name ASC')
+    @categories = @user.following_by_type('Category').order('name ASC')
     if !User.with_deleted.find_by_username(params[:id])
       flash[:error] = "Invalid user"
       redirect_to users_path
@@ -58,14 +58,31 @@ class UsersController < ApplicationController
   end
   
   def user_announcements_search
-    @user_announcements = @user.announcements.order('updated_at DESC').paginate(page: params[:page],per_page: 20)
+    @user_announcements = @user.announcements.order('updated_at DESC').paginate(page: params[:page],per_page: 21)
   end
   
   def user_articles_search
-    @user_articles = @user.articles.order('updated_at DESC').paginate(page: params[:page],per_page: 20)
+    @user_articles = @user.articles.order('updated_at DESC').paginate(page: params[:page],per_page: 21)
   end
+
   def user_faqs_search
-    @user_faqs = @user.faqs.order('updated_at DESC').paginate(page: params[:page],per_page: 20)
+    @user_faqs = @user.faqs.order('updated_at DESC').paginate(page: params[:page],per_page: 21)
+  end
+
+  def to_do_list
+
+  end
+
+  def user_follow_articles
+    @articles = @user.following_by_type('Article')
+  end
+
+  def user_follow_announcements
+    @announcements = @user.following_by_type('Announcement')
+  end
+
+  def user_follow_faqs
+   @faqs = @user.following_by_type('Faq')
   end
 
   

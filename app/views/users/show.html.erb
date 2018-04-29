@@ -41,16 +41,21 @@
             </h5>
             <div class="details">
               <h5 align="center">
+                Created:<br>
                 <%= link_to pluralize(@user.articles.count, "Wiki post"), user_articles_search_path(@user) if @user.articles %><br>
                 <%= link_to pluralize(@user.announcements.count, "Announcement"), user_announcements_search_path(@user) if @user.announcements %><br>
                 <%= link_to pluralize(@user.faqs.count, "FAQ"), user_faqs_search_path(@user) if @user.faqs %><br>
                 <%= link_to pluralize(@user.socialposts.count, "Social Post"), user_socialposts_search_path(@user) if @user.socialposts %>
               </h5>
-              <strong>Following <%= pluralize(@user.follow_count, "category") %></strong><br>
+              <hr>
+              <h5>Following:<br>
+                <%= link_to pluralize(@user.following_by_type_count('Article'), "wiki"), user_follow_articles_path(@user) %><br>
+                <%= link_to pluralize(@user.following_by_type_count('Announcement'), "announcement"), user_follow_announcements_path(@user) %><br>
+                <%= link_to pluralize(@user.following_by_type_count('Faq'), "FAQ"), user_follow_faqs_path(@user) %><br>
+                <%= pluralize(@user.following_by_type_count('Category'), "category") %><br>
+              </h5>
               <% @categories.each do |category| %>
-                <% if @user.following?(category) %>
                   <span class="badge"><%= link_to category.name, category_path(category) %></span>&nbsp;
-                <% end%>
               <% end %>
             </div>
             <hr>

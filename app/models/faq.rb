@@ -9,7 +9,7 @@ class Faq < ActiveRecord::Base
     has_many :categories, through: :faq_categories
     has_many :faq_comments
     has_many :faqnotifications, dependent: :destroy
-
+    act_as_bookmarkee
     acts_as_followable
 
     def user

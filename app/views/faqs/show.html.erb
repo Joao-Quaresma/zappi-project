@@ -6,6 +6,9 @@
          <strong><%= @faq.title %></strong>
         </div>
       </div>
+      <div align="right">
+        <%= render :partial => "faqs/faq_bookmark", :locals => {:faq => @faq} %>
+      </div>
       <div class="panel-body">
         <% if @faq.user %>
         <ul class="listing col-xs-12">

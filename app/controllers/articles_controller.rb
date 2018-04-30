@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :set_article, only: [:edit, :update, :show, :destroy, :require_same_user]
+    before_action :set_article, only: [:edit, :update, :show, :destroy, :require_same_user, :create_article_bookmark, :destroy_article_bookmark]
     before_action :require_same_user, only: [:edit, :update, :destroy]
     after_action :notified_users, only: [:create, :update]
   
@@ -85,6 +85,20 @@ class ArticlesController < ApplicationController
       end
   end
   
+  def create_article_bookmark
+    if current_user.bookmark(@article)
+      flash[:success] = "Article added to the To Do List"
+      redirect_to :back
+    end
+  end
+
+  def destroy_article_bookmark
+    if current_user.unbookmark(@article)
+      flash[:alert] = "Article removed from the To Do List"
+      redirect_to :back
+    end
+  end
+
   
   private
     def set_article

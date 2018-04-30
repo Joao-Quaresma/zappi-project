@@ -49,6 +49,8 @@ Rails.application.routes.draw do
     resources :follows, :controller => 'follows_articles', :only => [:create, :destroy]
     resources :article_comments
   end
+  post 'articles/:id/create_article_bookmark', to: "articles#create_article_bookmark", as: "create_article_bookmark"
+  post 'articles/:id/destroy_article_bookmark', to: "articles#destroy_article_bookmark", as: "destroy_article_bookmark"
   get 'wiki_search', to: "articles#wiki_search"
   get 'wiki_search_results', to: "articles#search"
   get 'articlenotifications/link_articlethrough'
@@ -71,6 +73,8 @@ Rails.application.routes.draw do
     resources :follows, :controller => 'follows_announcements', :only => [:create, :destroy]
     resources :announcement_comments
   end
+  post 'announcements/:id/create_announcement_bookmark', to: "announcements#create_announcement_bookmark", as: "create_announcement_bookmark"
+  post 'announcements/:id/destroy_announcement_bookmark', to: "announcements#destroy_announcement_bookmark", as: "destroy_announcement_bookmark"
   get 'announcement_search', to: "announcements#announcement_search"
   get 'announcement_search_results', to: "announcements#search"
   get 'announcementnotifications/link_announcementthrough'
@@ -86,6 +90,8 @@ Rails.application.routes.draw do
     resources :follows, :controller => 'follows_faqs', :only => [:create, :destroy]
     resources :faq_comments
   end
+  post 'faqs/:id/create_faq_bookmark', to: "faqs#create_faq_bookmark", as: "create_faq_bookmark"
+  post 'faqs/:id/destroy_faq_bookmark', to: "faqs#destroy_faq_bookmark", as: "destroy_faq_bookmark"
   get 'faq_search', to: "faqs#faq_search"
   get 'faq_search_results', to: "faqs#search"
   get 'faqnotifications/link_faqthrough'

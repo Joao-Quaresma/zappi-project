@@ -69,10 +69,6 @@ class UsersController < ApplicationController
     @user_faqs = @user.faqs.order('updated_at DESC').paginate(page: params[:page],per_page: 21)
   end
 
-  def to_do_list
-
-  end
-
   def user_follow_articles
     @articles = @user.following_by_type('Article')
   end
@@ -85,6 +81,22 @@ class UsersController < ApplicationController
    @faqs = @user.following_by_type('Faq')
   end
 
+
+  def to_do_list
+    @articles_bookmark = current_user.bookmarkees_by(Article)
+  end
+
+  def articles_bookmark_list
+    @articles_bookmark = current_user.bookmarkees_by(Article)
+  end
+
+  def announcements_bookmark_list
+    @announcements_bookmark = current_user.bookmarkees_by(Announcement)
+  end
+
+  def faqs_bookmark_list
+    @faqs_bookmark = current_user.bookmarkees_by(Faq)
+  end
   
   private
   def user_params

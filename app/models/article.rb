@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
     has_many :categories, through: :article_categories
     has_many :article_comments
     has_many :articlenotifications, dependent: :destroy
-
+    act_as_bookmarkee
     acts_as_followable
 
     def user

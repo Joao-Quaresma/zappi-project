@@ -1,5 +1,5 @@
 class FaqsController < ApplicationController
-    before_action :set_faq, only: [:edit, :update, :show, :destroy, :require_same_user]
+    before_action :set_faq, only: [:edit, :update, :show, :destroy, :require_same_user, :create_faq_bookmark, :destroy_faq_bookmark]
     before_action :require_same_user, only: [:edit, :update, :destroy]
     after_action :notified_users, only: [:create, :update]
   
@@ -85,7 +85,19 @@ class FaqsController < ApplicationController
       end
   end
   
-  
+  def create_faq_bookmark
+    if current_user.bookmark(@faq)
+      flash[:success] = "FAQ added to the To Do List"
+      redirect_to :back
+    end
+  end
+
+  def destroy_faq_bookmark
+    if current_user.unbookmark(@faq)
+      flash[:alert] = "FAQ removed from the To Do List"
+      redirect_to :back
+    end
+  end
   
   private
     def set_faq

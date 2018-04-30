@@ -1,0 +1,7 @@
+<% if current_user.bookmarks?(@faq) %>
+	<%= button_to("Remove Bookmark", destroy_faq_bookmark_path(@faq.to_param), :remote => true, class: 'btn unbookmark-button', id: 'unbookmark-button') %>
+<% else %>
+	<%= button_to("Add Bookmark", create_faq_bookmark_path(@faq.to_param), :remote => true, class: 'btn bookmark-button', id: 'bookmark-button') %>
+<% end %>
+
+

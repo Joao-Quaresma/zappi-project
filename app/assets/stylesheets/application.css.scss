@@ -832,3 +832,26 @@ body.welcome {
     color: white;
   }
 }
+
+
+.bookmark-button {
+  text-transform: uppercase;
+  border-color: #4090db;
+  color: #4090db;
+  &:visited, &:focus, &:hover {
+    border-color: #2D6396;
+    color: #2D6396;
+  }
+}
+
+.unbookmark-button {
+  text-transform: uppercase;
+  border-color: #66bd2b;
+  background-color: #4d94ff;
+  color: white;
+  &:visited, &:focus, &:hover {
+    border-color: #47821F;
+    background-color: #0066ff ;
+    color: white;
+  }
+}

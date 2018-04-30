@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_follower
   acts_as_followable
+  act_as_bookmarker
   
   has_many :socialposts # , dependent: :destroy /////this needs to be added if we want the posts deleted once a user is deleted
   has_many :comments

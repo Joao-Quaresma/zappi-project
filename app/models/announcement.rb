@@ -9,7 +9,7 @@ class Announcement < ActiveRecord::Base
     has_many :categories, through: :announcement_categories
     has_many :announcement_comments
     has_many :announcementnotifications, dependent: :destroy
-
+    act_as_bookmarkee
     acts_as_followable
 
     def user

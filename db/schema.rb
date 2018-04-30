@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180424171421) do
+ActiveRecord::Schema.define(version: 20180429215219) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -94,6 +94,19 @@ ActiveRecord::Schema.define(version: 20180424171421) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer  "bookmarkee_id"
+    t.string   "bookmarkee_type"
+    t.integer  "bookmarker_id"
+    t.string   "bookmarker_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "bookmarks", ["bookmarkee_id", "bookmarkee_type", "bookmarker_id", "bookmarker_type"], name: "bookmarks_bookmarkee_bookmarker_idx", unique: true
+  add_index "bookmarks", ["bookmarkee_id", "bookmarkee_type"], name: "bookmarks_bookmarkee_idx"
+  add_index "bookmarks", ["bookmarker_id", "bookmarker_type"], name: "bookmarks_bookmarker_idx"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"

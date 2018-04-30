@@ -6,6 +6,9 @@
          <strong><%= @announcement.title %></strong>
         </div>
       </div>
+      <div align="right">
+        <%= render :partial => "announcements/announcement_bookmark", :locals => {:announcement => @announcement} %>
+      </div>
       <div class="panel-body">
         <% if @announcement.user %>
         <ul class="listing col-xs-12">

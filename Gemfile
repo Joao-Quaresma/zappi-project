@@ -22,18 +22,15 @@ gem 'jquery-turbolinks'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk', '~> 2.3'
 gem 'jquery-atwho-rails', '~> 1.3', '>= 1.3.2'
-
 gem 'html-pipeline', '~> 2.7', '>= 2.7.1'
 gem 'github-markdown', '~> 0.6.9'
 gem 'gemoji', '~> 3.0'
 gem 'commonmarker'
 gem 'sanitize', '~> 4.6', '>= 4.6.4'
-
 gem 'md_simple_editor'
-
 gem 'gemoji-parser'
-
 gem "acts_as_follower"
+gem 'bookmark_system', '~> 0.0.9'
 
 #paranoia for users delete/suspend
 gem 'paranoia', '~> 2.4', '>= 2.4.1'

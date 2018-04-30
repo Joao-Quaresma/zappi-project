@@ -1,5 +1,5 @@
 class AnnouncementsController < ApplicationController
-    before_action :set_announcement, only: [:edit, :update, :show, :destroy, :require_same_user]
+    before_action :set_announcement, only: [:edit, :update, :show, :destroy, :require_same_user, :create_announcement_bookmark, :destroy_announcement_bookmark]
     before_action :require_same_user, only: [:edit, :update, :destroy]
     after_action :notified_users, only: [:create, :update]
   
@@ -81,6 +81,20 @@ class AnnouncementsController < ApplicationController
   		                  identifier: @announcement.id,
                       notice_type: 'tagged')
       end
+  end
+
+  def create_announcement_bookmark
+    if current_user.bookmark(@announcement)
+      flash[:success] = "Announcement added to the To Do List"
+      redirect_to :back
+    end
+  end
+
+  def destroy_announcement_bookmark
+    if current_user.unbookmark(@announcement)
+      flash[:alert] = "Announcement removed from the To Do List"
+      redirect_to :back
+    end
   end
   
   private

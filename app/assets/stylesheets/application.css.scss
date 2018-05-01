@@ -855,3 +855,14 @@ body.welcome {
     color: white;
   }
 }
+
+.to-do-button {
+  text-transform: uppercase;
+  border-color: #4090db;
+  color: #4090db;
+  &:visited, &:focus, &:hover {
+    border-color: #2D6396;
+    color: #2D6396;
+  }
+}
+

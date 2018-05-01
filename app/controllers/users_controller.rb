@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search, :user_faqs_search, :user_follow_articles, :user_follow_announcements, :user_follow_faqs]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search, :user_faqs_search, :user_follow_articles, :user_follow_announcements, :user_follow_faqs, :to_do_list]
   before_action :require_same_user, only: [:edit, :update]
   before_action :require_admin, only: [:deleted_users_index, :destroy]
 
@@ -83,19 +83,21 @@ class UsersController < ApplicationController
 
 
   def to_do_list
-    @articles_bookmark = current_user.bookmarkees_by(Article)
+    @articles = Article.all
+    @announcements = Announcement.all
+    @faqs = Faq.all
   end
 
   def articles_bookmark_list
-    @articles_bookmark = current_user.bookmarkees_by(Article)
+    @articles_bookmark = @user.bookmarkees_by(Article)
   end
 
   def announcements_bookmark_list
-    @announcements_bookmark = current_user.bookmarkees_by(Announcement)
+    @announcements_bookmark = @user.bookmarkees_by(Announcement)
   end
 
   def faqs_bookmark_list
-    @faqs_bookmark = current_user.bookmarkees_by(Faq)
+    @faqs_bookmark = @user.bookmarkees_by(Faq)
   end
   
   private
@@ -103,7 +105,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username,:password, :first_name, :last_name, :email, :admin, :avatar, :resume, :role, :job_role)
   end
   def set_user
-    @user = User.with_deleted.find_by_username(params[:id])
+    if @user = User.with_deleted.find_by_username(params[:id])
+    else
+      flash[:error] = "Invalid user"
+      redirect_to users_path
+    end
   end
   def require_same_user
     unless current_user == @user || current_user.admin?

@@ -1,1 +1,82 @@
-test
+<div class="col-xs-12 col-xs-offset-0">
+	<div id="bookmarks" class="results-blocks col-xs-10 col-xs-offset-1">
+	  <div class="panel panel-info bookmarks-table">
+	    <!-- Default panel contents -->
+	    <div class="panel-heading" align="center">
+	       <strong><h4>Bookmarked Wikis</h3></strong>
+	    </div>
+	    <!-- Table -->
+	    <div class="panel-body">
+	      <table class="table table">
+	        <thead>
+	        </thead>
+	        <tbody>
+	           <div id="articles-bookmark" class="list-group">
+				  <% @articles.each do |article| %>
+					  <% if @user.bookmarks?(article) %>
+					  <tr>
+					  	<%= link_to "#{article.title}", article, class: "list-group-item" %>
+					  </tr>
+					   <% end %>
+				  <% end %>
+				</div>
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="bookmarks" class="results-blocks col-xs-10 col-xs-offset-1">
+	  <div class="panel panel-info bookmarks-table">
+	    <!-- Default panel contents -->
+	    <div class="panel-heading" align="center">
+	       <strong><h4>Bookmarked Announcements</h3></strong>
+	    </div>
+	    <!-- Table -->
+	    <div class="panel-body">
+	      <table class="table table">
+	        <thead>
+	        </thead>
+	        <tbody>
+	           <div id="announcements-bookmark" class="list-group">
+				  <% @announcements.each do |announcement| %>
+					  <% if @user.bookmarks?(announcement) %>
+					  <tr>
+					  	<%= link_to "#{announcement.title}", announcement, class: "list-group-item" %>
+					  </tr>
+					   <% end %>
+				  <% end %>
+				</div>
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="bookmarks" class="results-blocks col-xs-10 col-xs-offset-1">
+	  <div class="panel panel-info bookmarks-table">
+	    <!-- Default panel contents -->
+	    <div class="panel-heading" align="center">
+	       <strong><h4>Bookmarked FAQs</h3></strong>
+	    </div>
+	    <!-- Table -->
+	    <div class="panel-body">
+	      <table class="table table">
+	        <thead>
+	        </thead>
+	        <tbody>
+	           <div id="faqs-bookmark" class="list-group">
+				  <% @faqs.each do |faq| %>
+					  <% if @user.bookmarks?(faq) %>
+					  <tr>
+					  	<%= link_to "#{faq.title}", faq, class: "list-group-item" %>
+					  </tr>
+					   <% end %>
+				  <% end %>
+				</div>
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+ </div>

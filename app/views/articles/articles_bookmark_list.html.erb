@@ -1,0 +1,7 @@
+<div id="articles-bookmark" class="list-group" data-url="<%= sort_articles_path %>" >
+  <% @articles.each do |article| %>
+	  <% if @user.bookmarks?(article) %>
+	  	<%= link_to article.title, article, class: "list-group-item", id: dom_id(article) %>
+	   <% end %>
+  <% end %>
+</div>

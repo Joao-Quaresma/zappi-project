@@ -83,22 +83,9 @@ class UsersController < ApplicationController
 
 
   def to_do_list
-    @articles = Article.all
-    @announcements = Announcement.all
-    @faqs = Faq.all
+    @articles = Article.order(:position)
   end
 
-  def articles_bookmark_list
-    @articles_bookmark = @user.bookmarkees_by(Article)
-  end
-
-  def announcements_bookmark_list
-    @announcements_bookmark = @user.bookmarkees_by(Announcement)
-  end
-
-  def faqs_bookmark_list
-    @faqs_bookmark = @user.bookmarkees_by(Faq)
-  end
   
   private
   def user_params

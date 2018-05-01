@@ -50,6 +50,20 @@ class ArticlesController < ApplicationController
     flash[:danger] = "Post was successfully deleted"
     redirect_to articles_path
   end
+
+
+
+  def articles_bookmark_list
+    @user = User.with_deleted.find_by_username(params[:id])
+    @articles = Article.order(:position)
+  end
+
+  def sort 
+    params[:article].each_with_index do |id, index|
+        Article.where(id: id).update_all(position: index + 1)
+      end 
+    head :ok
+  end
   
   def search
     if params[:search_param].blank?

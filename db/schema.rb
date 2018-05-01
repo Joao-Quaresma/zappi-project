@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180429215219) do
+ActiveRecord::Schema.define(version: 20180501080611) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20180429215219) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "position"
   end
 
   create_table "bookmarks", force: :cascade do |t|
@@ -205,6 +206,12 @@ ActiveRecord::Schema.define(version: 20180429215219) do
   end
 
   add_index "socialposts", ["user_id"], name: "index_socialposts_on_user_id"
+
+  create_table "to_do_lists", force: :cascade do |t|
+    t.integer "user_id"
+  end
+
+  add_index "to_do_lists", ["user_id"], name: "index_to_do_lists_on_user_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

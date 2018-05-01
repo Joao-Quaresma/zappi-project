@@ -31,6 +31,8 @@ gem 'md_simple_editor'
 gem 'gemoji-parser'
 gem "acts_as_follower"
 gem 'bookmark_system', '~> 0.0.9'
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+gem 'acts_as_list'
 
 #paranoia for users delete/suspend
 gem 'paranoia', '~> 2.4', '>= 2.4.1'

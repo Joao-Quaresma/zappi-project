@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   get 'socialpost_search_results', to: "socialposts#search"
   
   resources :articles do
+    collection do
+      patch :sort
+    end
     resources :follows, :controller => 'follows_articles', :only => [:create, :destroy]
     resources :article_comments
   end
@@ -53,6 +56,7 @@ Rails.application.routes.draw do
   post 'articles/:id/destroy_article_bookmark', to: "articles#destroy_article_bookmark", as: "destroy_article_bookmark"
   get 'wiki_search', to: "articles#wiki_search"
   get 'wiki_search_results', to: "articles#search"
+  get 'user/:id/articles_bookmark_list', to: "articles#articles_bookmark_list", as: "articles_bookmark_list"
   get 'articlenotifications/link_articlethrough'
   get 'articlenotifications/:id/link_articlethrough', to: 'articlenotifications#link_articlethrough', as: :link_articlethrough
   get 'articlenotifications', to: 'articlenotifications#index'

@@ -52,6 +52,9 @@
                 <%= f.text_area :body, data: {behavior: "autocomplete"}, rows: 30, class: "form-control", placeholder: "Write the announcement here" %>
               <% end %>
             </div>
+            <div class="attachment" align="center">
+              <%= f.input :document, as: :file %>
+            </div>
           </div>
           <div class ="form-group">
             <div align ="center" class="announcement-actions col-md-4 col-md-offset-4 col-sm-12">

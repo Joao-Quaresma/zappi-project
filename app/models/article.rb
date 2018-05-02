@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
     validates :user_id, presence: true
 
     has_attached_file :document
-    validates_attachment :document, :content_type => { :content_type => %w(application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document) }
+    validates_attachment :document, :content_type => { :content_type => 'application/pdf' }
     
     has_many :article_categories
     has_many :categories, through: :article_categories

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502103529) do
+ActiveRecord::Schema.define(version: 20180502153028) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 20180502103529) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "position"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   add_index "announcements", ["user_id"], name: "index_announcements_on_user_id"

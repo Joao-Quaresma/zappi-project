@@ -71,6 +71,10 @@
             <%= simple_format(linked_users_announcement markdownify @announcement.body) %>
           </div>
         <% end %>
+        <% if @announcement.document.present? %>
+          <div align="right"><%= link_to "Open", @announcement.document.url, target: "_blank" %></div>
+          <iframe src="<%= @announcement.document.url %>" style="height:800px;width:100%"></iframe>
+        <% end %>
         <hr>
         <div align ="center" class="announcement-actions">
           <small>

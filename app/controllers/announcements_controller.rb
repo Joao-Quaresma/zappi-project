@@ -116,7 +116,7 @@ class AnnouncementsController < ApplicationController
     end
     
     def announcement_params
-      params.require(:announcement).permit(:title, :description, :body, category_ids: [])
+      params.require(:announcement).permit(:title, :description, :body, :document, category_ids: [])
     end
 
     def require_same_user

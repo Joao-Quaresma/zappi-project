@@ -84,6 +84,8 @@ class UsersController < ApplicationController
 
   def to_do_list
     @articles = Article.order(:position)
+    @announcements = Announcement.order(:position)
+    @faqs = Faq.order(:position)
   end
 
   

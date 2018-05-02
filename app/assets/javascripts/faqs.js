@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
 
-  $("#articles-bookmark-list").sortable({
+  $("#faqs-bookmark-list").sortable({
     update: function(e, ui) {
       $.ajax({
         url: $(this).data("url"),

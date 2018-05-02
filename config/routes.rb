@@ -74,6 +74,9 @@ Rails.application.routes.draw do
   get 'category/:id/category_faqs_search', to: "categories#category_faqs_search", as: "category_faqs_search"
   
   resources :announcements do
+    collection do
+      patch :sort
+    end
     resources :follows, :controller => 'follows_announcements', :only => [:create, :destroy]
     resources :announcement_comments
   end
@@ -81,6 +84,7 @@ Rails.application.routes.draw do
   post 'announcements/:id/destroy_announcement_bookmark', to: "announcements#destroy_announcement_bookmark", as: "destroy_announcement_bookmark"
   get 'announcement_search', to: "announcements#announcement_search"
   get 'announcement_search_results', to: "announcements#search"
+  get 'user/:id/announcements_bookmark_list', to: "announcements#announcements_bookmark_list", as: "announcements_bookmark_list"
   get 'announcementnotifications/link_announcementthrough'
   get 'announcementnotifications/:id/link_announcementthrough', to: 'announcementnotifications#link_announcementthrough', as: :link_announcementthrough
   get 'announcementnotifications', to: 'announcementnotifications#index'
@@ -91,6 +95,9 @@ Rails.application.routes.draw do
 
 
   resources :faqs do
+    collection do
+      patch :sort
+    end
     resources :follows, :controller => 'follows_faqs', :only => [:create, :destroy]
     resources :faq_comments
   end
@@ -98,6 +105,7 @@ Rails.application.routes.draw do
   post 'faqs/:id/destroy_faq_bookmark', to: "faqs#destroy_faq_bookmark", as: "destroy_faq_bookmark"
   get 'faq_search', to: "faqs#faq_search"
   get 'faq_search_results', to: "faqs#search"
+  get 'user/:id/faqs_bookmark_list', to: "faqs#faqs_bookmark_list", as: "faqs_bookmark_list"
   get 'faqnotifications/link_faqthrough'
   get 'faqnotifications/:id/link_faqthrough', to: 'faqnotifications#link_faqthrough', as: :link_faqthrough
   get 'faqnotifications', to: 'faqnotifications#index'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501080611) do
+ActiveRecord::Schema.define(version: 20180502065654) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180501080611) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "position"
   end
 
   add_index "announcements", ["user_id"], name: "index_announcements_on_user_id"
@@ -164,6 +165,7 @@ ActiveRecord::Schema.define(version: 20180501080611) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "position"
   end
 
   create_table "follows", force: :cascade do |t|

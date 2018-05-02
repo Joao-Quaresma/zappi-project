@@ -50,6 +50,18 @@ class FaqsController < ApplicationController
     flash[:danger] = "Faq was successfully deleted"
     redirect_to faqs_path
   end
+
+  def faqs_bookmark_list
+    @user = User.with_deleted.find_by_username(params[:id])
+    @faqs = Faq.order(:position)
+  end
+
+  def sort 
+    params[:faq].each_with_index do |id, index|
+        Faq.where(id: id).update_all(position: index + 1)
+      end 
+    head :ok
+  end
   
   def search
     if params[:search_param].blank?

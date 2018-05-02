@@ -1,0 +1,16 @@
+<div id="bookmarks" class="results-blocks col-xs-12 col-xs-offset-0">
+  <div class="panel panel-info bookmarks-table">
+    <!-- Default panel contents -->
+    <div class="panel-heading" align="center">
+       <strong><h4>Bookmarked Announcements</h3></strong>
+    </div>
+    <!-- Table -->
+    <div id="announcements-bookmark-list" class="list-group" data-url="<%= sort_announcements_path %>" >
+  	  <% @announcements.each do |announcement| %>
+  		  <% if @user.bookmarks?(announcement) %>
+  		  	<%= link_to "#{announcement.title}", announcement, class: "list-group-item", id: dom_id(announcement) %>
+  		  <% end %>
+  	  <% end %>
+  	</div>
+  </div>
+</div>

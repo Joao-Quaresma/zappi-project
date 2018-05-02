@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502065654) do
+ActiveRecord::Schema.define(version: 20180502103529) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -95,6 +95,10 @@ ActiveRecord::Schema.define(version: 20180502065654) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "position"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   create_table "bookmarks", force: :cascade do |t|

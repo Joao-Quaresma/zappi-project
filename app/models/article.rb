@@ -4,6 +4,9 @@ class Article < ActiveRecord::Base
     validates :body, length:{ maximum: 10000 }
     belongs_to :user
     validates :user_id, presence: true
+
+    has_attached_file :document
+    validates_attachment :document, :content_type => { :content_type => %w(application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document) }
     
     has_many :article_categories
     has_many :categories, through: :article_categories

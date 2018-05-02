@@ -1,7 +1,7 @@
 class Announcement < ActiveRecord::Base
     validates :title, presence: true, length:{ minimum: 3, maximum: 200 }
     validates :description, presence: true, length:{ minimum: 3, maximum: 1000 }
-    validates :body, presence: true, length:{ minimum: 3, maximum: 10000 }
+    validates :body, length:{ maximum: 10000 }
     belongs_to :user
     validates :user_id, presence: true
     

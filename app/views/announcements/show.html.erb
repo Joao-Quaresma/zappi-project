@@ -62,13 +62,15 @@
         <hr>
         <% end %>
         <h4 align="center" class="description"><strong>Description:</strong></h4>
-          <div style="word-wrap: break-word; overflow-y: hidden;">
-            <%= simple_format(linked_users_announcement markdownify @announcement.description) %>
-          </div>
-          <hr>
+        <div style="word-wrap: break-word; overflow-y: hidden;">
+          <%= simple_format(linked_users_announcement markdownify @announcement.description) %>
+        </div>
+        <hr>
+        <% if @announcement.body != nil %>
           <div style="word-wrap: break-word; overflow-y: hidden;">
             <%= simple_format(linked_users_announcement markdownify @announcement.body) %>
           </div>
+        <% end %>
         <hr>
         <div align ="center" class="announcement-actions">
           <small>

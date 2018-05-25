@@ -40,7 +40,7 @@
     <li>
       <% if articlenotification.notice_type == "comment" %>
         <%= link_to "#{articlenotification.notified_by.username} left a #{articlenotification.notice_type} in your post", link_articlethrough_path(articlenotification) %>
-      <% elsif articlenotification.notice_type == "New Article" %>
+      <% elsif articlenotification.notice_type == "New Wiki" %>
         <%= link_to "#{articlenotification.notice_type} created for categories which you're following!", link_articlethrough_path(articlenotification) %>
       <% elsif articlenotification.notice_type == "tagged" %>
         <%= link_to "#{articlenotification.notified_by.username} mentioned you ", link_articlethrough_path(articlenotification) %>

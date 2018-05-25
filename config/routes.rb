@@ -47,9 +47,6 @@ Rails.application.routes.draw do
   get 'socialpost_search_results', to: "socialposts#search"
   
   resources :articles do
-    collection do
-      patch :sort
-    end
     resources :follows, :controller => 'follows_articles', :only => [:create, :destroy]
     resources :article_comments
   end
@@ -75,9 +72,6 @@ Rails.application.routes.draw do
   get 'category/:id/category_faqs_search', to: "categories#category_faqs_search", as: "category_faqs_search"
   
   resources :announcements do
-    collection do
-      patch :sort
-    end
     resources :follows, :controller => 'follows_announcements', :only => [:create, :destroy]
     resources :announcement_comments
   end
@@ -96,9 +90,6 @@ Rails.application.routes.draw do
 
 
   resources :faqs do
-    collection do
-      patch :sort
-    end
     resources :follows, :controller => 'follows_faqs', :only => [:create, :destroy]
     resources :faq_comments
   end

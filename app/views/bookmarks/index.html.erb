@@ -16,3 +16,43 @@
     </div>
   </div>
 </div>
+
+
+<div id="bookmarks" class="results-blocks col-xs-12 col-xs-offset-0">
+  <div class="panel panel-info bookmarks-table">
+    <!-- Default panel contents -->
+    <div class="panel-heading" align="center">
+      <strong><h4>Bookmarked Announcements</h3></strong>
+    </div>
+    <!-- Table -->
+    <div id="announcements-bookmark-list" class="list-group" data-url="<%= sort_bookmarks_path %>" >
+      <% @bookmarked_announcements.each do |bookmarked_announcement| %>
+        <% if bookmarked_announcement.position == nil %>
+          <%= link_to raw('<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>' + "#{@announcements.find(bookmarked_announcement.bookmarkee_id).title}"), announcement_path(bookmarked_announcement.bookmarkee_id), class: "list-group-item", id: dom_id(bookmarked_announcement)%>
+        <% else %>
+          <%= link_to @announcements.find(bookmarked_announcement.bookmarkee_id).title, announcement_path(bookmarked_announcement.bookmarkee_id), class: "list-group-item", id: dom_id(bookmarked_announcement)%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div id="bookmarks" class="results-blocks col-xs-12 col-xs-offset-0">
+  <div class="panel panel-info bookmarks-table">
+    <!-- Default panel contents -->
+    <div class="panel-heading" align="center">
+      <strong><h4>Bookmarked Announcements</h3></strong>
+    </div>
+    <!-- Table -->
+    <div id="faqs-bookmark-list" class="list-group" data-url="<%= sort_bookmarks_path %>" >
+      <% @bookmarked_faqs.each do |bookmarked_faq| %>
+        <% if bookmarked_faq.position == nil %>
+          <%= link_to raw('<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>' + "#{@faqs.find(bookmarked_faq.bookmarkee_id).title}"), faq_path(bookmarked_faq.bookmarkee_id), class: "list-group-item", id: dom_id(bookmarked_faq)%>
+        <% else %>
+          <%= link_to @faqs.find(bookmarked_faq.bookmarkee_id).title, faq_path(bookmarked_faq.bookmarkee_id), class: "list-group-item", id: dom_id(bookmarked_faq)%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

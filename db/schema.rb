@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503184723) do
+ActiveRecord::Schema.define(version: 20180525200654) do
 
   create_table "announcement_categories", force: :cascade do |t|
     t.integer "announcement_id"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20180503184723) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "position"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
@@ -177,7 +176,6 @@ ActiveRecord::Schema.define(version: 20180503184723) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "position"
   end
 
   create_table "follows", force: :cascade do |t|

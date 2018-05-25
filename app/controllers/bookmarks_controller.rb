@@ -3,11 +3,16 @@ class BookmarksController < ApplicationController
 
   def index
     @user = User.with_deleted.find_by_username(params[:id])
-    #@articles = @user.bookmarkees_by('Article').order(:position)
-    #@articles = Article.all
-    #@articles = Bookmark.order(:position)
+
     @bookmarked_articles = Bookmark.where(bookmarkee_type: 'Article', bookmarker_id: @user).order(:position)
     @articles = Article.all
+
+    @bookmarked_announcements = Bookmark.where(bookmarkee_type: 'Announcement', bookmarker_id: @user).order(:position)
+    @announcements = Announcement.all
+
+    @bookmarked_faqs = Bookmark.where(bookmarkee_type: 'Faq', bookmarker_id: @user).order(:position)
+    @faqs = Faq.all
+
   end
 
   def sort 

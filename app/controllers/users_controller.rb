@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search, :user_faqs_search, :user_follow_articles, :user_follow_announcements, :user_follow_faqs, :to_do_list]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_socialposts_search, :user_announcements_search, :user_articles_search, :user_faqs_search, :user_follow_articles, :user_follow_announcements, :user_follow_faqs]
   before_action :require_same_user, only: [:edit, :update]
   before_action :require_admin, only: [:deleted_users_index, :destroy]
 
@@ -79,13 +79,6 @@ class UsersController < ApplicationController
 
   def user_follow_faqs
    @faqs = @user.following_by_type('Faq')
-  end
-
-
-  def to_do_list
-    @articles = Article.order(:position)
-    @announcements = Announcement.order(:position)
-    @faqs = Faq.order(:position)
   end
 
   

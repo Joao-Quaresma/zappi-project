@@ -50,19 +50,6 @@ class AnnouncementsController < ApplicationController
     flash[:danger] = "Announcement was successfully deleted"
     redirect_to announcements_path
   end
-
-
-  def announcements_bookmark_list
-    @user = User.with_deleted.find_by_username(params[:id])
-    @announcements = Announcement.order(:position)
-  end
-
-  def sort 
-    params[:announcement].each_with_index do |id, index|
-        Announcement.where(id: id).update_all(position: index + 1)
-      end 
-    head :ok
-  end
   
   def search
     if params[:search_param].blank?

@@ -1,0 +1,18 @@
+<div id="bookmarks" class="results-blocks col-xs-12 col-xs-offset-0">
+  <div class="panel panel-info bookmarks-table">
+    <!-- Default panel contents -->
+    <div class="panel-heading" align="center">
+      <strong><h4>Bookmarked Wikis</h3></strong>
+    </div>
+    <!-- Table -->
+    <div id="articles-bookmark-list" class="list-group" data-url="<%= sort_bookmarks_path %>" >
+      <% @bookmarked_articles.each do |bookmarked_article| %>
+        <% if bookmarked_article.position == nil %>
+          <%= link_to raw('<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>' + "#{@articles.find(bookmarked_article.bookmarkee_id).title}"), article_path(bookmarked_article.bookmarkee_id), class: "list-group-item", id: dom_id(bookmarked_article)%>
+        <% else %>
+          <%= link_to @articles.find(bookmarked_article.bookmarkee_id).title, article_path(bookmarked_article.bookmarkee_id), class: "list-group-item", id: dom_id(bookmarked_article)%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

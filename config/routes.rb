@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :faqnotifications
   devise_for :users, :controllers => { registrations: 'registrations' }
   
@@ -113,6 +114,14 @@ Rails.application.routes.draw do
   resources :faqnotifications do
     post :read_all, on: :collection
   end
+
+
+  resources :bookmarks do
+    collection do
+      patch :sort
+    end
+  end
+  get 'user/:id/bookmarks', to: "bookmarks#index", as: "bookmarks_index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

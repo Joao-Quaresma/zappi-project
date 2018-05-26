@@ -8,7 +8,7 @@
       </div>
       <% if current_user.admin? %>
         <div align="right">
-          <%= link_to "#{@user.username} to do list", to_do_list_path(@user), class: 'btn to-do-button', id: 'to-do-button' %>
+          <%= link_to "#{@user.username} bookmark list", bookmarks_index_path(@user), class: 'btn to-do-button', id: 'to-do-button' %>
         </div>
       <% end %>
       <div class="panel-body">
